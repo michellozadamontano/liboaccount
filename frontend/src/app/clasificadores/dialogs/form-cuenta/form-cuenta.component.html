@@ -1,0 +1,66 @@
+<div fxLayout="row wrap" fxLayoutAlign="end end">    
+    <mat-icon (click)="closeDialog()" class="hover-close">close</mat-icon>    
+</div>
+
+<div fxLayout="column wrap">
+    <form [formGroup]="form" (ngSubmit)="id== undefined ? save(): update()">
+        <div fxLayout="row" fxLayoutGap="5px">      
+            <div fxFlex="50">
+                    <span *ngIf="(objetcuenta$ | async)!= null;">
+                            Long word: {{ objetcuenta$.cuenta }}
+                          </span>
+                <mat-form-field class="full-width">
+                    <input matInput placeholder="Cuenta" formControlName="cuenta">
+                </mat-form-field>                                      
+            </div>        
+            <div fxFlex="50">
+                <mat-form-field class="full-width">
+                    <input matInput placeholder="Descripcion" formControlName="descripcion">
+                </mat-form-field>                        
+            </div>
+        </div> 
+        <div fxLayout="row" fxLayoutGap="5px">
+            <div fxFlex="50">
+                <mat-form-field class="full-width">
+                    <mat-select placeholder="Moneda" formControlName = "moneda">
+                        <mat-option *ngFor="let item of (monedas$ | async )" [value] ="item.id">
+                            {{item.descripcion}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>                
+            </div>
+            <div fxFlex="50">
+                <mat-form-field class="full-width">
+                        <mat-select placeholder="Tipo Cuenta" formControlName = "tipo">
+                            <mat-option *ngFor="let item of tipocuenta" [value]="item.id">
+                                {{item.descripcion}}
+                            </mat-option>
+                        </mat-select>
+                </mat-form-field>                        
+            </div>                 
+        </div>
+        <div fxLayout="row" fxLayoutGap="5px">
+            <div fxFlex="50">
+                <mat-checkbox formControlName = "predeterminada">Predeterminada</mat-checkbox>                        
+            </div>
+            <div fxFlex="50">
+                <mat-form-field class="full-width">
+                        <mat-select placeholder="Centro Costo" formControlName = "ccosto">
+                            <mat-option value=null>[Centro Costo]</mat-option>
+                            <mat-option *ngFor="let item of (ccosto$ | async)" [value]="item.id">
+                                {{item.codigo}}
+                            </mat-option>
+                        </mat-select>
+                </mat-form-field>                               
+            </div>                                
+        </div>
+        <div fxLayout="row wrap">
+        <div fxFlex="50" *ngIf="id == undefined">
+            <button mat-raised-button color="primary" type="submit">Guardar</button>                    
+        </div>   
+        <div fxFlex="50" *ngIf="id != undefined">                    
+            <button mat-raised-button color="success" type="submit">Editar</button>
+        </div>              
+        </div>    
+    </form>
+</div>

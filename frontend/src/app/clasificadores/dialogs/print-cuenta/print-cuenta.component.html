@@ -1,0 +1,46 @@
+<div fxLayout="column wrap">  
+    <mat-card fxFlex="100">
+        <mat-card-header>
+            <mat-card-title>Imrpimer cuentas</mat-card-title>
+            <mat-card-subtitle>Cuentas segun tipo</mat-card-subtitle>
+        </mat-card-header>        
+        <mat-card-content>
+            <div fxLayout="column wrap">
+              <div fxFlex="100">
+                <mat-form-field fxFlex="100">
+                  <mat-select placeholder="Tipo Cuenta" [(ngModel)] = "tipocuentaId">
+                    <mat-option *ngFor="let tipo of (tipoCuenta$ | async)" [value]="tipo.id">
+                      {{tipo.descripcion}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+            </div>
+            <br>
+            <div fxLayout="column wrap">
+              <div fxFlex="100" *ngIf="(cuentaPrint$ | async).length > 0">                                  
+                  <table fxFlex="100" id="contentToConvert">
+                    <tr>
+                      <th>Tipo Cuenta</th>
+                      <th>Cuenta</th>
+                      <th>Descripcion</th>
+                      <th>Moneda</th>
+                    </tr>
+                    <tr *ngFor="let item of (cuentaPrint$ | async)">
+                      <td>{{item.tipo_cuenta}}</td>
+                      <td>{{item.cuenta}}</td>
+                      <td>{{item.descripcion}}</td>
+                      <td>{{item.moneda}}</td>
+                    </tr>
+                  </table>                
+              </div>
+            </div>
+        </mat-card-content>
+        <mat-card-actions align="start">
+            <button mat-raised-button color="accent" (click)="showCuentas()">Aceptar</button>
+            <button mat-button (click)="cancel()">Cancelar</button>
+        </mat-card-actions>
+        <mat-card-footer>           
+        </mat-card-footer>
+    </mat-card>  
+</div>

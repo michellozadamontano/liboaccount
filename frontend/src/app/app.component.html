@@ -1,0 +1,28 @@
+<div fxLayout="column" fxLayout.xs="column">
+      <mat-toolbar color="primary">
+      
+            <div fxLayout="row" fxLayoutGap="10px" fxFlex >
+            <div fxFlex="50">
+            <h1>ZUNaft</h1>
+            </div>
+            <div fxFlex="20%" fxLayoutAlign="end end">
+            
+            </div>
+            <div fxFlex>
+            <button mat-raised-button (click)="onLogout()" color="primary">
+                  <mat-icon>arrow_back</mat-icon>
+                  <span>Salir</span>
+            </button>
+            </div>
+            </div>
+      </mat-toolbar>
+      
+      <mat-sidenav-container>
+            <mat-sidenav  mode="side" opened="true">
+             <app-sidebar></app-sidebar>
+            </mat-sidenav>
+            <div fxFlex class="content">
+             <router-outlet></router-outlet>
+            </div>
+      </mat-sidenav-container>
+</div>
