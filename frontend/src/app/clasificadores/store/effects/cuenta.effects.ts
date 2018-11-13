@@ -12,7 +12,7 @@ export class CuentaEffects {
     constructor(
         private actions$: Actions,
         private cuentaService: fromServices.CuentaService
-    ){       
+    ){      
         
     }
 

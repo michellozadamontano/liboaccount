@@ -9,6 +9,7 @@ export const LOAD_TASAS_ERROR           = '[Tasas] Load tasas error';
 export const LOAD_TASA_CUENTA           = '[Tasas] Load tasa cuentas';
 export const LOAD_TASA_CUENTA_SUCCESS   = '[Tasas] Load tasa cuentas success';
 export const INSERT_TASA                = '[Tasas] Insert tasa';
+export const INSERT_TASA_SUCCESS        = '[Tasas] Insert tasa success';
 
 // classes
 export class LoadTasas implements Action {
@@ -32,7 +33,11 @@ export class LoadTasaCuentaSuccess implements Action {
 }
 export class InsertTasa implements Action {
     readonly type = INSERT_TASA;
-    constructor(public payload:Tasas){}
+    constructor(public payload:any){}
+}
+export class InsertTasaSuccess implements Action {
+    readonly type = INSERT_TASA_SUCCESS;
+    constructor(public payload: string){}
 }
 
 export type TasaAction = 
@@ -41,4 +46,5 @@ export type TasaAction =
 | LoadTasaCuenta
 | LoadTasaCuentaSuccess
 | InsertTasa
+| InsertTasaSuccess
 | LoadTassError

@@ -36,7 +36,7 @@ import { EntidadComponent }         from './containers/entidad/entidad.component
 import { TasasComponent }           from './containers/tasas/tasas.component';
 import { PrintCuentaComponent }     from './dialogs/print-cuenta/print-cuenta.component';
 import { TasaCuentaComponent }      from './dialogs/tasa-cuenta/tasa-cuenta.component';
-import { FormTasaComponent } from './dialogs/form-tasa/form-tasa.component';
+import { FormTasaComponent }        from './dialogs/form-tasa/form-tasa.component';
 
 
 
@@ -57,6 +57,6 @@ import { FormTasaComponent } from './dialogs/form-tasa/form-tasa.component';
   ],
   providers: [MonedaService,TipoCuentaService, 
     CuentaService, EntidadService, CcostoService,TasasService],
-  entryComponents:[FormCuentaComponent, PrintCuentaComponent, TasaCuentaComponent]
+  entryComponents:[FormCuentaComponent, PrintCuentaComponent, TasaCuentaComponent, FormTasaComponent]
 })
 export class ClasificadoresModule { }

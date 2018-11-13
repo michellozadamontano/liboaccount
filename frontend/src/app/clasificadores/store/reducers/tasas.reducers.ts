@@ -57,6 +57,19 @@ export function reducer(state = InitialState, action:fromTasa.TasaAction ): Stat
                 message: action.payload
             }
         }
+        case fromTasa.INSERT_TASA:
+        {
+            return{
+                ...state,                
+            }
+        }
+        case fromTasa.INSERT_TASA_SUCCESS:
+        {                       
+            return{
+                ...state,
+                message: action.payload
+            }
+        }
 
     }
     return state;

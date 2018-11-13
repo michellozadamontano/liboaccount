@@ -9,6 +9,7 @@ import { Observable }       from 'rxjs';
 import * as fromStore       from '../../store';
 import { Tasas }            from '../../models/tasas.interface';
 import { TasaCuentaComponent } from '../../dialogs/tasa-cuenta/tasa-cuenta.component';
+import { FormTasaComponent } from '../../dialogs/form-tasa/form-tasa.component';
 
 @Component({
   selector: 'app-tasas',
@@ -56,6 +57,13 @@ export class TasasComponent implements OnInit {
     const dialogRef = this.dialog.open(TasaCuentaComponent, {
       width: '50%',
       data: {id:id}
+    });
+  }
+  AddTasa()
+  {
+    const dialogRef = this.dialog.open(FormTasaComponent, {
+      width: '50%',
+      data: {}
     });
   }
 

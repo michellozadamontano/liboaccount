@@ -40,7 +40,7 @@ router.get('/getbyId/:id', (req, res) => {
 // Get cuenta by tipo cuenta
 router.get('/getbyTipo/:id', (req, res) => {
     // aqui voy a obtener las cuentas segun el tipo pasado por parametro
-    let sql = 'select t.descripcion as tipo_cuenta, c.cuenta, c.descripcion, m.descripcion as moneda from cuentas c INNER JOIN tipo_cuenta t on c.tipo_cuenta_id = t.id INNER JOIN moneda m  ON c.moneda_id = m.id where t.id = ?';
+    let sql = 'select c.id, t.descripcion as tipo_cuenta, c.cuenta, c.descripcion, m.descripcion as moneda from cuentas c INNER JOIN tipo_cuenta t on c.tipo_cuenta_id = t.id INNER JOIN moneda m  ON c.moneda_id = m.id where t.id = ?';
     let parmsQuery = [req.params.id];
     db.execute(sql, parmsQuery, (err, result) => {
         if (err) {

@@ -23,8 +23,7 @@ export function reducer(state = InitialState, action: fromMoneda.MonedaAction): 
             };
         }
         case fromMoneda.CARGAR_MONEDA_EXITO: {
-            const data = action.payload;           
-            
+            const data = action.payload;                        
             return {
                 ...state,
                 loaded: true,

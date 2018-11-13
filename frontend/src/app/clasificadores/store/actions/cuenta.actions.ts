@@ -23,8 +23,8 @@ export const LOAD_CUENTA_DEPRE              = '[Cuenta] Load cuenta depreciacion
 export const LOAD_CUENTA_DEPRE_SUCCESS      = '[Cuenta] Load cuenta depre success';
 export const LOAD_CUENTA_SOBRANTE           = '[Cuenta] Load cuenta sobrante';
 export const LOAD_CUENTA_SOBRANTE_SUCCESS   = '[Cuenta] Load cuenta sobrante success';
-export const LOAD_CUENTA_FALTANTE           = '[Cuenta] Load cuenta sobrante';
-export const LOAD_CUENTA_FALTANTE_SUCCESS   = '[Cuenta] Load cuenta sobrante success';
+export const LOAD_CUENTA_FALTANTE           = '[Cuenta] Load cuenta faltante';
+export const LOAD_CUENTA_FALTANTE_SUCCESS   = '[Cuenta] Load cuenta faltante success';
 
 
 export class LoadCuenta implements Action {
@@ -126,6 +126,7 @@ export type CuentaAction =
 | LoadCuentaDepreSuccess
 | LoadCuentaSobrante
 | LoadCuentaSobranteSuccess
+| LoadCuentaFaltante
 | LoadCuentaFaltanteSuccess
 | UpdateCuenta
 | DeleteCuenta ;

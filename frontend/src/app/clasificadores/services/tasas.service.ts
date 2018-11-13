@@ -16,7 +16,7 @@ export class TasasService {
     private http: HttpClient
   ) { }
 
-  InsertTasa(tasa: Tasas): Observable<any>{     
+  InsertTasa(tasa: any): Observable<any>{     
       
     let url = API_URL + 'tasa';
     return this.http.post<any>(url,tasa).pipe(

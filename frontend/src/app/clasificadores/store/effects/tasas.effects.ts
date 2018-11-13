@@ -14,7 +14,7 @@ export class TasasEffects {
     ) {}
 
     @Effect()
-    loadTasa$ = this.actions$.ofType(fromTasaAction.LOAD_TASAS).pipe(
+    loadTasa$ = this.actions$.ofType(fromTasaAction.LOAD_TASAS, fromTasaAction.INSERT_TASA_SUCCESS).pipe(
         switchMap(() => {
             return this.tasaService.GetTasas().pipe(
                 map(tasa => new fromTasaAction.LoadTasasSucces(tasa)),
@@ -22,15 +22,17 @@ export class TasasEffects {
             )
         })
     )
+    //este efecto es para agregar una tasa con todas sus dependencias 
     @Effect()
     insertTasa$ = this.actions$.ofType<fromTasaAction.InsertTasa>(fromTasaAction.INSERT_TASA).pipe(
         switchMap((tasa) => {
             return this.tasaService.InsertTasa(tasa.payload).pipe(
-                map(tasa => new fromTasaAction.LoadTasasSucces(tasa)),
+                map(message => new fromTasaAction.InsertTasaSuccess(message)),
                 catchError(error => of(new fromTasaAction.LoadTassError(error)))
             )
         })
-    )
+    )   
+
     @Effect()
     loadTasaCuenta$ = this.actions$.ofType<fromTasaAction.LoadTasaCuenta>(fromTasaAction.LOAD_TASA_CUENTA).pipe(
         switchMap((tasa) => {           

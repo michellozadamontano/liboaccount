@@ -37,14 +37,19 @@
                   </tr>
                 </table>
                 <mat-paginator [length]="resultsLength" [pageSize]="2"></mat-paginator>
+                <div fxLayout="row" fxLayoutGap="2px">
+                  <div fxFlex="20">
+                    <button mat-fab (click)="AddTasa()" color="primary">
+                        <mat-icon >add_circle</mat-icon>
+                    </button>                    
+                  </div>
+                  <div fxFlex="20">
+                      <button mat-fab (click)="onClick" color="warn">
+                          <mat-icon >print</mat-icon>
+                      </button>
+                    </div>
+                </div>
           </div>
-      </mat-card-content>
-      <mat-card-actions align="start">
-          <button mat-button (click)="onAction1">Action1</button>
-          
-      </mat-card-actions>
-      <mat-card-footer>
-          Footer
-      </mat-card-footer>
+      </mat-card-content>      
   </mat-card>
 </div>

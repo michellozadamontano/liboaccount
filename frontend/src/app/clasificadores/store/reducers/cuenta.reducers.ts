@@ -45,9 +45,7 @@ export function reducer(state = InitialState, action: fromCuenta.CuentaAction): 
             }
         }
         case fromCuenta.LOAD_CUENTA_SUCCESS:
-        {   
-            console.log(action.payload);
-                     
+        {               
             return {
                 ...state,
                 loaded: true,
@@ -103,7 +101,8 @@ export function reducer(state = InitialState, action: fromCuenta.CuentaAction): 
             }
         }
         case fromCuenta.LOAD_CUENTA_TITULO_SUCCESS:
-        {            
+        {   
+            console.log(action.pyload['cuenta']);         
             return {
                 ...state,
                 cuentaTitulo: action.pyload['cuenta']
@@ -138,14 +137,16 @@ export function reducer(state = InitialState, action: fromCuenta.CuentaAction): 
             }
         } 
         case fromCuenta.LOAD_CUENTA_FALTANTE:
-        {
+        {            
             return {
                 ...state,
                 tipo_cuenta_id : action.payload
             }
         }
         case fromCuenta.LOAD_CUENTA_FALTANTE_SUCCESS:
-        {            
+        {  
+            console.log(action.pyload['cuenta']);
+                      
             return {
                 ...state,
                 cuentaFaltante: action.pyload['cuenta']
