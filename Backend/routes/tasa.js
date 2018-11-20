@@ -27,7 +27,7 @@ router.get('/getbyId/:id',(req, res)=> {
 });
 // Get cuentas tasas
 router.get('/getCuentas/:id',(req,res)=>{
-    let sql = 'SELECT  c.cuenta, tipc.descripcion as titulo from tasa t ' +
+    let sql = 'SELECT  c.id,c.cuenta, tipc.descripcion as titulo, tipc.id as tipoId from tasa t ' +
     'INNER JOIN tasa_cuenta tc on tc.tasa_id = t.id INNER JOIN cuentas c ON tc.cuentas_id = c.id '+
     'INNER JOIN tipo_cuenta tipc on c.tipo_cuenta_id = tipc.id WHERE t.id = ?';
     let sql_params = [req.params.id];
@@ -40,6 +40,8 @@ router.get('/getCuentas/:id',(req,res)=>{
     })
 
 });
+
+
 //Add
 router.post('/',(req,res)=>{
     let tasa = req.body.tasa;
@@ -89,7 +91,7 @@ router.post('/',(req,res)=>{
                         })
                     })    
                     
-                    res.json('Cuenta creada correctamente ')
+                    res.json('Tasa creada correctamente ');
                 })
                 
                
@@ -101,42 +103,59 @@ router.post('/',(req,res)=>{
 router.put('/:id',(req,res)=>{
     console.log(req.params.id);
     
-    db.cuentas.update({
-        tipo_cuenta_id   : req.body.tipo_cuenta_id,
-        moneda_id        : req.body.moneda_id,
-        cuenta           : req.body.cuenta,
-        descripcion      : req.body.descripcion,
-        activa           : 1,
-        ccosto_id        : req.body.ccosto_id,
-        predeterminada   : req.body.predeterminada
-    },
-    {
-        where: {
-            id: req.params.id
+    let tasa = req.body.tasa;
+    let descripcion = req.body.descripcion;
+    let cod_tasa = req.body.cod_tasa;
+    let porciento_depreciacion = 1;
+    let moneda_id = req.body.moneda_id;
+    let cuentaTitulo_id = req.body.cuentaTitulo_id;
+    let cuentaDepre_id = req.body.cuentaDepre_id;
+    let cuentaSobrante_id = req.body.cuentaSobrante_id;
+    let cuentaFaltante_id = req.body.cuentaFaltante_id;
+
+    let cuentaArray = [cuentaTitulo_id,cuentaDepre_id,cuentaSobrante_id,cuentaFaltante_id];
+
+    let sql = "update tasa set tasa = ?, descripcion = ?, cod_tasa = ?, moneda_id = ? where id = ?";
+    let sql_params = [tasa,descripcion,cod_tasa,moneda_id,req.params.id];
+    db.execute(sql,sql_params,(err,result)=>{
+        if(err)
+        {
+            res.json('Ocurrió un error en el proceso de actualización' + err);
         }
+        let sql_delete = "delete from tasa_cuenta where tasa_id = ?";
+        let sql_delete_params = [req.params.id];
+        db.execute(sql_delete,sql_delete_params,(err,result)=>{
+            if(err)
+            {
+                res.json('Ocurrió un error en el proceso de actualización' + err);
+            }
+            cuentaArray.forEach(x=>{
+                let query = "INSERT INTO tasa_cuenta(tasa_id,cuentas_id) VALUES(?,?)";
+                let queryParams = [req.params.id,x];
+                db.execute(query,queryParams,(err,result)=>{
+                    if (err) {
+                        res.json('Error al actualizar ' + err);
+                    }
+                })
+            })    
+            
+            res.json('Tasa actualizada correctamente ');
+        })
+
     })
-    .then(cuenta => res.status(201).json({               
-        message: 'Cuenta actualizada exitosamente.'
-    }))
-    .catch(error => res.json({        
-        error: error
-    }));
 
 });
 
 //Delete
 router.delete('/:id',(req,res)=>{
-    db.cuentas.destroy({
-        where:{
-            id: req.params.id
+    sql = "delete from tasa where id = ?";
+    sql_params = [req.params.id];
+    db.execute(sql,sql_params,(err,result)=>{
+        if(err){
+            res.json('Ocurrió un error al eliminar esta tasa');
         }
+        res.json('Tasa eliminada');
     })
-    .then(cuenta => res.status(201).json({               
-        message: 'Cuenta eliminada exitosamente.'
-    }))
-    .catch(error => res.json({        
-        error: error
-    }));
 })
 
 module.exports = router;

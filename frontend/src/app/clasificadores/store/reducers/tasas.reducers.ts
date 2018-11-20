@@ -4,6 +4,7 @@ import { Tasa_Cuenta }  from '../../models/tasa_cuenta.interface';
 
 export interface State {
     tasas           : Tasas[];
+    tasa            : Tasas[];
     loading         : boolean;
     loaded          : boolean;
     message         : string;
@@ -12,6 +13,7 @@ export interface State {
 }
 export const InitialState: State = {
     tasas       : [],
+    tasa        : [],
     loading     : false,
     loaded      : false,
     message     : '',
@@ -40,7 +42,8 @@ export function reducer(state = InitialState, action:fromTasa.TasaAction ): Stat
         {
             return {
                 ...state,
-                tasaId: action.payload.id                
+                tasaId: action.payload.id,
+                tasa_cuentas:[]                
             }
         }
         case fromTasa.LOAD_TASA_CUENTA_SUCCESS:
@@ -57,6 +60,21 @@ export function reducer(state = InitialState, action:fromTasa.TasaAction ): Stat
                 message: action.payload
             }
         }
+        case fromTasa.LOAD_TASA_BY_ID:
+        {
+            return{
+                ...state,
+               
+            }
+        }
+        case fromTasa.LOAD_TASA_BY_ID_SUCCESS:
+        {    
+            console.log(action.payload['tasa']);
+            return{
+                ...state,
+                tasa: action.payload['tasa']
+            }
+        }
         case fromTasa.INSERT_TASA:
         {
             return{
@@ -70,12 +88,39 @@ export function reducer(state = InitialState, action:fromTasa.TasaAction ): Stat
                 message: action.payload
             }
         }
+        case fromTasa.UPDATE_TASA:
+        {
+            return {
+                ...state
+            }
+        }
+        case fromTasa.UPDATE_TASA_SUCCESS:
+        {
+            return {
+                ...state,
+                message: action.payload
+            }
+        }
+        case fromTasa.DELETE_TASA:
+        {
+            return {
+                ...state
+            }
+        }
+        case fromTasa.DELETE_TASA_SUCCESS:
+        {
+            return {
+                ...state,
+                message: action.payload
+            }
+        }
 
     }
     return state;
 }
 
-export const getTasas = (state:State) => state.tasas;
-export const getTasasMessage = (state:State) => state.message;
-export const getTasasLoaded = (state:State) => state.loaded;
-export const getTasaCuentas = (state:State) => state.tasa_cuentas;
+export const getTasas           = (state:State) => state.tasas;
+export const getTasasMessage    = (state:State) => state.message;
+export const getTasasLoaded     = (state:State) => state.loaded;
+export const getTasaCuentas     = (state:State) => state.tasa_cuentas;
+export const getTasa            = (state:State) => state.tasa;

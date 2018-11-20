@@ -19,6 +19,7 @@ import{ FlexLayoutModule }          from '@angular/flex-layout';
 import { StoreModule  }             from '@ngrx/store';
 import { EffectsModule }            from '@ngrx/effects';
 import { reducers, effects }        from '../clasificadores/store';
+import { NgrxFormsModule }          from 'ngrx-forms';
 
 
 //services
@@ -48,6 +49,7 @@ import { FormTasaComponent }        from './dialogs/form-tasa/form-tasa.componen
     HttpClientModule,
     FormsModule,
     FlexLayoutModule,
+    NgrxFormsModule,
     ReactiveFormsModule,
     StoreModule.forFeature('clasificadores', reducers),
     EffectsModule.forFeature(effects),

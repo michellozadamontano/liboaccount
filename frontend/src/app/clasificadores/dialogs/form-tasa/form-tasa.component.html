@@ -2,24 +2,25 @@
     <mat-icon (click)="closeDialog()" class="hover-close">close</mat-icon>    
 </div>
 
-<div fxLayout="column wrap">
-    <form [formGroup]="form" (ngSubmit)="id== undefined ? save(): update()">
+<div fxLayout="column wrap">    
+    <form [formGroup]="form" (ngSubmit)="id== undefined ? save(): update($event)">
         <div fxLayout="row" fxLayoutGap="5px">      
-            <div fxFlex="20">                    
-                <mat-form-field class="full-width">
-                    <input matInput placeholder="Codigo" formControlName="codigo">
-                </mat-form-field>                                      
+            <div fxFlex="20">              
+               
+                <mat-form-field class="full-width" >
+                    <input matInput placeholder="Codigo" formControlName="codigo"  >
+                </mat-form-field>                                     
             </div>        
-            <div fxFlex="30">
+            <div fxFlex="30">                     
                 <mat-form-field class="full-width">
-                    <input matInput placeholder="Tasa" formControlName="tasa">
-                </mat-form-field>                        
+                        <input matInput placeholder="Tasa" formControlName="tasa">
+                    </mat-form-field>                         
             </div>
-            <div fxFlex="50">
+            <div fxFlex="50">                    
                 <mat-form-field class="full-width">
                     <input matInput placeholder="Descripcion" formControlName="descripcion">
                 </mat-form-field>                        
-            </div>
+            </div>            
         </div> 
         <div fxLayout="row" fxLayoutGap="5px">
             <div fxFlex="20">
@@ -79,7 +80,7 @@
             <button mat-raised-button color="primary" type="submit">Guardar</button>                    
         </div>   
         <div fxFlex="50" *ngIf="id != undefined">                    
-            <button mat-raised-button color="success" type="submit">Editar</button>
+            <button mat-raised-button color="warn" type="submit">Editar</button>
         </div>              
         </div>    
     </form>

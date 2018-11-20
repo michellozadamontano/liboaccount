@@ -4,3 +4,6 @@
   .hover-close:hover{
     cursor: pointer;  
   }
+  input.ngrx-forms-dirty.ngrx-forms-invalid {
+    bottom: 1px solid red;
+  }

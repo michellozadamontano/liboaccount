@@ -34,6 +34,10 @@ import {
   MatStepperModule
 }                                                 from '@angular/material';
 
+import { CustomErrorStateMatcherDirective } from './error-state-matcher';
+import { MatListOptionFixDirective } from './mat-list-option-fix';
+import { NgrxMatSelectViewAdapter } from './mat-select-view-adapter';
+
 
 @NgModule({
   imports: [
@@ -71,6 +75,11 @@ import {
     MatNativeDateModule,
     
   ],
+  declarations: [
+    NgrxMatSelectViewAdapter,
+   // CustomErrorStateMatcherDirective,
+    MatListOptionFixDirective,
+  ],
   exports: [
     CdkTableModule,
     MatAutocompleteModule,
@@ -103,8 +112,11 @@ import {
     MatPaginatorModule,
     MatSortModule,
     MatTableModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    NgrxMatSelectViewAdapter,
+   // CustomErrorStateMatcherDirective,
+    MatListOptionFixDirective,
   ],
-  declarations: []
+  
 })
 export class MaterialModule { }

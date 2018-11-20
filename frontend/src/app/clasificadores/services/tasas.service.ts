@@ -30,11 +30,10 @@ export class TasasService {
       catchError(this.handleError)
     )
   }
-  GetTasaById(id: any):Observable<Tasas>
+  GetTasaById(id: any):Observable<Tasas[]>
   {    
-    
     let url = API_URL + 'tasa/getbyId/' + id;
-    return this.http.get<any>(url).pipe(
+    return this.http.get<Tasas[]>(url).pipe(
       catchError(this.handleError)
     )
   }
@@ -45,7 +44,7 @@ export class TasasService {
       catchError(this.handleError)
     )
   }
-  UpdateTasa(id:number, tasa:Tasas):Observable<any> 
+  UpdateTasa(id:number, tasa:any):Observable<any> 
   {
     let url = API_URL + 'tasa/' + id;
     return this.http.put<any>(url,tasa).pipe(

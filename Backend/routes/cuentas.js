@@ -23,7 +23,7 @@ router.get('/', function (req, res, next) {
 router.get('/getbyId/:id', (req, res) => {
 
     let query = "SELECT c.id,c.cuenta, c.descripcion, m.id as moneda," +
-        "t.id as tipo, co.id as ccosto FROM cuentas c INNER JOIN moneda m " +
+        "t.id as tipo, co.id as ccosto, c.predeterminada FROM cuentas c INNER JOIN moneda m " +
         "on m.id = c.moneda_id INNER JOIN tipo_cuenta t on t.id = c.tipo_cuenta_id LEFT JOIN " +
         "ccosto co on co.id = c.ccosto_id WHERE c.id = '" + req.params.id + "' ";
     // execute query

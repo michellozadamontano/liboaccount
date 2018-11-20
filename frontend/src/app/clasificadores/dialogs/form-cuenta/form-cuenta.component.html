@@ -3,35 +3,39 @@
 </div>
 
 <div fxLayout="column wrap">
-    <form [formGroup]="form" (ngSubmit)="id== undefined ? save(): update()">
+    <form [ngrxFormState]="(formState$ | async)" (submit)="id== undefined ? save(): update()">
         <div fxLayout="row" fxLayoutGap="5px">      
-            <div fxFlex="50">
-                    <span *ngIf="(objetcuenta$ | async)!= null;">
-                            Long word: {{ objetcuenta$.cuenta }}
-                          </span>
+            <div fxFlex="50">                   
                 <mat-form-field class="full-width">
-                    <input matInput placeholder="Cuenta" formControlName="cuenta">
-                </mat-form-field>                                      
+                    <input matInput placeholder="Cuenta" [ngrxFormControlState]="(formState$ | async).controls.cuenta">
+                </mat-form-field> 
+                <mat-error *ngIf="(formState$ | async).errors._cuenta?.required">
+                    La cuenta es requerida
+                </mat-error> 
+                                                    
             </div>        
             <div fxFlex="50">
                 <mat-form-field class="full-width">
-                    <input matInput placeholder="Descripcion" formControlName="descripcion">
-                </mat-form-field>                        
+                    <input matInput placeholder="Descripcion" [ngrxFormControlState]="(formState$ | async).controls.descripcion">
+                </mat-form-field>
+                <mat-error *ngIf="(formState$ | async).errors._descripcion?.required">
+                    La descripcion es requerida
+                </mat-error>                        
             </div>
         </div> 
         <div fxLayout="row" fxLayoutGap="5px">
             <div fxFlex="50">
                 <mat-form-field class="full-width">
-                    <mat-select placeholder="Moneda" formControlName = "moneda">
+                    <mat-select placeholder="Moneda" [ngrxFormControlState]="(formState$ | async).controls.moneda">
                         <mat-option *ngFor="let item of (monedas$ | async )" [value] ="item.id">
                             {{item.descripcion}}
                         </mat-option>
                     </mat-select>
-                </mat-form-field>                
+                </mat-form-field>                        
             </div>
             <div fxFlex="50">
                 <mat-form-field class="full-width">
-                        <mat-select placeholder="Tipo Cuenta" formControlName = "tipo">
+                        <mat-select placeholder="Tipo Cuenta" [ngrxFormControlState]='(formState$ | async).controls.tipo'>
                             <mat-option *ngFor="let item of tipocuenta" [value]="item.id">
                                 {{item.descripcion}}
                             </mat-option>
@@ -41,11 +45,11 @@
         </div>
         <div fxLayout="row" fxLayoutGap="5px">
             <div fxFlex="50">
-                <mat-checkbox formControlName = "predeterminada">Predeterminada</mat-checkbox>                        
+                <mat-checkbox [ngrxFormControlState]="(formState$ | async).controls.predeterminada">Predeterminada</mat-checkbox>                        
             </div>
             <div fxFlex="50">
                 <mat-form-field class="full-width">
-                        <mat-select placeholder="Centro Costo" formControlName = "ccosto">
+                        <mat-select placeholder="Centro Costo" [ngrxFormControlState]='(formState$ | async).controls.ccosto'>
                             <mat-option value=null>[Centro Costo]</mat-option>
                             <mat-option *ngFor="let item of (ccosto$ | async)" [value]="item.id">
                                 {{item.codigo}}
@@ -56,10 +60,10 @@
         </div>
         <div fxLayout="row wrap">
         <div fxFlex="50" *ngIf="id == undefined">
-            <button mat-raised-button color="primary" type="submit">Guardar</button>                    
+            <button mat-raised-button color="primary" type="submit" [disabled]="(formState$ | async).isInvalid">Guardar</button>                    
         </div>   
         <div fxFlex="50" *ngIf="id != undefined">                    
-            <button mat-raised-button color="success" type="submit">Editar</button>
+            <button mat-raised-button color="success" type="submit" [disabled]="(formState$ | async).isInvalid">Editar</button>
         </div>              
         </div>    
     </form>
