@@ -52,6 +52,23 @@ router.get('/getbyTipo/:id', (req, res) => {
     });
 
 });
+// Get cuenta by tipo cuenta y moneda
+router.get('/getbyTipoMone/:id/:moneId', (req, res) => {
+    // aqui voy a obtener las cuentas segun el tipo pasado por parametro    
+    
+    let sql = 'select c.id, t.descripcion as tipo_cuenta, c.cuenta, c.descripcion, m.descripcion as moneda from cuentas c INNER JOIN tipo_cuenta t on c.tipo_cuenta_id = t.id INNER JOIN moneda m  ON c.moneda_id = m.id where t.id = ? and c.moneda_id = ?';
+    let parmsQuery = [req.params.id,req.params.moneId];
+    db.execute(sql, parmsQuery, (err, result) => {
+        if (err) {
+            res.json('error en la consulta ' + err);
+        }
+        res.json({
+             result
+        });
+    });
+
+});
+
 //Add
 router.post('/', (req, res) => {
 

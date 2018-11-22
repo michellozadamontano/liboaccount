@@ -4,6 +4,7 @@ import { Observable, throwError }           from 'rxjs';
 import { Ccosto }                           from '../models/ccosto.interface';
 import { catchError }                       from 'rxjs/operators';
 import { API_URL }                          from '../../core/config';
+import { CcostoList } from '../models/ccosto_list.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -14,17 +15,38 @@ export class CcostoService {
     private http: HttpClient
   ) { }
 
-  InsertCosto(costo: any): Observable<any>{     
+  InsertCosto(costo: Ccosto): Observable<any>{     
       
     let url = API_URL + 'ccosto';
     return this.http.post<any>(url,costo).pipe(
       catchError(this.handleError)
     );
   }
-  GetCostos():Observable<Ccosto[]>
+  GetCostos():Observable<CcostoList[]>
   {
     let url = API_URL + 'ccosto';
     return this.http.get<any>(url).pipe(
+      catchError(this.handleError)
+    )
+  }
+  GetCostoById(id:number):Observable<Ccosto>
+  {
+    let url = API_URL + 'ccosto/byId/' + id;
+    return this.http.get<Ccosto>(url).pipe(
+      catchError(this.handleError)
+    )
+  }
+  UpdateCosto(id: number,ccosto: Ccosto):Observable<any>
+  {
+    let url = API_URL + 'ccosto/' + id;
+    return this.http.put<any>(url,ccosto).pipe(
+      catchError(this.handleError)
+    )
+  }
+  DeleteCosto(id:number):Observable<any>
+  {
+    let url = API_URL + 'ccosto/' + id;
+    return this.http.delete<any>(url).pipe(
       catchError(this.handleError)
     )
   }

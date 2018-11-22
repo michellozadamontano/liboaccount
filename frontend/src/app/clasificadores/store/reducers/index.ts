@@ -52,6 +52,8 @@ export const getCuentaTitulo        = createSelector(CuentaState,fromCuenta.getC
 export const getCuentaDepre         = createSelector(CuentaState,fromCuenta.getCuentaDepre);
 export const getCuentaSobrante      = createSelector(CuentaState,fromCuenta.getCuentaSobrante);
 export const getCuentaFaltante      = createSelector(CuentaState,fromCuenta.getCuentaFaltante);
+export const getCuentaGastoDepre    = createSelector(CuentaState,fromCuenta.getCuentaGastoDepre);
+export const getCuentaGastoDepreDiv = createSelector(CuentaState,fromCuenta.getCuentaGastoDepreDiv);
 export const getMyForm              = createSelector(CuentaState,fromCuenta.getMyForm);
 
 // state of province
@@ -66,8 +68,10 @@ export const geteEntidadMessage = createSelector(getEntidadState,fromEntidad.get
 export const getEntidadLoaded   = createSelector(getEntidadState,fromEntidad.getEntidadLoaded);
 
 //state of ccostos
-export const getCostoState  = createSelector(getClasificadoresState,(state:ClasificadorState) => state.costos);
-export const getCostos      = createSelector(getCostoState,fromCosto.getCostos);
+export const getCostoState      = createSelector(getClasificadoresState,(state:ClasificadorState) => state.costos);
+export const getCostos          = createSelector(getCostoState,fromCosto.getCostos);
+export const getCostoMessage    = createSelector(getCostoState,fromCosto.getCostoMessage);
+export const getCosto           = createSelector(getCostoState,fromCosto.getCosto);
 
 //state of tasas
 export const getTasaState        = createSelector(getClasificadoresState,(state:ClasificadorState)=>state.tasas);

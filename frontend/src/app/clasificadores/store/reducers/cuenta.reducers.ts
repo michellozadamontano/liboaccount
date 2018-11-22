@@ -28,36 +28,40 @@ export const initialFormState = createFormGroupState<CuentaForm>(FORM_ID, {
 }) 
 
 export interface CuentaState {
-    inserting       : boolean;
-    inserted        : boolean;
-    message         : string;
-    cuenta          : CuentaList[];
-    loading         : boolean;
-    loaded          : boolean;
-    cuentabyId      : any; //cuenta by id que viene de la api
-    cuentaPrint     : CuentaPrint[];
-    cuentaTitulo    : CuentaPrint[];
-    cuentaDepre     : CuentaPrint[];
-    cuentaSobrante  : CuentaPrint[];
-    cuentaFaltante  : CuentaPrint[];
-    tipo_cuenta_id  : number;
-    myForm          : FormGroupState<CuentaForm>;
+    inserting           : boolean;
+    inserted            : boolean;
+    message             : string;
+    cuenta              : CuentaList[];
+    loading             : boolean;
+    loaded              : boolean;
+    cuentabyId          : any; //cuenta by id que viene de la api
+    cuentaPrint         : CuentaPrint[];
+    cuentaTitulo        : CuentaPrint[];
+    cuentaDepre         : CuentaPrint[];
+    cuentaSobrante      : CuentaPrint[];
+    cuentaFaltante      : CuentaPrint[];
+    cuentaGastoDepre    : CuentaPrint[];
+    cuentaGastoDepreDiv : CuentaPrint[];
+    tipo_cuenta_id      : number;
+    myForm              : FormGroupState<CuentaForm>;
 }
 const initialCuentaState : CuentaState  = {
-    inserting       : false,
-    inserted        : false,
-    message         : '',
-    cuenta          : [],
-    loading         : false,
-    loaded          : false,
-    cuentabyId      : {id: 32, cuenta: "632541", descripcion: "sobrantes", moneda: 2, tipo: 5},
-    cuentaPrint     : [],
-    cuentaTitulo    : [],
-    cuentaDepre     : [],
-    cuentaSobrante  : [],
-    cuentaFaltante  : [],
-    tipo_cuenta_id  : null,
-    myForm          : initialFormState
+    inserting           : false,
+    inserted            : false,
+    message             : '',
+    cuenta              : [],
+    loading             : false,
+    loaded              : false,
+    cuentabyId          : {id: 32, cuenta: "632541", descripcion: "sobrantes", moneda: 2, tipo: 5},
+    cuentaPrint         : [],
+    cuentaTitulo        : [],
+    cuentaDepre         : [],
+    cuentaSobrante      : [],
+    cuentaFaltante      : [],
+    cuentaGastoDepre    : [],
+    cuentaGastoDepreDiv : [],
+    tipo_cuenta_id      : null,
+    myForm              : initialFormState
 }
 
 export interface State {
@@ -205,6 +209,32 @@ const reducers = combineReducers<State,any>({
                     ...state,
                     cuentaFaltante: action.pyload['cuenta']
                 }
+            }
+            case fromCuenta.LOAD_CUENTA_GASTO_DEPRE:
+            {
+                return {
+                    ...state
+                }
+            }
+            case fromCuenta.LOAD_CUENTA_GASTO_DEPRE_SUCCESS:
+            {
+                return {
+                    ...state,
+                    cuentaGastoDepre: action.payload['result']
+                }
+            }
+            case fromCuenta.LOAD_CUENTA_GASTO_DEPRE_DIV:
+            {
+                return {
+                    ...state
+                }
+            }
+            case fromCuenta.LOAD_CUENTA_GASTO_DEPRE_DIV_SUCCESS:
+            {
+                return {
+                    ...state,
+                    cuentaGastoDepreDiv: action.payload['result']
+                }
             }             
             
             case fromCuenta.INSERT_CUENTA: {
@@ -247,12 +277,14 @@ export function reducer(state = InitialState, action: fromCuenta.CuentaAction): 
     return reducers(state,action)
   
 }
-export const getCuenta          = (state: State) => state.cuentaState.cuenta;
-export const getCuentaMessage   = (state: State) => state.cuentaState.message;
-export const getCuentaById      = (state: State) => state.cuentaState.cuentabyId;
-export const getCuentaPrint     = (state: State) => state.cuentaState.cuentaPrint;
-export const getCuentaTitulo    = (state: State) => state.cuentaState.cuentaTitulo;
-export const getCuentaDepre     = (state: State) => state.cuentaState.cuentaDepre;
-export const getCuentaSobrante  = (state: State) => state.cuentaState.cuentaSobrante;
-export const getCuentaFaltante  = (state: State) => state.cuentaState.cuentaFaltante;
-export const getMyForm          = (state: State) => state.myForm;
+export const getCuenta              = (state: State) => state.cuentaState.cuenta;
+export const getCuentaMessage       = (state: State) => state.cuentaState.message;
+export const getCuentaById          = (state: State) => state.cuentaState.cuentabyId;
+export const getCuentaPrint         = (state: State) => state.cuentaState.cuentaPrint;
+export const getCuentaTitulo        = (state: State) => state.cuentaState.cuentaTitulo;
+export const getCuentaDepre         = (state: State) => state.cuentaState.cuentaDepre;
+export const getCuentaSobrante      = (state: State) => state.cuentaState.cuentaSobrante;
+export const getCuentaFaltante      = (state: State) => state.cuentaState.cuentaFaltante;
+export const getCuentaGastoDepre    = (state: State) => state.cuentaState.cuentaGastoDepre;
+export const getCuentaGastoDepreDiv = (state: State) => state.cuentaState.cuentaGastoDepreDiv;
+export const getMyForm              = (state: State) => state.myForm;

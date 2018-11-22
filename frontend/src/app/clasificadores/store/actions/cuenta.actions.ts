@@ -4,27 +4,31 @@ import { CuentaPrint } from '../../models/cuenta_print.interface';
 
 // actions
 
-export const INSERT_CUENTA                  = '[Cuenta] Insert cuenta';
-export const INSERT_CUENTA_SUCCESS          = '[Cuenta] Insert cuenta success';
-export const INSERT_CUENTA_ERROR            = '[Cuenta] Insert cuenta error';
+export const INSERT_CUENTA                      = '[Cuenta] Insert cuenta';
+export const INSERT_CUENTA_SUCCESS              = '[Cuenta] Insert cuenta success';
+export const INSERT_CUENTA_ERROR                = '[Cuenta] Insert cuenta error';
 
-export const LOAD_CUENTA                    = '[Cuenta] Load cuenta';
-export const LOAD_CUENTA_SUCCESS            = '[Cuenta] Load cuenta succcess';
-export const LOAD_CUENTA_ERROR              = '[Cuenta] Load cuenta error';
-export const LOAD_CUENTA_BY_ID              = '[Cuenta] Load cuenta by id';
-export const GET_CUENTA_BY_ID               = '[Cuenta] Get cuenta by id';
-export const UPDATE_CUENTA                  = '[Cuenta] Update cuenta';
-export const DELETE_CUENTA                  = '[Cuenta] Delete cuenta';
-export const LOAD_CUENTA_PRINT              = '[Cuenta] Load cuenta print';
-export const LOAD_CUENTA_PRINT_SUCCES       = '[Cuenta] Load cuenta print success';
-export const LOAD_CUENTA_TITULO             = '[Cuenta] Load cuenta titulo';
-export const LOAD_CUENTA_TITULO_SUCCESS     = '[Cuenta] Load cuenta titulo success';
-export const LOAD_CUENTA_DEPRE              = '[Cuenta] Load cuenta depreciacion';
-export const LOAD_CUENTA_DEPRE_SUCCESS      = '[Cuenta] Load cuenta depre success';
-export const LOAD_CUENTA_SOBRANTE           = '[Cuenta] Load cuenta sobrante';
-export const LOAD_CUENTA_SOBRANTE_SUCCESS   = '[Cuenta] Load cuenta sobrante success';
-export const LOAD_CUENTA_FALTANTE           = '[Cuenta] Load cuenta faltante';
-export const LOAD_CUENTA_FALTANTE_SUCCESS   = '[Cuenta] Load cuenta faltante success';
+export const LOAD_CUENTA                        = '[Cuenta] Load cuenta';
+export const LOAD_CUENTA_SUCCESS                = '[Cuenta] Load cuenta succcess';
+export const LOAD_CUENTA_ERROR                  = '[Cuenta] Load cuenta error';
+export const LOAD_CUENTA_BY_ID                  = '[Cuenta] Load cuenta by id';
+export const GET_CUENTA_BY_ID                   = '[Cuenta] Get cuenta by id';
+export const UPDATE_CUENTA                      = '[Cuenta] Update cuenta';
+export const DELETE_CUENTA                      = '[Cuenta] Delete cuenta';
+export const LOAD_CUENTA_PRINT                  = '[Cuenta] Load cuenta print';
+export const LOAD_CUENTA_PRINT_SUCCES           = '[Cuenta] Load cuenta print success';
+export const LOAD_CUENTA_TITULO                 = '[Cuenta] Load cuenta titulo';
+export const LOAD_CUENTA_TITULO_SUCCESS         = '[Cuenta] Load cuenta titulo success';
+export const LOAD_CUENTA_DEPRE                  = '[Cuenta] Load cuenta depreciacion';
+export const LOAD_CUENTA_DEPRE_SUCCESS          = '[Cuenta] Load cuenta depre success';
+export const LOAD_CUENTA_SOBRANTE               = '[Cuenta] Load cuenta sobrante';
+export const LOAD_CUENTA_SOBRANTE_SUCCESS       = '[Cuenta] Load cuenta sobrante success';
+export const LOAD_CUENTA_FALTANTE               = '[Cuenta] Load cuenta faltante';
+export const LOAD_CUENTA_FALTANTE_SUCCESS       = '[Cuenta] Load cuenta faltante success';
+export const LOAD_CUENTA_GASTO_DEPRE            = '[Cuenta] Load cuenta gasto depre';
+export const LOAD_CUENTA_GASTO_DEPRE_SUCCESS    = '[Cuenta] Load cuenta gasto depre success';
+export const LOAD_CUENTA_GASTO_DEPRE_DIV            = '[Cuenta] Load cuenta gasto depre divisa';
+export const LOAD_CUENTA_GASTO_DEPRE_DIV_SUCCESS    = '[Cuenta] Load cuenta gasto depre divias success';
 
 
 export class LoadCuenta implements Action {
@@ -87,6 +91,23 @@ export class LoadCuentaFaltanteSuccess implements Action {
     constructor(public pyload: CuentaPrint[]){} //aqui obtengo la lista de cuentas segun su tipo cuenta
 }
 
+export class LoadCuentaGastoDepre implements Action {
+    readonly type = LOAD_CUENTA_GASTO_DEPRE;
+    constructor(public payload:{tipoId:number,moneId:number}){}
+}
+export class LoadCuentaGastoDepreSuccess implements Action {
+    readonly type = LOAD_CUENTA_GASTO_DEPRE_SUCCESS;
+    constructor(public payload: CuentaPrint[]){}
+}
+export class LoadCuentaGastoDepreDiv implements Action {
+    readonly type = LOAD_CUENTA_GASTO_DEPRE_DIV;
+    constructor(public payload:{tipoId:number,moneId:number}){}
+}
+export class LoadCuentaGastoDepreDivSuccess implements Action {
+    readonly type = LOAD_CUENTA_GASTO_DEPRE_DIV_SUCCESS;
+    constructor(public payload: CuentaPrint[]){}
+}
+
 export class InsertCuenta implements Action {
     readonly type = INSERT_CUENTA;
     constructor(public payload: any){}
@@ -128,5 +149,9 @@ export type CuentaAction =
 | LoadCuentaSobranteSuccess
 | LoadCuentaFaltante
 | LoadCuentaFaltanteSuccess
+| LoadCuentaGastoDepre
+| LoadCuentaGastoDepreSuccess
+| LoadCuentaGastoDepreDiv
+| LoadCuentaGastoDepreDivSuccess
 | UpdateCuenta
 | DeleteCuenta ;

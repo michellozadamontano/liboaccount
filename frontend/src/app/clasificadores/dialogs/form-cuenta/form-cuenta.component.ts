@@ -28,6 +28,7 @@ import { Ccosto }                   from '../../models/ccosto.interface';
 import { CuentaList }               from '../../models/cuenta_list.interface';
 import { CuentaForm }               from '../../store/reducers/cuenta.reducers';
 import { take, filter, map } from 'rxjs/operators';
+import { CcostoList } from '../../models/ccosto_list.interface';
 
 @Component({
   selector: 'app-form-cuenta',
@@ -42,7 +43,7 @@ export class FormCuentaComponent implements OnInit {
   //tipocuenta$ : Observable<TipoCuenta[]>;
   tipocuenta  : TipoCuenta[] = [];
   cuenta      : CuentaList[];
-  ccosto$     : Observable<Ccosto[]>;
+  ccosto$     : Observable<CcostoList[]>;
   message     : string;
   objetcuenta$: Observable<any> = null;
 

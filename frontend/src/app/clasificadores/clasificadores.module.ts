@@ -38,6 +38,12 @@ import { TasasComponent }           from './containers/tasas/tasas.component';
 import { PrintCuentaComponent }     from './dialogs/print-cuenta/print-cuenta.component';
 import { TasaCuentaComponent }      from './dialogs/tasa-cuenta/tasa-cuenta.component';
 import { FormTasaComponent }        from './dialogs/form-tasa/form-tasa.component';
+import { CcostoComponent }          from './containers/ccostos/ccosto/ccosto.component';
+import { CostoListComponent }       from './components/ccosto/costo-list/costo-list.component';
+import { CcostoNewComponent }       from './containers/ccostos/ccosto-new/ccosto-new.component';
+import { CcostoFormComponent }      from './components/ccosto/ccosto-form/ccosto-form.component';
+import { CcostoEditComponent }      from './containers/ccostos/ccosto-edit/ccosto-edit.component';
+
 
 
 
@@ -55,7 +61,10 @@ import { FormTasaComponent }        from './dialogs/form-tasa/form-tasa.componen
     EffectsModule.forFeature(effects),
   ],
   declarations: [CuentasComponent, HomeComponent, FormCuentaComponent, 
-    EntidadComponent, TasasComponent, PrintCuentaComponent, TasaCuentaComponent, FormTasaComponent
+    EntidadComponent, TasasComponent, PrintCuentaComponent, 
+    TasaCuentaComponent, FormTasaComponent, CcostoComponent, 
+    CostoListComponent, CcostoNewComponent, CcostoFormComponent,
+    CcostoEditComponent
   ],
   providers: [MonedaService,TipoCuentaService, 
     CuentaService, EntidadService, CcostoService,TasasService],

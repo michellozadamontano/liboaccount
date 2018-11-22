@@ -1,0 +1,10 @@
+<mat-card>
+  <mat-card-header>
+      <mat-card-title>Clasificador de Centro de Costo</mat-card-title>
+      <mat-card-subtitle>Editar</mat-card-subtitle>
+  </mat-card-header>    
+  <mat-card-content>
+     <app-ccosto-form [ccosto] = "ccosto$ | async" (save)= "submitted($event)"
+     [cuentaGastoDepreMN] = "cuentasDepreMN$ | async" [cuentaGastoDepreDIV] = "cuentasDepreDIV$ | async"></app-ccosto-form>
+  </mat-card-content>    
+</mat-card>

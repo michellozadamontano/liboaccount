@@ -48,6 +48,28 @@ export class CuentaEffects {
             )
         })
     )
+    
+    @Effect()
+    loadcuetnabyTipoMone$ = this.actions$.ofType<fromCuentaAction.LoadCuentaGastoDepre>(fromCuentaAction.LOAD_CUENTA_GASTO_DEPRE)
+    .pipe(
+        switchMap((gasto)=>{
+            return this.cuentaService.GetCuentaByTipoMone(gasto.payload.tipoId,gasto.payload.moneId).pipe(
+                map(cuenta => new fromCuentaAction.LoadCuentaGastoDepreSuccess(cuenta)),
+                catchError(error => of(new fromCuentaAction.LoadCuentaError(error)))
+            )
+        })
+    )
+    @Effect()
+    loadcuetnaGastoDepreDiv$ = this.actions$.ofType<fromCuentaAction.LoadCuentaGastoDepreDiv>(fromCuentaAction.LOAD_CUENTA_GASTO_DEPRE_DIV)
+    .pipe(
+        switchMap((gasto)=>{
+            return this.cuentaService.GetCuentaByTipoMone(gasto.payload.tipoId,gasto.payload.moneId).pipe(
+                map(cuenta => new fromCuentaAction.LoadCuentaGastoDepreDivSuccess(cuenta)),
+                catchError(error => of(new fromCuentaAction.LoadCuentaError(error)))
+            )
+        })
+    )
+
     @Effect()
     loadcuentaTitulo$ = this.actions$.ofType<fromCuentaAction.LoadCuentaTitulo>(fromCuentaAction.LOAD_CUENTA_TITULO)
     .pipe(

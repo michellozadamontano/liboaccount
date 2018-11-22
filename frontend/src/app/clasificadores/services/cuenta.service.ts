@@ -44,6 +44,16 @@ export class CuentaService {
         catchError(this.handleError)
       )
   }
+
+  // Obtener la cuenta segun su tipo y sugun la moneda
+  GetCuentaByTipoMone(tipo_id: number,mone_id:number): Observable<CuentaPrint[]>
+  {
+      let url = API_URL + 'cuentas/getbyTipoMone/' + tipo_id + '/' + mone_id;
+      return this.http.get<CuentaPrint[]>(url).pipe(
+        catchError(this.handleError)
+      )
+  }
+
   UpdateCuenta(id:number, cuenta:any):Observable<any> 
   {
     let url = API_URL + 'cuentas/' + id;
