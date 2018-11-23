@@ -1,0 +1,19 @@
+<div fxLayout="column wrap">
+  <mat-card fxFlex="50">
+      <mat-card-header>
+          <mat-card-title>Clasificación de Genérico / Descripción de AFT</mat-card-title>
+          <mat-card-subtitle>Listado</mat-card-subtitle>
+      </mat-card-header>     
+      <mat-card-content>
+          <p>
+              <button mat-raised-button (click)="Add()" color="primary">Adicionar
+                <mat-icon class="mat-18">add</mat-icon>
+              </button>
+              <button mat-raised-button color="warn" (click)="Print()">Imprimir
+                <mat-icon class="mat-18">print</mat-icon>
+              </button> 
+            </p>
+        <app-generico-list [genericoList] = "genericoList$ | async" (edit) = "edit($event)" (delete) = "delete($event)" ></app-generico-list>
+      </mat-card-content>      
+  </mat-card>
+</div>

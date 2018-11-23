@@ -4,3 +4,4 @@ export * from './cuenta.service';
 export * from './entidad.service';
 export * from './ccosto.service';
 export * from './tasas.service';
+export * from './generico.service';

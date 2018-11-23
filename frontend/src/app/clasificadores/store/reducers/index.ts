@@ -6,6 +6,7 @@ import * as fromProvince    from './province.reducers';
 import * as fromEntidad     from './entidad.reducers';
 import * as fromCosto       from './ccosto.reducers';
 import * as fromTasas       from './tasas.reducers';
+import * as fromGenerico    from './generico.reducers';
 
 
 export interface ClasificadorState {
@@ -16,6 +17,7 @@ export interface ClasificadorState {
     entidad     : fromEntidad.State,
     costos      : fromCosto.State,
     tasas       : fromTasas.State,
+    generico    : fromGenerico.State,
 }
 
 export const reducers: ActionReducerMap<ClasificadorState> = {
@@ -26,6 +28,7 @@ export const reducers: ActionReducerMap<ClasificadorState> = {
     entidad     : fromEntidad.reducer,
     costos      : fromCosto.reducer,
     tasas       : fromTasas.reducer,
+    generico    : fromGenerico.reducer,
 }
 
 export const getClasificadoresState = createFeatureSelector<ClasificadorState>('clasificadores');
@@ -80,3 +83,9 @@ export const getTasa             = createSelector(getTasaState,fromTasas.getTasa
 export const getTasasMessage     = createSelector(getTasaState,fromTasas.getTasasMessage);
 export const getTasasLoaded      = createSelector(getTasaState,fromTasas.getTasasLoaded);
 export const getTasaCuentas      = createSelector(getTasaState,fromTasas.getTasaCuentas);
+
+//slice of Generico
+export const getGenericoState     = createSelector(getClasificadoresState,(state:ClasificadorState) => state.generico);
+export const getGenericoList      = createSelector(getGenericoState,fromGenerico.getGenericoList);
+export const getGenerico          = createSelector(getGenericoState,fromGenerico.getGenerico);
+export const getGenericoMessage   = createSelector(getGenericoState,fromGenerico.getGenericoMessage);

@@ -28,7 +28,8 @@ import { CuentaService ,
   MonedaService, 
   EntidadService,
   CcostoService,
-  TasasService }                    from './services';
+  TasasService, 
+  GenericoService}                    from './services';
 
 import { CuentasComponent }         from './containers/cuentas/cuentas.component';
 import { HomeComponent }            from './containers/home/home.component';
@@ -43,6 +44,11 @@ import { CostoListComponent }       from './components/ccosto/costo-list/costo-l
 import { CcostoNewComponent }       from './containers/ccostos/ccosto-new/ccosto-new.component';
 import { CcostoFormComponent }      from './components/ccosto/ccosto-form/ccosto-form.component';
 import { CcostoEditComponent }      from './containers/ccostos/ccosto-edit/ccosto-edit.component';
+import { GenericoIndexComponent }   from './containers/genericos/generico-index/generico-index.component';
+import { GenericoEditComponent }    from './containers/genericos/generico-edit/generico-edit.component';
+import { GenericoNewComponent }     from './containers/genericos/generico-new/generico-new.component';
+import { GenericoFormComponent }    from './components/genericos/generico-form/generico-form.component';
+import { GenericoListComponent }    from './components/genericos/generico-list/generico-list.component';
 
 
 
@@ -64,10 +70,15 @@ import { CcostoEditComponent }      from './containers/ccostos/ccosto-edit/ccost
     EntidadComponent, TasasComponent, PrintCuentaComponent, 
     TasaCuentaComponent, FormTasaComponent, CcostoComponent, 
     CostoListComponent, CcostoNewComponent, CcostoFormComponent,
-    CcostoEditComponent
+    CcostoEditComponent,
+    GenericoIndexComponent,
+    GenericoEditComponent,
+    GenericoNewComponent,
+    GenericoFormComponent,
+    GenericoListComponent
   ],
   providers: [MonedaService,TipoCuentaService, 
-    CuentaService, EntidadService, CcostoService,TasasService],
+    CuentaService, EntidadService, CcostoService,TasasService, GenericoService],
   entryComponents:[FormCuentaComponent, PrintCuentaComponent, TasaCuentaComponent, FormTasaComponent]
 })
 export class ClasificadoresModule { }

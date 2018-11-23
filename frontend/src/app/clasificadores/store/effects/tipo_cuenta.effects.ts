@@ -11,8 +11,7 @@ export class TipoCuentaEffects {
     constructor(
         private actions$: Actions,
         private tipoCuentaService: fromServices.TipoCuentaService
-    ) {
-        console.log(this.loadTipoCuenta$);
+    ) {       
     }
 
     @Effect()

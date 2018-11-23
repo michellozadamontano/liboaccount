@@ -5,3 +5,4 @@ export * from './provincia.action';
 export * from './entidad.actions';
 export * from './ccosto.action';
 export * from './tasas.action';
+export * from './generico.action';

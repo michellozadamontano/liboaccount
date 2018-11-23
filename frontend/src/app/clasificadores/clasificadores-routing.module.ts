@@ -8,6 +8,9 @@ import { TasasComponent }       from './containers/tasas/tasas.component';
 import { CcostoComponent }      from './containers/ccostos/ccosto/ccosto.component';
 import { CcostoNewComponent }   from './containers/ccostos/ccosto-new/ccosto-new.component';
 import { CcostoEditComponent }  from './containers/ccostos/ccosto-edit/ccosto-edit.component';
+import { GenericoIndexComponent } from './containers/genericos/generico-index/generico-index.component';
+import { GenericoNewComponent } from './containers/genericos/generico-new/generico-new.component';
+import { GenericoEditComponent } from './containers/genericos/generico-edit/generico-edit.component';
 
 
 
@@ -16,12 +19,15 @@ const routes: Routes = [
     path: '', component: HomeComponent,
     children: [
       { path: '', redirectTo:'cuentas', pathMatch: 'full' },
-      { path: 'cuentas', component: CuentasComponent},
-      { path: 'entidad', component: EntidadComponent},
-      { path: 'tasas', component: TasasComponent},
-      { path: 'ccosto', component: CcostoComponent},
-      { path: 'ccosto_new', component: CcostoNewComponent},
-      { path: 'ccosto_edit/:id', component: CcostoEditComponent}
+      { path: 'cuentas',          component: CuentasComponent},
+      { path: 'entidad',          component: EntidadComponent},
+      { path: 'tasas',            component: TasasComponent},
+      { path: 'ccosto',           component: CcostoComponent},
+      { path: 'ccosto_new',       component: CcostoNewComponent},
+      { path: 'ccosto_edit/:id',  component: CcostoEditComponent},
+      { path: 'generico',         component: GenericoIndexComponent},
+      { path: 'generico_new',     component: GenericoNewComponent},
+      { path: 'generico_edit/:id',component: GenericoEditComponent},
     ]
   }
   

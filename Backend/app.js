@@ -15,6 +15,7 @@ var entidadRouter       = require('./routes/entidad_route');
 var provinciaRouter     = require('./routes/provincia');
 var ccostoRouter        = require('./routes/ccosto');
 var tasaRouter          = require('./routes/tasa');
+var genericoRouter      = require('./routes/generico');
 
 var app                 = express();
 
@@ -57,7 +58,7 @@ app.use('/entidad', entidadRouter);
 app.use('/provincia', provinciaRouter);
 app.use('/ccosto', ccostoRouter);
 app.use('/tasa',tasaRouter);
-
+app.use('/generico',genericoRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

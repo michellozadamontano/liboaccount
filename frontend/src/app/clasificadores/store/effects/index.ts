@@ -5,6 +5,7 @@ import { ProvinceEffects }      from './province.effects';
 import { EntidadEffects }       from './entidad.effects';
 import { CcostoEffects}         from './ccosto.effects';
 import { TasasEffects }         from './tasas.effects';
+import { GenericoEffects }      from './generico.effects';
 
 export const effects: any[] = [
     MonedaEffects, 
@@ -14,6 +15,7 @@ export const effects: any[] = [
     EntidadEffects,
     CcostoEffects,
     TasasEffects,
+    GenericoEffects,
 ]
 
 export * from './moneda.effects';
@@ -23,3 +25,4 @@ export * from './province.effects';
 export * from './entidad.effects';
 export * from './ccosto.effects';
 export * from './tasas.effects';
+export * from './generico.effects';
