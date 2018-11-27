@@ -5,6 +5,7 @@ import { CuentaList }                       from '../models/cuenta_list.interfac
 import { catchError }                       from 'rxjs/operators';
 import { API_URL }                          from '../../core/config';
 import { CuentaPrint } from '../models/cuenta_print.interface';
+import { Cuenta } from '../models/cuenta.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -54,9 +55,9 @@ export class CuentaService {
       )
   }
 
-  UpdateCuenta(id:number, cuenta:any):Observable<any> 
+  UpdateCuenta(cuenta:Cuenta):Observable<any> 
   {
-    let url = API_URL + 'cuentas/' + id;
+    let url = API_URL + 'cuentas/' + cuenta.id;
     return this.http.put<any>(url,cuenta).pipe(
       catchError(this.handleError)
     )

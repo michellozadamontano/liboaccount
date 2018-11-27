@@ -37,9 +37,7 @@ export class CcostoEditComponent implements OnInit {
     this.cuentasDepreDIV$ = this.store.select(fromStore.getCuentaGastoDepreDiv);
   }
   
-  submitted(ccosto: Ccosto) {
-    console.log(ccosto);  
-    console.log(this.costo_id);
+  submitted(ccosto: Ccosto) {    
       
     this.store.dispatch(new fromStore.UpdateCosto({id:this.costo_id,ccosto: ccosto}));
     this.router.navigate(['clasificadores/ccosto']);

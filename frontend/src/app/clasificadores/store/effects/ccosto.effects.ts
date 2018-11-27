@@ -61,4 +61,13 @@ export class CcostoEffects {
             )
         })
     )
+    @Effect()
+    checkCodigo$ = this.actions$.ofType<fromCostoAction.CheckCodigo>(fromCostoAction.CHECK_CODIGO).pipe(
+        switchMap((codigo)=>{
+            return this.costoService.CheckCodigo(codigo.payload).pipe(
+                map(result => new fromCostoAction.CheckCodigoSuccess(result)),
+                catchError(error => of(new fromCostoAction.LoadCostoError(error)))
+            )
+        })
+    )
 }

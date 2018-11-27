@@ -37,7 +37,7 @@ export class GenericoEffects {
     @Effect()
     updateGenerico$ = this.actions$.ofType<fromGenericoAction.UpdateGenerico>(fromGenericoAction.UPDATE_GENERICO).pipe(
         switchMap((generico) => {
-            return this.genericoService.updateGenerico(generico.payload.id,generico.payload.generico).pipe(
+            return this.genericoService.updateGenerico(generico.payload).pipe(
                 map(message => new fromGenericoAction.UpdateGenericoSuccess(message)),
                 catchError(error => of(new fromGenericoAction.LoadGenericoError(error)))
             )

@@ -32,7 +32,7 @@ export class CuentaEffects {
     .pipe(
         switchMap((cuenta)=>{          
             
-            return this.cuentaService.GetCuentaById(cuenta.payload).pipe(
+            return this.cuentaService.GetCuentaById(cuenta.payload.id).pipe(
                 map(cuenta => new fromCuentaAction.GetCuentaById(cuenta)),
                 catchError(error => of(new fromCuentaAction.LoadCuentaError(error)))
             )
@@ -126,7 +126,7 @@ export class CuentaEffects {
     updateCuenta$ = this.actions$.ofType<fromCuentaAction.UpdateCuenta>(fromCuentaAction.UPDATE_CUENTA)
     .pipe(
         switchMap(cuenta =>{
-            return this.cuentaService.UpdateCuenta(cuenta.payload.id, cuenta.payload.cuenta).pipe(
+            return this.cuentaService.UpdateCuenta(cuenta.payload.cuenta).pipe(
                 map(()=> new fromCuentaAction.LoadCuenta()),
                 catchError(error => of(new fromCuentaAction.LoadCuentaError(error)))
             )

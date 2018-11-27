@@ -47,7 +47,24 @@ router.get('/byId/:id',(req,res)=>{
         })
     })
 })
-
+router.get('/codigo/:codigo',(req,res)=>{
+    //con este metodo voy a chequear que el codigo exista
+    let codigo = req.params.codigo;
+    let checkQuery = "SELECT * from ccosto c WHERE c.codigo = ?";
+    let paramsQuery = [codigo];
+    db.execute(checkQuery,paramsQuery,(err,result)=>{
+        if (err) {
+            res.json('error en la consulta ' + err);
+        }
+        if (result.length > 0) {
+            res.json(1);
+        }
+        else
+        {
+            res.json(0);
+        }
+    })
+})
 
 //Add
 router.post('/',(req,res)=>{

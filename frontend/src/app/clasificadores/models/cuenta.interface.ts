@@ -1,11 +1,9 @@
-import { Moneda } from './moneda.interface';
-import { TipoCuenta } from './tipo_cuenta.interface';
-import { Ccosto } from './ccosto.interface';
 export interface Cuenta {
-    id          : number;
-    cuenta      : string;
-    descripcion : string;
-    moneda      : Moneda;
-    tipo_cuenta : TipoCuenta;
-    ccosto      : Ccosto;
+    id              : number;
+    cuenta          : string;
+    descripcion     : string;
+    moneda_id       : number;
+    tipo_cuenta_id  : number;
+    ccosto_id?      : number;
+    predeterminada  : boolean;
 }

@@ -3,15 +3,17 @@ import { Ccosto } from '../../models/ccosto.interface';
 import { CcostoList } from '../../models/ccosto_list.interface';
 
 export interface State {
-    costos: CcostoList[];
-    costo : Ccosto;
-    message: string;
+    costos  : CcostoList[];
+    costo   : Ccosto;
+    message : string;
+    sicodigo: any;
 }
 
 export const InitialState: State = {
     costos  : [],
     costo   : null,
-    message : ''
+    message : '',
+    sicodigo: null
 }
 
 export function reducer(state = InitialState, action: fromCcost.CostoAction): State {
@@ -89,6 +91,21 @@ export function reducer(state = InitialState, action: fromCcost.CostoAction): St
                 message: action.payload
             }
         }
+        case fromCcost.CHECK_CODIGO:
+        {
+            return {
+                ...state
+            }
+        }
+        case fromCcost.CHECK_CODIGO_SUCCESS:
+        {
+            console.log(action.payload);
+            
+            return {
+                ...state,
+                sicodigo: action.payload
+            }
+        }
     }
     return state;
 }
@@ -96,3 +113,4 @@ export function reducer(state = InitialState, action: fromCcost.CostoAction): St
 export const getCostos          = (state:State) => state.costos;
 export const getCostoMessage    = (state:State) => state.message;
 export const getCosto           = (state:State) => state.costo;
+export const getSiCodigo        = (state:State) => state.sicodigo;

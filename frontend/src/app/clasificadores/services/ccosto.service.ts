@@ -36,6 +36,13 @@ export class CcostoService {
       catchError(this.handleError)
     )
   }
+  CheckCodigo(codigo:any):Observable<number>
+  {
+    let url = API_URL + 'ccosto/codigo/' + codigo;
+    return this.http.get<number>(url).pipe(
+      catchError(this.handleError)
+    )
+  }
   UpdateCosto(id: number,ccosto: Ccosto):Observable<any>
   {
     let url = API_URL + 'ccosto/' + id;

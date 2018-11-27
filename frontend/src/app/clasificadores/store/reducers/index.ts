@@ -75,6 +75,7 @@ export const getCostoState      = createSelector(getClasificadoresState,(state:C
 export const getCostos          = createSelector(getCostoState,fromCosto.getCostos);
 export const getCostoMessage    = createSelector(getCostoState,fromCosto.getCostoMessage);
 export const getCosto           = createSelector(getCostoState,fromCosto.getCosto);
+export const getSiCodigo        = createSelector(getCostoState,fromCosto.getSiCodigo);
 
 //state of tasas
 export const getTasaState        = createSelector(getClasificadoresState,(state:ClasificadorState)=>state.tasas);

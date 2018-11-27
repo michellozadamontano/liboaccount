@@ -148,8 +148,8 @@ export class FormCuentaComponent implements OnInit {
       }
       console.log(cuent);
       
-      const actions = new fromStore.InsertCuenta(cuent);
-      this.store.dispatch(actions);
+     // const actions = new fromStore.InsertCuenta(cuent);
+     // this.store.dispatch(actions);
       console.log(this.cuenta);});
    /* this.formState$.subscribe(resp => {
       console.log(resp);
@@ -215,7 +215,7 @@ export class FormCuentaComponent implements OnInit {
       }
       console.log(cuent);
       
-      this.store.dispatch(new fromStore.UpdateCuenta({id:this.id,cuenta:cuent}));   
+     // this.store.dispatch(new fromStore.UpdateCuenta({id:this.id,cuenta:cuent}));   
       
     })
     this.dialogRef.close();

@@ -5,18 +5,19 @@ import {MatPaginator, MatSort}              from '@angular/material';
 // ngrx
 import { Store }      from '@ngrx/store';
 import { Observable } from 'rxjs';
-import * as fromStore from '../../store';
-import { Moneda }     from '../../models/moneda.interface';
+import * as fromStore from '../../../store';
+import { Moneda }     from '../../../models/moneda.interface';
 
 //---------------------------
 // Dialog
 //---------------------------
 
-import { FormCuentaComponent }  from '../../dialogs/form-cuenta/form-cuenta.component';
-import { Cuenta } from '../../models/cuenta.interface';
-import { Ccosto } from '../../models/ccosto.interface';
-import { CuentaList } from '../../models/cuenta_list.interface';
-import { PrintCuentaComponent } from '../../dialogs/print-cuenta/print-cuenta.component';
+import { FormCuentaComponent }  from '../../../dialogs/form-cuenta/form-cuenta.component';
+
+import { Ccosto } from '../../../models/ccosto.interface';
+import { CuentaList } from '../../../models/cuenta_list.interface';
+import { PrintCuentaComponent } from '../../../dialogs/print-cuenta/print-cuenta.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cuentas',
@@ -38,7 +39,8 @@ export class CuentasComponent implements OnInit {
 
   constructor(
     private store: Store<fromStore.ClasificadorState>,     
-    public dialog: MatDialog  
+    public dialog: MatDialog,
+    private route: Router  
   ) { }
 
   ngOnInit() {
@@ -58,21 +60,26 @@ export class CuentasComponent implements OnInit {
     this.store.dispatch(new fromStore.LoadCuenta());      
         
   }
+  ngAfterViewInit() {
+    this.dataSource.paginator = this.paginator;
+  }
 
   AddCuenta()
   {
     //this.modalService.open(FormCuentaComponent);
-    const dialogRef = this.dialog.open(FormCuentaComponent, {
+    this.route.navigate(['clasificadores/cuenta-new']);
+    /*const dialogRef = this.dialog.open(FormCuentaComponent, {
       width: '50%',
       data: {}
-    });
+    });*/
   }
   UpdateCuenta(id:any)
-  {       
-    const dialogRef = this.dialog.open(FormCuentaComponent, {
+  {     
+    this.route.navigate(['clasificadores/cuenta-edit/',id]);  
+    /*const dialogRef = this.dialog.open(FormCuentaComponent, {
       width: '50%',
       data: {id:id}
-    });
+    });*/
   }
   DeleteCuenta(id:any)
   {

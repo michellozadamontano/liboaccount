@@ -7,6 +7,7 @@ import { FormGroupState,
     formGroupReducer }      from 'ngrx-forms';
     import { createFormStateReducerWithUpdate, updateGroup, validate } from 'ngrx-forms';
     import { required, greaterThanOrEqualTo } from 'ngrx-forms/validation';
+import { Cuenta } from '../../models/cuenta.interface';
 
 export interface CuentaForm {
     cuenta          : string;
@@ -34,7 +35,7 @@ export interface CuentaState {
     cuenta              : CuentaList[];
     loading             : boolean;
     loaded              : boolean;
-    cuentabyId          : any; //cuenta by id que viene de la api
+    cuentabyId          : Cuenta; //cuenta by id que viene de la api
     cuentaPrint         : CuentaPrint[];
     cuentaTitulo        : CuentaPrint[];
     cuentaDepre         : CuentaPrint[];
@@ -52,7 +53,7 @@ const initialCuentaState : CuentaState  = {
     cuenta              : [],
     loading             : false,
     loaded              : false,
-    cuentabyId          : {id: 32, cuenta: "632541", descripcion: "sobrantes", moneda: 2, tipo: 5},
+    cuentabyId          : null,
     cuentaPrint         : [],
     cuentaTitulo        : [],
     cuentaDepre         : [],
@@ -124,19 +125,19 @@ const reducers = combineReducers<State,any>({
                 }
             }
             case fromCuenta.GET_CUENTA_BY_ID:
-            {      
-                console.log(action.payload['cuenta'][0].cuenta);
+            {                   
+                let cuenta: Cuenta = {
+                    id: action.payload[0].id,
+                    tipo_cuenta_id: action.payload[0].tipo_cuenta_id,
+                    cuenta : action.payload[0].cuenta,
+                    descripcion: action.payload[0].descripcion,
+                    moneda_id : action.payload[0].moneda_id,
+                    ccosto_id: action.payload[0].ccosto_id,
+                    predeterminada: action.payload[0].predeterminada.data[0],
+                }
                 return {
                     ...state,
-                    cuentabyId: action.payload['cuenta'],
-                    myForm: createFormGroupState<CuentaForm>(FORM_ID, {
-                        cuenta: action.payload['cuenta'][0].cuenta,
-                        descripcion: action.payload['cuenta'][0].descripcion,
-                        moneda: action.payload['cuenta'][0].moneda,
-                        predeterminada: action.payload['cuenta'][0].predeterminada,
-                        tipo: action.payload['cuenta'][0].tipo,
-                        ccosto: action.payload['cuenta'][0].ccosto 
-                    })          
+                    cuentabyId: cuenta         
                 }
                 
             }
@@ -269,6 +270,7 @@ const reducers = combineReducers<State,any>({
                     ...state,
                 }
             }
+            
         }
      return state;
     }

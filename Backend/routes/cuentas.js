@@ -22,18 +22,18 @@ router.get('/', function (req, res, next) {
 //Get by Id
 router.get('/getbyId/:id', (req, res) => {
 
-    let query = "SELECT c.id,c.cuenta, c.descripcion, m.id as moneda," +
+   /* let query = "SELECT c.id,c.cuenta, c.descripcion, m.id as moneda," +
         "t.id as tipo, co.id as ccosto, c.predeterminada FROM cuentas c INNER JOIN moneda m " +
         "on m.id = c.moneda_id INNER JOIN tipo_cuenta t on t.id = c.tipo_cuenta_id LEFT JOIN " +
-        "ccosto co on co.id = c.ccosto_id WHERE c.id = '" + req.params.id + "' ";
+        "ccosto co on co.id = c.ccosto_id WHERE c.id = '" + req.params.id + "' ";*/
+        let query = "select * from cuentas where id = ?";
+        let query_param = [req.params.id];
     // execute query
-    db.execute(query, (err, result) => {
+    db.execute(query,query_param, (err, result) => {
         if (err) {
             res.json('error en la consulta ' + err);
         }
-        res.json({
-            cuenta: result
-        });
+        res.json(result);
     });
 
 });
@@ -71,13 +71,14 @@ router.get('/getbyTipoMone/:id/:moneId', (req, res) => {
 
 //Add
 router.post('/', (req, res) => {
-
+ console.log(req.body.ccosto_id);
+ 
     let tipo_cuenta_id = req.body.tipo_cuenta_id;
     let moneda_id = req.body.moneda_id;
     let cuenta = req.body.cuenta;
     let descripcion = req.body.descripcion;
     let activa = 1;
-    let ccosto_id = req.body.ccosto_id;
+    let ccosto_id = req.body.ccosto_id != undefined ? req.body.ccosto_id : null;
     let predeterminada = req.body.predeterminada;
 
     let checkQuery = "SELECT * from cuentas c WHERE c.cuenta = ? AND c.ccosto_id = ? ";

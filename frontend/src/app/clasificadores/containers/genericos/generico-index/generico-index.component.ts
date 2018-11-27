@@ -28,9 +28,10 @@ export class GenericoIndexComponent implements OnInit {
     this.store.dispatch(new fromStore.LoadGenerico());
     this.genericoList$ = this.store.select(fromStore.getGenericoList);
   }
-  add()
+  Add()
   {
-
+    console.log('testing');
+    
   }
   edit(id: number)
   {

@@ -1,7 +1,15 @@
 
 <div fxLayout="column">
   <div fxFlex="100">
-    <mat-card>        
+    <mat-card>
+        <p>
+            <button mat-raised-button (click)="AddCuenta()" color="primary">Adicionar
+              <mat-icon class="mat-18">add</mat-icon>
+            </button>
+            <button mat-raised-button color="warn" (click)="PrintAccount()">Imprimir
+              <mat-icon class="mat-18">print</mat-icon>
+            </button> 
+          </p>        
         <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
             <ng-container matColumnDef="Cuenta">
               <th mat-header-cell *matHeaderCellDef> Cuenta </th>
@@ -31,15 +39,7 @@
             >
             </tr>
           </table>
-          <mat-paginator [length]="resultsLength" [pageSize]="2"></mat-paginator>
-          <div fxLayout="row">
-              <div fxFlex = "50">
-                  <button mat-raised-button color="primary" (click)="AddCuenta()">Adicionar</button>      
-              </div>
-              <div fxFlex = "50">
-                <button mat-raised-button color="warn" (click)="PrintAccount()">Imprimir</button> 
-              </div>
-            </div>
+          <mat-paginator #paginator  [pageSize]="5" [pageSizeOptions]="[5, 10, 20]"></mat-paginator>          
     </mat-card>    
     
   </div>

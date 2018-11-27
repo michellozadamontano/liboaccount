@@ -16,6 +16,8 @@ export const UPDATE_COSTO               = '[Costo] Update costo';
 export const UPDATE_COSTO_SUCCESS       = '[Costo] Update costo success';
 export const DELETE_COSTO               = '[Costo] Delete costo';
 export const DELETE_COSTO_SUCCESS       = '[Costo] Delete costo success';
+export const CHECK_CODIGO               = '[Costo] Check codigo';
+export const CHECK_CODIGO_SUCCESS       = '[Costo] Check codigo success';
 
 export class LoadCosto implements Action {
     readonly type = LOAD_COSTO;    
@@ -61,6 +63,14 @@ export class DeleteCostoSuccess implements Action {
     readonly type = DELETE_COSTO_SUCCESS;
     constructor(public payload: string){}
 }
+export class CheckCodigo implements Action {
+    readonly type = CHECK_CODIGO;
+    constructor(public payload:any){}
+}
+export class CheckCodigoSuccess implements Action {
+    readonly type = CHECK_CODIGO_SUCCESS;
+    constructor(public payload:any){}
+}
 
 
 export type CostoAction = 
@@ -75,3 +85,5 @@ export type CostoAction =
 | UpdateCostoSuscces
 | DeleteCosto
 | DeleteCostoSuccess
+| CheckCodigo
+| CheckCodigoSuccess

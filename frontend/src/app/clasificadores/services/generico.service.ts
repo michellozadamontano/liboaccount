@@ -29,9 +29,9 @@ export class GenericoService {
       catchError(this.handleError)
     );
   }
-  updateGenerico(id:number, generico:Generico):Observable<string>
+  updateGenerico(generico:Generico):Observable<string>
   {
-    let url = API_URL + 'generico/' + id;
+    let url = API_URL + 'generico/' + generico.id;
     return this.http.put<string>(url,generico).pipe(
       catchError(this.handleError)
     );

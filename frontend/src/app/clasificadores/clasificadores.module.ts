@@ -29,9 +29,9 @@ import { CuentaService ,
   EntidadService,
   CcostoService,
   TasasService, 
-  GenericoService}                    from './services';
+  GenericoService}                  from './services';
 
-import { CuentasComponent }         from './containers/cuentas/cuentas.component';
+import { CuentasComponent }         from './containers/cuenta-manager/cuentas/cuentas.component';
 import { HomeComponent }            from './containers/home/home.component';
 import { FormCuentaComponent }      from './dialogs/form-cuenta/form-cuenta.component';
 import { EntidadComponent }         from './containers/entidad/entidad.component';
@@ -49,6 +49,10 @@ import { GenericoEditComponent }    from './containers/genericos/generico-edit/g
 import { GenericoNewComponent }     from './containers/genericos/generico-new/generico-new.component';
 import { GenericoFormComponent }    from './components/genericos/generico-form/generico-form.component';
 import { GenericoListComponent }    from './components/genericos/generico-list/generico-list.component';
+import { CuentaPrintComponent }     from './components/cuentas/cuenta-print/cuenta-print.component';
+import { CuentaFormComponent }      from './components/cuentas/cuenta-form/cuenta-form.component';
+import { CuentaNewComponent }       from './containers/cuenta-manager/cuenta-new/cuenta-new.component';
+import { CuentaEditComponent }      from './containers/cuenta-manager/cuenta-edit/cuenta-edit.component';
 
 
 
@@ -75,7 +79,11 @@ import { GenericoListComponent }    from './components/genericos/generico-list/g
     GenericoEditComponent,
     GenericoNewComponent,
     GenericoFormComponent,
-    GenericoListComponent
+    GenericoListComponent,
+    CuentaPrintComponent,
+    CuentaFormComponent,
+    CuentaNewComponent,
+    CuentaEditComponent
   ],
   providers: [MonedaService,TipoCuentaService, 
     CuentaService, EntidadService, CcostoService,TasasService, GenericoService],

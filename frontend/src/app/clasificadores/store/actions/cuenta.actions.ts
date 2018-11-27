@@ -1,6 +1,7 @@
 import { Action } from '@ngrx/store';
 import { CuentaList } from '../../models/cuenta_list.interface';
 import { CuentaPrint } from '../../models/cuenta_print.interface';
+import { Cuenta } from '../../models/cuenta.interface';
 
 // actions
 
@@ -44,7 +45,7 @@ export class LoadCuentaError implements Action {
 }
 export class LoadCuentaById implements Action {
     readonly type = LOAD_CUENTA_BY_ID;  
-    constructor(public payload: {id:any}){}  
+    constructor(public payload: {id:number}){}  
 }
 export class GetCuentaById implements Action {
     readonly type = GET_CUENTA_BY_ID;
@@ -110,7 +111,7 @@ export class LoadCuentaGastoDepreDivSuccess implements Action {
 
 export class InsertCuenta implements Action {
     readonly type = INSERT_CUENTA;
-    constructor(public payload: any){}
+    constructor(public payload: Cuenta){}
     
 }
 export class InsertCuentaSuccess implements Action {
@@ -123,7 +124,7 @@ export class InsertCuentaError implements Action {
 }
 export class UpdateCuenta implements Action {
     readonly type = UPDATE_CUENTA;
-    constructor(public payload: {id:number,cuenta:any}){} // cuenta que voy a actualizar
+    constructor(public payload: {cuenta:Cuenta}){} // cuenta que voy a actualizar
 }
 export class DeleteCuenta implements Action {
     readonly type = DELETE_CUENTA;

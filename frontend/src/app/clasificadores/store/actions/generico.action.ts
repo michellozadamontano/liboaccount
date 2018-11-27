@@ -35,7 +35,7 @@ export class CreateGenericoSucces implements Action {
 }
 export class UpdateGenerico implements Action {
     readonly type = UPDATE_GENERICO;
-    constructor(public payload: {id:number, generico: Generico}){}
+    constructor(public payload: Generico){}
 }
 export class UpdateGenericoSuccess implements Action {
     readonly type = UPDATE_GENERICO_SUCCESS;
