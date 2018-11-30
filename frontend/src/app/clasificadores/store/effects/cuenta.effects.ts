@@ -110,6 +110,15 @@ export class CuentaEffects {
             )
         })
     )
+    @Effect()
+    loadCuentaCount$ = this.actions$.ofType(fromCuentaAction.LOAD_CUENTA_COUNT).pipe(
+        switchMap(() => {
+            return this.cuentaService.getcuentaCount().pipe(
+                map(count => new fromCuentaAction.LoadCuentaCountSuccess(count)),
+                catchError(error => of(new fromCuentaAction.LoadCuentaError(error)))
+            )
+        })
+    )
 
     @Effect()
     insertCuenta$:Observable<Action> = this.actions$.ofType<fromCuentaAction.InsertCuenta>(fromCuentaAction.INSERT_CUENTA)

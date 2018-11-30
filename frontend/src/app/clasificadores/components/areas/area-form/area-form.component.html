@@ -1,0 +1,39 @@
+<div fxLayout="column">        
+  <form [formGroup]="form" (ngSubmit)="submit()">
+    <div fxLayout="column" fxLayoutGap="5px">
+      <div fxFlex="20">
+        <mat-form-field class="full-width">
+          <mat-select formControlName="ccosto_id" placeholder="Centro Costo">
+              <mat-option *ngFor="let item of ccostos" [value]="item.id">{{item.descripcion}}</mat-option>                  
+        </mat-select>
+      </mat-form-field>           
+      </div>
+      <div fxFlex="80">
+          <mat-form-field class="full-width">
+              <input matInput placeholder="Nombre" formControlName="nombre">
+          </mat-form-field>  
+      </div>
+      <div fxFlex="80">
+        <mat-form-field class="full-width">
+            <input matInput placeholder="Responsable" formControlName="responsable">
+        </mat-form-field>  
+      </div>
+      <div fxFlex="80">
+        <mat-checkbox formControlName="almacen"  color="primary">Controla AFT en almacen o en uso?</mat-checkbox>
+      </div>
+    </div>
+    <br>    
+    <div fxLayout="row" fxLayoutGap="5px">
+        <div fxFlex="20">
+          <button mat-raised-button type="submit" color="primary">Aceptar
+            <mat-icon class="mat-18">done</mat-icon>
+          </button>
+        </div>
+        <div fxFlex="20">
+            <button mat-raised-button (click)="cancel()" color="warn">Cancelar
+                <mat-icon class="mat-18">cancel</mat-icon>
+            </button>
+        </div>
+    </div>
+  </form>
+</div>

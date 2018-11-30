@@ -3,17 +3,17 @@ import { GenericoList } from '../../models/generico_list.interface';
 import { Generico } from '../../models/generico.interface';
 
 export interface State {
-    genericoList: GenericoList[];
-    generico    : Generico;
-    message     : string;
+    genericoList    : GenericoList[];
+    generic         : Generico;   
+    message         : string;
 }
 export const initialSate: State = {
-    genericoList    :[],
-    generico        : null,
+    genericoList    : [],
+    generic         : null,    
     message         : ''
 }
 
-export function reducer(state = initialSate,action: fromGenerico.GenericoAction):State {
+export function reducer(state = initialSate, action: fromGenerico.GenericoAction): State {
     switch(action.type)
     {
         case fromGenerico.LOAD_GENERICO:
@@ -34,6 +34,21 @@ export function reducer(state = initialSate,action: fromGenerico.GenericoAction)
             return {
                 ...state,
                 message: action.payload
+            }
+        }
+        case fromGenerico.GENERICO_BY_ID:
+        {
+            return {
+                ...state
+            }
+        }
+        case fromGenerico.GENERICO_BY_ID_SUCCESS:
+        {
+            console.log(action.payload['result'][0]);
+            
+            return {
+                ...state,
+                generic: action.payload['result'][0]
             }
         }
         
@@ -77,8 +92,8 @@ export function reducer(state = initialSate,action: fromGenerico.GenericoAction)
             }
         }
     }
+    return state;
 }
-
+export const getGenerico            = (state:State) => state.generic;
 export const getGenericoList        = (state:State) => state.genericoList;
-export const getGenerico            = (state:State) => state.generico;
 export const getGenericoMessage     = (state:State) => state.message;

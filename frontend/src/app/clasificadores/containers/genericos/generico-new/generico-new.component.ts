@@ -10,6 +10,7 @@ import * as fromStore           from '../../../store';
 import { Router }               from '@angular/router';
 import { MatSnackBar } from '@angular/material';
 import { Generico } from 'src/app/clasificadores/models/generico.interface';
+import { Tasas } from 'src/app/clasificadores/models/tasas.interface';
 
 @Component({
   selector: 'app-generico-new',
@@ -19,6 +20,8 @@ import { Generico } from 'src/app/clasificadores/models/generico.interface';
 })
 export class GenericoNewComponent implements OnInit {
 
+  tasas$ : Observable<Tasas[]>;
+
   constructor(
     private store           : Store<fromStore.ClasificadorState>,  
     private router          : Router,
@@ -26,11 +29,28 @@ export class GenericoNewComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.store.dispatch(new fromStore.LoadTasas());
+    this.tasas$ = this.store.select(fromStore.getTasas);
   }
 
   submit(generico: Generico)
-  {
-      this.store.dispatch(new fromStore.CreateGenerico(generico));      
+  {          
+    this.store.dispatch(new fromStore.CreateGenerico(generico));  
+    this.store.select(fromStore.getGenericoMessage).subscribe(resp =>{
+      console.log(resp);
+      
+      if(resp == '1')
+      {
+        this.snackBarService.dismiss();
+        this.snackBarService.open( "Este codigo ya existe!", undefined, {duration: 2000} );     
+        return;     
+      }
+      if(resp = 'ok')
+      {
+        this.router.navigate(['clasificadores/generico']);
+      }
+    })
+        
   }
 
 }

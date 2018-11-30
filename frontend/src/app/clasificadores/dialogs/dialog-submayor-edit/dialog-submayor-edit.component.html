@@ -1,0 +1,19 @@
+<div fxLayout="row" fxLayoutAlign="end end">
+    <mat-icon (click)="closeDialog()" class="hover-close">close</mat-icon>
+</div>
+<div fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="10px">
+    <form [formGroup]="form" (ngSubmit)="submit()">
+        <div fxLayout="row" fxLayoutGap="20px">         
+          <div fxFlex="50">
+              <mat-form-field class="full-width">
+                  <input matInput placeholder="Descripcion" formControlName="descripcion">
+              </mat-form-field>  
+          </div>
+          <div fxFlex="10">
+              <button mat-raised-button type="submit" color="primary">Editar
+                <mat-icon class="mat-18">done</mat-icon>
+              </button>
+            </div>
+        </div>
+    </form>
+  </div>

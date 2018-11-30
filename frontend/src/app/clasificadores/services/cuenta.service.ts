@@ -1,11 +1,12 @@
 import { Injectable }                       from '@angular/core';
-import { HttpClient, HttpErrorResponse }    from '@angular/common/http';
+import { HttpClient, 
+  HttpErrorResponse, HttpParams }           from '@angular/common/http';
 import { Observable, throwError }           from 'rxjs';
 import { CuentaList }                       from '../models/cuenta_list.interface';
-import { catchError }                       from 'rxjs/operators';
+import { catchError, map }                  from 'rxjs/operators';
 import { API_URL }                          from '../../core/config';
-import { CuentaPrint } from '../models/cuenta_print.interface';
-import { Cuenta } from '../models/cuenta.interface';
+import { CuentaPrint }                      from '../models/cuenta_print.interface';
+import { Cuenta }                           from '../models/cuenta.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -30,6 +31,23 @@ export class CuentaService {
       catchError(this.handleError)
     )
   }
+  getcuentaCount():Observable<number> {
+    let url = API_URL + 'cuentas/count';
+    return this.http.get<number>(url).pipe(
+      catchError(this.handleError)
+    )
+  }
+  findCuenta(   
+    start = 0, limit = 3):  Observable<CuentaList[]> {
+      let url = API_URL + 'cuentas/filter';
+    return this.http.get(url, {
+        params: new HttpParams()            
+            .set('start', start.toString())
+            .set('limit', limit.toString())            
+    }).pipe(
+        map(res =>  res["cuentas"])
+    );
+}
   GetCuentaById(id: any):Observable<any>
   {    
     let url = API_URL + 'cuentas/getbyId/' + id;

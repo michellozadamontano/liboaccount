@@ -6,3 +6,5 @@ export * from './entidad.actions';
 export * from './ccosto.action';
 export * from './tasas.action';
 export * from './generico.action';
+export * from './submayor.action';
+export * from './areas.action';

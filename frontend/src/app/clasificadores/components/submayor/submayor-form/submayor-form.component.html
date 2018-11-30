@@ -1,0 +1,23 @@
+<div fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="10px">
+  <form [formGroup]="form" (ngSubmit)="submit()">
+      <div fxLayout="row" fxLayoutGap="20px">
+        <div fxFlex="40">
+            <mat-form-field class="full-width">
+                <mat-select formControlName="generico_id" placeholder="Generico" (selectionChange) = "LoadSubmayor($event)">
+                    <mat-option *ngFor="let item of genericoList" [value]="item.id">{{item.descripcion}}</mat-option>                                
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <div fxFlex="50">
+            <mat-form-field class="full-width">
+                <input matInput placeholder="Descripcion" formControlName="descripcion">
+            </mat-form-field>  
+        </div>
+        <div fxFlex="10">
+            <button mat-raised-button type="submit" color="primary">Agregar
+              <mat-icon class="mat-18">add_circle</mat-icon>
+            </button>
+          </div>
+      </div>
+  </form>
+</div>

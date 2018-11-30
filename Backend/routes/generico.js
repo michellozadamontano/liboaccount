@@ -18,6 +18,20 @@ router.get('/', function(req, res, next) {
 
     
 });
+router.get('/byId/:id',(req, res)=>{
+    let id = req.params.id;
+    sql = 'select * from generico where id = ?';
+    params = [id];
+    db.execute(sql,params,(err, result)=>{
+        if(err)
+        {
+            res.json(err);
+        }
+        res.json({
+            result
+        })
+    })
+})
 
 //Add
 router.post('/',(req,res)=>{    
@@ -36,7 +50,7 @@ router.post('/',(req,res)=>{
             res.json('error en la consulta ' + err);
         }
         if (result.length > 0) {
-            res.json('Ya existe este codigo');
+            res.json('1');
         }
         else
         {
@@ -50,7 +64,7 @@ router.post('/',(req,res)=>{
                 }
                 db.execute("SELECT LAST_INSERT_ID() as id",(err,result)=>{
                    
-                    res.json('Centro costo creado correctamente ' + result);
+                    res.json('ok');
                 });
             })
         }
@@ -89,21 +103,20 @@ router.put('/:id',(req,res)=> {
                     }
                 })
             });
-            res.json('Centro costo actualizado correctamente ');
-            
+            res.json('Centro costo actualizado correctamente ');           
             
         })
     })
 })
 router.delete('/:id',(req,res)=> {
     let id = req.params.id;
-    let sql = 'delete from ccosto where id = ?';
+    let sql = 'delete from generico where id = ?';
     let sql_val = [id];
     db.execute(sql,sql_val,(err,result)=> {
         if (err) {
-            res.json('error eliminando centro de costo ' + err);
+            res.json( err);
         }
-        res.json('Centro costo eliminado correctamente ');
+        res.json('Generico eliminado correctamente ');
     })
 })
 

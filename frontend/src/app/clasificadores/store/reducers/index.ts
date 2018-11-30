@@ -7,6 +7,8 @@ import * as fromEntidad     from './entidad.reducers';
 import * as fromCosto       from './ccosto.reducers';
 import * as fromTasas       from './tasas.reducers';
 import * as fromGenerico    from './generico.reducers';
+import * as fromSubmayor    from './submayor.reducers';
+import * as fromAreas       from './area.reducers';
 
 
 export interface ClasificadorState {
@@ -18,6 +20,8 @@ export interface ClasificadorState {
     costos      : fromCosto.State,
     tasas       : fromTasas.State,
     generico    : fromGenerico.State,
+    submayor    : fromSubmayor.State,
+    areas       : fromAreas.State,
 }
 
 export const reducers: ActionReducerMap<ClasificadorState> = {
@@ -29,6 +33,8 @@ export const reducers: ActionReducerMap<ClasificadorState> = {
     costos      : fromCosto.reducer,
     tasas       : fromTasas.reducer,
     generico    : fromGenerico.reducer,
+    submayor    : fromSubmayor.reducer,
+    areas       : fromAreas.reducer,
 }
 
 export const getClasificadoresState = createFeatureSelector<ClasificadorState>('clasificadores');
@@ -58,6 +64,7 @@ export const getCuentaFaltante      = createSelector(CuentaState,fromCuenta.getC
 export const getCuentaGastoDepre    = createSelector(CuentaState,fromCuenta.getCuentaGastoDepre);
 export const getCuentaGastoDepreDiv = createSelector(CuentaState,fromCuenta.getCuentaGastoDepreDiv);
 export const getMyForm              = createSelector(CuentaState,fromCuenta.getMyForm);
+export const getCuentaCount         = createSelector(CuentaState,fromCuenta.getCuentaCount);
 
 // state of province
 export const ProvinceState      = createSelector(getClasificadoresState,(state:ClasificadorState)=>state.province);
@@ -90,3 +97,15 @@ export const getGenericoState     = createSelector(getClasificadoresState,(state
 export const getGenericoList      = createSelector(getGenericoState,fromGenerico.getGenericoList);
 export const getGenerico          = createSelector(getGenericoState,fromGenerico.getGenerico);
 export const getGenericoMessage   = createSelector(getGenericoState,fromGenerico.getGenericoMessage);
+
+// Slice of Submayor
+export const getSubmayorState     = createSelector(getClasificadoresState,(state:ClasificadorState) => state.submayor);
+export const getSubmayorList      = createSelector(getSubmayorState,fromSubmayor.getSubmayorList);
+export const getSubmayorMessage   = createSelector(getSubmayorState,fromSubmayor.getSubmayorMessage);
+export const getSubmayor          = createSelector(getSubmayorState,fromSubmayor.getSubmayor);
+
+// Slice of Areas 
+export const getAreaState         = createSelector(getClasificadoresState,(state:ClasificadorState) => state.areas);
+export const getAreas             = createSelector(getAreaState,fromAreas.getAreas);
+export const getArea              = createSelector(getAreaState,fromAreas.getArea);
+export const getAreaMessage       = createSelector(getAreaState,fromAreas.getAreaMessage);

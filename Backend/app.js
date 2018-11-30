@@ -16,6 +16,9 @@ var provinciaRouter     = require('./routes/provincia');
 var ccostoRouter        = require('./routes/ccosto');
 var tasaRouter          = require('./routes/tasa');
 var genericoRouter      = require('./routes/generico');
+var submayorRouter      = require('./routes/submayor_aft');
+var areasRouter         = require('./routes/areas');
+var subareaRouter       = require('./routes/subareas');
 
 var app                 = express();
 
@@ -29,7 +32,25 @@ const db = mysql.createConnection ({
   host: 'localhost',
   user: 'root',
   password: 'root',
-  database: 'zunaftweb'
+  database: 'zunaftweb',
+  typeCast: function castField( field, useDefaultTypeCasting ) {
+
+    // We only want to cast bit fields that have a single-bit in them. If the field
+    // has more than one bit, then we cannot assume it is supposed to be a Boolean.
+    if ( ( field.type === "BIT" ) && ( field.length === 1 ) ) {
+
+        var bytes = field.buffer();
+
+        // A Buffer in Node represents a collection of 8-bit unsigned integers.
+        // Therefore, our single "bit field" comes back as the bits '0000 0001',
+        // which is equivalent to the number 1.
+        return( bytes[ 0 ] === 1 );
+
+    }
+
+    return( useDefaultTypeCasting() );
+
+  }
 });
 
 // connect to database
@@ -59,6 +80,9 @@ app.use('/provincia', provinciaRouter);
 app.use('/ccosto', ccostoRouter);
 app.use('/tasa',tasaRouter);
 app.use('/generico',genericoRouter);
+app.use('/submayor',submayorRouter);
+app.use('/areas', areasRouter);
+app.use('/subareas', subareaRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

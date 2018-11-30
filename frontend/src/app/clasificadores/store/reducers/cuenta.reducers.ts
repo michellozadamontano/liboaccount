@@ -45,6 +45,7 @@ export interface CuentaState {
     cuentaGastoDepreDiv : CuentaPrint[];
     tipo_cuenta_id      : number;
     myForm              : FormGroupState<CuentaForm>;
+    cuentaCount         : number;
 }
 const initialCuentaState : CuentaState  = {
     inserting           : false,
@@ -62,7 +63,8 @@ const initialCuentaState : CuentaState  = {
     cuentaGastoDepre    : [],
     cuentaGastoDepreDiv : [],
     tipo_cuenta_id      : null,
-    myForm              : initialFormState
+    myForm              : initialFormState,
+    cuentaCount         : 0
 }
 
 export interface State {
@@ -236,6 +238,21 @@ const reducers = combineReducers<State,any>({
                     ...state,
                     cuentaGastoDepreDiv: action.payload['result']
                 }
+            }
+            case fromCuenta.LOAD_CUENTA_COUNT:
+            {
+                return {
+                    ...state
+                }
+            }  
+            case fromCuenta.LOAD_CUENTA_COUNT_SUCCESS:
+            {
+                console.log(action.payload);
+                
+                return {
+                    ...state,
+                    cuentaCount: action.payload
+                }
             }             
             
             case fromCuenta.INSERT_CUENTA: {
@@ -290,3 +307,4 @@ export const getCuentaFaltante      = (state: State) => state.cuentaState.cuenta
 export const getCuentaGastoDepre    = (state: State) => state.cuentaState.cuentaGastoDepre;
 export const getCuentaGastoDepreDiv = (state: State) => state.cuentaState.cuentaGastoDepreDiv;
 export const getMyForm              = (state: State) => state.myForm;
+export const getCuentaCount         = (state: State) => state.cuentaState.cuentaCount;

@@ -24,6 +24,16 @@ export class GenericoEffects {
             )
         })
     )
+    @Effect()
+    loadById$ = this.actions$.ofType<fromGenericoAction.GenericoById>(fromGenericoAction.GENERICO_BY_ID)
+    .pipe(
+        switchMap((generico)=> {
+            return this.genericoService.getGenericoById(generico.payload).pipe(
+                map(result => new fromGenericoAction.GenericoByIdSuccess(result)),
+                catchError(error => of(new fromGenericoAction.LoadGenericoError(error)))
+            )
+        })
+    )
    
     @Effect()
     createGenerico$ = this.actions$.ofType<fromGenericoAction.CreateGenerico>(fromGenericoAction.CREATE_GENERICO).pipe(

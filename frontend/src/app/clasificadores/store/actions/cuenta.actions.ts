@@ -30,6 +30,8 @@ export const LOAD_CUENTA_GASTO_DEPRE            = '[Cuenta] Load cuenta gasto de
 export const LOAD_CUENTA_GASTO_DEPRE_SUCCESS    = '[Cuenta] Load cuenta gasto depre success';
 export const LOAD_CUENTA_GASTO_DEPRE_DIV            = '[Cuenta] Load cuenta gasto depre divisa';
 export const LOAD_CUENTA_GASTO_DEPRE_DIV_SUCCESS    = '[Cuenta] Load cuenta gasto depre divias success';
+export const LOAD_CUENTA_COUNT                  = '[Cuenta] Load cuenta count';
+export const LOAD_CUENTA_COUNT_SUCCESS          = '[Cuenta] Load cuenta count success';
 
 
 export class LoadCuenta implements Action {
@@ -108,6 +110,14 @@ export class LoadCuentaGastoDepreDivSuccess implements Action {
     readonly type = LOAD_CUENTA_GASTO_DEPRE_DIV_SUCCESS;
     constructor(public payload: CuentaPrint[]){}
 }
+export class LoadCuentaCount implements Action {
+    readonly type = LOAD_CUENTA_COUNT;
+    
+}
+export class LoadCuentaCountSuccess implements Action {
+    readonly type = LOAD_CUENTA_COUNT_SUCCESS;
+    constructor(public payload: number){}
+}
 
 export class InsertCuenta implements Action {
     readonly type = INSERT_CUENTA;
@@ -154,5 +164,7 @@ export type CuentaAction =
 | LoadCuentaGastoDepreSuccess
 | LoadCuentaGastoDepreDiv
 | LoadCuentaGastoDepreDivSuccess
+| LoadCuentaCount
+| LoadCuentaCountSuccess
 | UpdateCuenta
 | DeleteCuenta ;

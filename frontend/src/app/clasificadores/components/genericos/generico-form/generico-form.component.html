@@ -1,3 +1,46 @@
-<p>
-  generico-form works!
-</p>
+<div fxLayout="column">  
+  <mat-card>
+      <form [formGroup]="form" (ngSubmit)="submit()">
+          <div fxLayout="row" fxLayoutGap="20px">
+            <div fxFlex="20">
+                <mat-form-field class="full-width" >
+                    <input matInput placeholder="Codigo" formControlName="codigo"  type="number" [readonly]= "readonly">              
+                </mat-form-field>           
+                
+            </div>
+            <div fxFlex="80">
+                <mat-form-field class="full-width">
+                    <input matInput placeholder="Descripcion" formControlName="descripcion">
+                </mat-form-field>  
+            </div>
+          </div>
+          <br>
+          <div fxLayout="row" fxLayoutGap="20px">
+            <div fxFlex="50">
+                <mat-form-field class="full-width">
+                    <mat-select formControlName="tasa_id" placeholder="Tasa Deprecicacion">
+                        <mat-option *ngFor="let item of tasas" [value]="item.id">{{item.descripcion}}</mat-option>                                
+                    </mat-select>
+                </mat-form-field>            
+              <div fxFlex="50">
+                  <mat-checkbox formControlName="transrent"  color="primary">Deprecia por km recorridos</mat-checkbox>
+              </div>
+            </div>               
+          </div>
+          <div fxLayout="row" fxLayoutGap="5px">
+              <div fxFlex="20">
+                <button mat-raised-button type="submit" color="primary">Aceptar
+                  <mat-icon class="mat-18">done</mat-icon>
+                </button>
+              </div>
+              <div fxFlex="20">
+                  <button mat-raised-button (click)="cancel()" color="warn">Cancelar
+                      <mat-icon class="mat-18">cancel</mat-icon>
+                  </button>
+              </div>
+            </div>
+      </form>
+  </mat-card>      
+    
+</div>
+

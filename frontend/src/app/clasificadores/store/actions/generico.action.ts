@@ -13,6 +13,8 @@ export const UPDATE_GENERICO            = '[Generico] Update Generico';
 export const UPDATE_GENERICO_SUCCESS    = '[Generico] Update Generico Success';
 export const DELETE_GENERICO            = '[Generico] Delete Generico';
 export const DELETE_GENERICO_SUCCESS    = '[Generico] Delete Generico Success';
+export const GENERICO_BY_ID             = '[Generico] Generico by id';
+export const GENERICO_BY_ID_SUCCESS     = '[Generico] Generico by id Success';
 
 export class LoadGenerico implements Action {
     readonly type = LOAD_GENERICO;    
@@ -24,6 +26,14 @@ export class LoadGenericoSuccess implements Action {
 export class LoadGenericoError implements Action {
     readonly type = LOAD_GENERICO_ERROR;
     constructor(public payload:string){}
+}
+export class GenericoById implements Action {
+    readonly type = GENERICO_BY_ID;
+    constructor(public payload: number){}
+}
+export class GenericoByIdSuccess implements Action {
+    readonly type = GENERICO_BY_ID_SUCCESS;
+    constructor(public payload: Generico){}
 }
 export class CreateGenerico implements Action {
     readonly type = CREATE_GENERICO;
@@ -54,6 +64,8 @@ export type GenericoAction =
 | LoadGenerico
 | LoadGenericoSuccess
 | LoadGenericoError
+| GenericoById
+| GenericoByIdSuccess
 | CreateGenerico
 | CreateGenericoSucces
 | UpdateGenerico

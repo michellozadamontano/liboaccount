@@ -19,6 +19,51 @@ router.get('/', function (req, res, next) {
         });
     });
 });
+router.get('/filter', function (req, res, next) {
+    let start = req.query.start;
+    let limit = req.query.limit;
+    console.log(limit);
+    
+   
+    let query = "SELECT c.id,c.cuenta, c.descripcion, m.descripcion as moneda," +
+        "t.descripcion as tipo, co.descripcion as ccosto FROM cuentas c INNER JOIN moneda m " +
+        "on m.id = c.moneda_id INNER JOIN tipo_cuenta t on t.id = c.tipo_cuenta_id LEFT JOIN " +
+        "ccosto co on co.id = c.ccosto_id ORDER BY c.id ASC limit ? OFFSET ?";
+
+    let queryParm = [limit,start];
+    let sql = "Select count(*) as TotalCount from cuentas";
+    db.execute(sql, (err, result) => {
+        if (err) {
+            res.json('error en la consulta ' + err);
+        }
+        //store Total count in variable
+        let totalCount = result[0].TotalCount;
+        // execute query
+        db.execute(query, queryParm, (err, result) => {
+            if (err) {
+                res.json('error en la consulta ' + err);
+            }
+            res.json({
+                cuentas: result
+            });
+        });
+    });
+    
+});
+// Get count of record of cuentas
+router.get('/count',(req,res) => {
+
+    let sql = "Select count(*) as TotalCount from cuentas";
+    db.execute(sql, (err, result) => {
+        if (err) {
+            res.json('error en la consulta ' + err);
+        }
+        //store Total count in variable
+        let totalCount = result[0].TotalCount;
+        // execute query
+       res.json(totalCount);
+    });
+})
 //Get by Id
 router.get('/getbyId/:id', (req, res) => {
 
@@ -108,6 +153,32 @@ router.post('/', (req, res) => {
     });
 
 });
+router.post('/insert',(req,res)=>{
+    let tipo_cuenta_id = 1;
+    let moneda_id = 1;
+    let cuenta = "400000";
+    let descripcion = "cuenta de testing";
+    let activa = 1;
+    let ccosto_id =  null;
+    let predeterminada = 1;
+    let tempcuent = null;
+    for(let i= 0; i<5000;i++)
+    {
+        tempcuent = cuenta + i;
+        let sql = 'insert into cuentas(tipo_cuenta_id,moneda_id,cuenta,descripcion,activa,ccosto_id,predeterminada)' +
+        'values(?,?,?,?,?,?,?)';
+        let sql_params = [tipo_cuenta_id, moneda_id, tempcuent, descripcion, activa, ccosto_id, predeterminada];
+
+        db.execute(sql, sql_params, (err, result, field) => {
+            if (err) {
+                res.json('Error al insertar ' + err)
+            }
+            
+        })
+        tempcuent = null;
+    }
+    res.json('actualizado correctamente');
+})
 //Update
 router.put('/:id', (req, res) => {
     console.log(req.params.id);

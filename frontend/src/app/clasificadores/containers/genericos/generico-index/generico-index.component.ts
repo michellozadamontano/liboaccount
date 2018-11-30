@@ -30,20 +30,27 @@ export class GenericoIndexComponent implements OnInit {
   }
   Add()
   {
-    console.log('testing');
+    this.router.navigate(['clasificadores/generico_new']);
     
   }
   edit(id: number)
   {
-
+    this.router.navigate(['clasificadores/generico_edit/',id]);
   }
   delete(id:number)
   {
-
+    const r = confirm('Estas Seguro?');
+    if (r) {
+      this.store.dispatch(new fromStore.DeleteGenerico(id));
+    }
   }
   Print()
   {
     
+  }
+  Submayor()
+  {
+    this.router.navigate(['clasificadores/submayor']);
   }
 
 }

@@ -1,0 +1,5 @@
+<br>
+<app-submayor-form (save) = "submit($event)" (loadSubmayor) = "LoadSubmayor($event)"
+[genericoList] = "genericoList$ | async"></app-submayor-form>
+<br>
+<app-submayor-list [dataSource] = "submayorList$ | async" (edit)= "update($event)" (delete) = "remove($event)"></app-submayor-list>

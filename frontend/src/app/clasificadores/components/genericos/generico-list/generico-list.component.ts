@@ -24,5 +24,13 @@ export class GenericoListComponent implements OnInit {
 
   ngOnInit() {
   }
+  update(id:number)
+  {
+    this.edit.emit(id);
+  }
+  remove(id:number)
+  {
+    this.delete.emit(id);
+  }
 
 }

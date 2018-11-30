@@ -14,8 +14,8 @@
     <ng-container matColumnDef="Actions">
       <th mat-header-cell *matHeaderCellDef></th>
       <td mat-cell *matCellDef="let element">                 
-        <i class="material-icons hover-icon" (click)="Update(element.id)">create</i> 
-        <i class="material-icons hover-icon" (click)="Delete(element.id)">delete_forever</i>
+        <i class="material-icons hover-icon" (click)="update(element.id)">create</i> 
+        <i class="material-icons hover-icon" (click)="remove(element.id)">delete_forever</i>
       </td>
     </ng-container>
     <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>

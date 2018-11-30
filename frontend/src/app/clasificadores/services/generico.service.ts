@@ -22,6 +22,13 @@ export class GenericoService {
       catchError(this.handleError)
     )
   }
+  getGenericoById(id:number):Observable<Generico>
+  {
+    let url = API_URL + 'generico/byId/' + id;
+    return this.http.get<Generico>(url).pipe(
+      catchError(this.handleError)
+    )
+  }
   createGenerico(generico: Generico):Observable<string>
   {
     let url = API_URL + 'generico';
