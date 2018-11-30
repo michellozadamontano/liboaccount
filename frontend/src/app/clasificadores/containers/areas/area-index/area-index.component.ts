@@ -22,6 +22,7 @@ import { MatTableDataSource, MatPaginator, MatSort } from '@angular/material';
 export class AreaIndexComponent implements OnInit {
 
   areaList$ : Observable<AreaList[]>
+  
   public displayedColumns = ['Nombre','Responsable','Centro Costo','Actions'];
   resultsLength = 0;
   public dataSource 		            = new MatTableDataSource<any>();
