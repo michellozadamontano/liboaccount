@@ -10,7 +10,7 @@ router.get('/', function(req, res, next) {
         if(err){
             res.json(err);
         }
-        res.json({provincias:result})
+        res.json({result})
     });    
 });
 

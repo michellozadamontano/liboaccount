@@ -45,6 +45,7 @@ export class AreaFormComponent implements OnInit,  OnChanges {
   createForm()
   {
     this.form = this.formBuilder.group({
+      'id'            :[this.area.id],
       'ccosto_id'     : [this.area.ccosto_id, Validators.required],
       'nombre'        : [this.area.nombre, Validators.required],
       'responsable'   : [this.area.responsable, Validators.required],

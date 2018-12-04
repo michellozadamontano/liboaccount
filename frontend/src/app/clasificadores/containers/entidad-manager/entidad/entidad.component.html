@@ -1,0 +1,14 @@
+<mat-card>
+    <mat-card-header>
+        <mat-card-title>Datos Generales de la Entidad</mat-card-title>
+        <mat-card-subtitle>Entidad</mat-card-subtitle>
+    </mat-card-header>    
+    <mat-card-content>
+      <button mat-raised-button (click)="Add()" color="primary">Adicionar</button>
+      <br>
+       <app-entidad-list 
+       [entidad] = "entidad$ | async" 
+       [provincia] = "provinces$ | async"
+       (edit) = "Update($event)"></app-entidad-list>
+    </mat-card-content>    
+</mat-card>

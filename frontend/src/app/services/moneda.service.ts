@@ -1,9 +1,9 @@
-import { Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
-import { Moneda } from '../models/moneda.interface';
-import { catchError } from 'rxjs/operators';
-import { API_URL } from '../../core/config';
+import { Injectable }                     from '@angular/core';
+import { HttpClient, HttpErrorResponse }  from '@angular/common/http';
+import { Observable, throwError }         from 'rxjs';
+import { Moneda }                         from '../clasificadores/models/moneda.interface';
+import { catchError }                     from 'rxjs/operators';
+import { API_URL }                        from '../core/config';
 
 @Injectable({
   providedIn: 'root'

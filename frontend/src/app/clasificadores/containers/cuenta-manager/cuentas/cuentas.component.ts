@@ -18,9 +18,10 @@ import { Ccosto } from '../../../models/ccosto.interface';
 import { CuentaList } from '../../../models/cuenta_list.interface';
 import { PrintCuentaComponent } from '../../../dialogs/print-cuenta/print-cuenta.component';
 import { Router } from '@angular/router';
-import { CuentasDataSource } from 'src/app/clasificadores/services/cuenta.datasource';
-import { CuentaService } from 'src/app/clasificadores/services';
+import { CuentasDataSource } from 'src/app/services/cuenta.datasource';
+import { CuentaService } from 'src/app/services';
 import { debounceTime, distinctUntilChanged, tap } from 'rxjs/operators';
+
 
 @Component({
   selector: 'app-cuentas',

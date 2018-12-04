@@ -1,10 +1,10 @@
-import { Injectable } from '@angular/core';
-import { Actions, Effect, ofType } from '@ngrx/effects';
-import { Observable, of } from 'rxjs';
-import { catchError, map, switchMap } from 'rxjs/operators';
+import { Injectable }                   from '@angular/core';
+import { Actions, Effect, ofType }      from '@ngrx/effects';
+import { Observable, of }               from 'rxjs';
+import { catchError, map, switchMap }   from 'rxjs/operators';
 
-import * as fromProvinceAction from '../actions/provincia.action';
-import * as fromServices from '../../services';
+import * as fromProvinceAction          from '../actions/provincia.action';
+import * as fromServices                from '../../../services';
 
 @Injectable()
 export class ProvinceEffects {

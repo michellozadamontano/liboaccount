@@ -1,62 +1,56 @@
 import { Injectable }                       from '@angular/core';
 import { HttpClient, HttpErrorResponse }    from '@angular/common/http';
 import { Observable, throwError }           from 'rxjs';
-import { Ccosto }                           from '../models/ccosto.interface';
 import { catchError }                       from 'rxjs/operators';
-import { API_URL }                          from '../../core/config';
-import { CcostoList } from '../models/ccosto_list.interface';
+import { API_URL }                          from '../core/config';
+import { GenericoList }                     from '../clasificadores/models/generico_list.interface';
+import { Generico }                         from '../clasificadores/models/generico.interface';
 
 @Injectable({
   providedIn: 'root'
 })
-export class CcostoService {
+export class GenericoService {
 
   constructor(
     private http: HttpClient
   ) { }
 
-  InsertCosto(costo: Ccosto): Observable<any>{     
-      
-    let url = API_URL + 'ccosto';
-    return this.http.post<any>(url,costo).pipe(
+  getGenerico():Observable<GenericoList[]>
+  {
+    let url = API_URL + 'generico';
+    return this.http.get<GenericoList[]>(url).pipe(
+      catchError(this.handleError)
+    )
+  }
+  getGenericoById(id:number):Observable<Generico>
+  {
+    let url = API_URL + 'generico/byId/' + id;
+    return this.http.get<Generico>(url).pipe(
+      catchError(this.handleError)
+    )
+  }
+  createGenerico(generico: Generico):Observable<string>
+  {
+    let url = API_URL + 'generico';
+    return this.http.post<string>(url,generico).pipe(
       catchError(this.handleError)
     );
   }
-  GetCostos():Observable<CcostoList[]>
+  updateGenerico(generico:Generico):Observable<string>
   {
-    let url = API_URL + 'ccosto';
-    return this.http.get<any>(url).pipe(
+    let url = API_URL + 'generico/' + generico.id;
+    return this.http.put<string>(url,generico).pipe(
       catchError(this.handleError)
-    )
+    );
   }
-  GetCostoById(id:number):Observable<Ccosto>
+  deleteGenerico(id:number):Observable<string>
   {
-    let url = API_URL + 'ccosto/byId/' + id;
-    return this.http.get<Ccosto>(url).pipe(
+    let url = API_URL + 'generico/' + id;
+    return this.http.delete<string>(url).pipe(
       catchError(this.handleError)
-    )
+    );
   }
-  CheckCodigo(codigo:any):Observable<number>
-  {
-    let url = API_URL + 'ccosto/codigo/' + codigo;
-    return this.http.get<number>(url).pipe(
-      catchError(this.handleError)
-    )
-  }
-  UpdateCosto(id: number,ccosto: Ccosto):Observable<any>
-  {
-    let url = API_URL + 'ccosto/' + id;
-    return this.http.put<any>(url,ccosto).pipe(
-      catchError(this.handleError)
-    )
-  }
-  DeleteCosto(id:number):Observable<any>
-  {
-    let url = API_URL + 'ccosto/' + id;
-    return this.http.delete<any>(url).pipe(
-      catchError(this.handleError)
-    )
-  }
+
 
   private handleError(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {

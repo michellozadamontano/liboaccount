@@ -24,12 +24,10 @@ export function reducer(state = InitialState, action: fromProvince.ProvinceActio
             ...state,
             loading: true
         }
-        case fromProvince.LOAD_PROVINCE_SUCCESS:
-        console.log(action.payload.provincia);
-        
+        case fromProvince.LOAD_PROVINCE_SUCCESS:    
         return { 
             ...state,
-            provinces   : action.payload.provincia,
+            provinces   : action.payload.provincia['result'],
             loaded      : true,
             loading     : false
         }

@@ -11,7 +11,7 @@ import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
 export class SubmayorListComponent implements OnInit {
 
   @Input() dataSource: Submayor[];
-  @Output() edit        = new EventEmitter<number>();
+  @Output() edit        = new EventEmitter<Submayor>();
   @Output() delete      = new EventEmitter<number>();
 
   public displayedColumns = ['Submayor','Descripcion','Actions'];
@@ -24,9 +24,9 @@ export class SubmayorListComponent implements OnInit {
 
   ngOnInit() {
   }
-  update(id:number)
+  update(sumayor:Submayor)
   {
-    this.edit.emit(id);
+    this.edit.emit(sumayor);
   }
   remove(id:number)
   {

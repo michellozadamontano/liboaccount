@@ -1,9 +1,9 @@
-import { Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
-import { Submayor } from '../models/submayor.interface';
-import { catchError } from 'rxjs/operators';
-import { API_URL } from '../../core/config';
+import { Injectable }                     from '@angular/core';
+import { HttpClient, HttpErrorResponse }  from '@angular/common/http';
+import { Observable, throwError }         from 'rxjs';
+import { Submayor }                       from '../clasificadores/models/submayor.interface';
+import { catchError }                     from 'rxjs/operators';
+import { API_URL }                        from '../core/config';
 
 @Injectable({
   providedIn: 'root'

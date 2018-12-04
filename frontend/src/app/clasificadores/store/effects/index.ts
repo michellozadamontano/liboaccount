@@ -8,6 +8,7 @@ import { TasasEffects }         from './tasas.effects';
 import { GenericoEffects }      from './generico.effects';
 import { SubmayorEffects}       from './submayor.effects';
 import { AreasEffects }         from './areas.effects';
+import { SubAreasEffects }      from './subareas.effects';
 
 export const effects: any[] = [
     MonedaEffects, 
@@ -20,6 +21,7 @@ export const effects: any[] = [
     GenericoEffects,
     SubmayorEffects,
     AreasEffects,
+    SubAreasEffects,
 ]
 
 export * from './moneda.effects';
@@ -32,3 +34,4 @@ export * from './tasas.effects';
 export * from './generico.effects';
 export * from './submayor.effects';
 export * from './areas.effects';
+export * from './subareas.effects';

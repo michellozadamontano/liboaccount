@@ -1,9 +1,9 @@
 import { Injectable }                       from '@angular/core';
 import { HttpClient, HttpErrorResponse }    from '@angular/common/http';
 import { Observable, throwError }           from 'rxjs';
-import { TipoCuenta }                       from '../models/tipo_cuenta.interface';
+import { TipoCuenta }                       from '../clasificadores/models/tipo_cuenta.interface';
 import { catchError }                       from 'rxjs/operators';
-import { API_URL }                          from '../../core/config';
+import { API_URL }                          from '../core/config';
 
 @Injectable({
   providedIn: 'root'

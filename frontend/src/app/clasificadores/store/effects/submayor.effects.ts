@@ -4,7 +4,7 @@ import { Observable, of } from 'rxjs';
 import { catchError, map, switchMap } from 'rxjs/operators';
 
 import * as submayorActions from '../actions/submayor.action';
-import * as fromServices from '../../services';
+import * as fromServices from '../../../services';
 
 @Injectable()
 export class SubmayorEffects {

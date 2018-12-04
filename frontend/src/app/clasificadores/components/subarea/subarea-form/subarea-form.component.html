@@ -1,3 +1,28 @@
-<p>
-  subarea-form works!
-</p>
+<div fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="10px">
+  <form [formGroup]="form" (ngSubmit)="submit()">
+      <div fxLayout="row" fxLayoutGap="20px">
+        <div fxFlex="30">
+            <mat-form-field class="full-width">
+                <mat-select formControlName="area_id" placeholder="Areas" (selectionChange) = "LoadSubArea($event)">
+                    <mat-option *ngFor="let item of areas" [value]="item.id">{{item.nombre}}</mat-option>                                
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <div fxFlex="25">
+            <mat-form-field class="full-width">
+                <input matInput placeholder="Nombre" formControlName="nombre">
+            </mat-form-field>  
+        </div>
+        <div fxFlex="25">
+          <mat-form-field class="full-width">
+              <input matInput placeholder="Responsable" formControlName="responsable">
+          </mat-form-field>  
+      </div>
+        <div fxFlex="10">
+            <button mat-raised-button type="submit" color="primary">Aceptar
+              <mat-icon class="mat-18">done</mat-icon>
+            </button>
+          </div>
+      </div>
+  </form>
+</div>

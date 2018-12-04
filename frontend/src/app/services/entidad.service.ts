@@ -1,10 +1,10 @@
-import { Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
-import { Entidad } from '../models/entidad.interface';
-import { Provincia } from '../models/provincia.interface';
-import { catchError } from 'rxjs/operators';
-import { API_URL } from '../../core/config';
+import { Injectable }                     from '@angular/core';
+import { HttpClient, HttpErrorResponse }  from '@angular/common/http';
+import { Observable, throwError }         from 'rxjs';
+import { Entidad }                        from '../clasificadores/models/entidad.interface';
+import { Provincia }                      from '../clasificadores/models/provincia.interface';
+import { catchError }                     from 'rxjs/operators';
+import { API_URL }                        from '../core/config';
 
 @Injectable({
   providedIn: 'root'
@@ -21,10 +21,10 @@ export class EntidadService {
     );
   }
 
-  GetEntidad(): Observable<Entidad[]>
+  GetEntidad(): Observable<Entidad>
   {
     let url = API_URL + 'entidad';
-    return this.http.get<Entidad[]>(url).pipe(
+    return this.http.get<Entidad>(url).pipe(
       catchError(this.handleError)
     );
   }
@@ -32,6 +32,13 @@ export class EntidadService {
   {
     let url = API_URL + 'entidad';
     return this.http.post(url,entidad).pipe(
+      catchError(this.handleError)
+    );
+  }
+  PutEntidad(entidad: Entidad):Observable<any>
+  {
+    let url = API_URL + 'entidad/' + entidad.id;
+    return this.http.put(url,entidad).pipe(
       catchError(this.handleError)
     );
   }

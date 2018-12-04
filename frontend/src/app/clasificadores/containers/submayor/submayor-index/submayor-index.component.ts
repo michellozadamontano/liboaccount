@@ -48,17 +48,16 @@ export class SubmayorIndexComponent implements OnInit {
     
   }
   
-  update(id:number)
-  {
-    this.store.dispatch(new fromStore.LoadSubmayorById(id));
+  update(submayor: Submayor)
+  {   
     const dialogRef = this.dialog.open(DialogSubmayorEditComponent, {
       width: '50%',
-      data: {submayor: this.submayor$}
+      data:  submayor
     });
     
-    /*  dialogRef.afterClosed().subscribe(result => {
-        console.log(result);        
-      });*/
+      dialogRef.afterClosed().subscribe(submayor => {
+       this.store.dispatch(new fromStore.UpdateSubmayor(submayor));       
+      });
     
   }
   remove(submayor:Submayor)

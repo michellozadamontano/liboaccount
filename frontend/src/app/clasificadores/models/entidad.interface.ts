@@ -1,8 +1,9 @@
 export interface Entidad {
-    id_entidad          : number;
-    id_prov             : number;
-    direccion_entidad   : string;
-    grupo_entidad       : string;
-    desc_agencia        : string;
-    fintur              : number;
+    id                  : number;
+    codigo              : string;
+    nombre              : string;
+    provincia_id        : number;
+    direccion           : string;
+    corporacion         : string;
+    compania            : string;
 }

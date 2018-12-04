@@ -3,6 +3,9 @@ import { NgModule }                 from '@angular/core';
 
 import { BrowserAnimationsModule }  from '@angular/platform-browser/animations';
 
+//http
+import { HttpClientModule, HTTP_INTERCEPTORS }          from '@angular/common/http';
+
 // material module 
 import { MaterialModule }           from './material/material.module';
 
@@ -23,6 +26,19 @@ import { MainNavComponent } from './main-nav/main-nav.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule } from '@angular/material';
 
+//services
+import { CuentaService ,
+  TipoCuentaService ,
+  MonedaService, 
+  EntidadService,
+  CcostoService,
+  TasasService, 
+  GenericoService,
+  SubmayorService,
+  AreasService,
+  SubareasService
+}                                   from './services';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,6 +49,7 @@ import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, Mat
     BrowserModule,
     MaterialModule,
     BrowserAnimationsModule,
+    HttpClientModule,
     AppRoutingModule,
     FlexLayoutModule,
     StoreModule.forRoot({}, {}),
@@ -49,7 +66,12 @@ import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, Mat
     MatListModule,
     
   ],
-  providers: [],
+  providers: [
+    MonedaService,TipoCuentaService, 
+    CuentaService, EntidadService, CcostoService,
+    TasasService, GenericoService ,SubmayorService,
+    AreasService, SubareasService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

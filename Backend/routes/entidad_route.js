@@ -1,69 +1,62 @@
 var express = require('express');
 var router = express.Router();
-//var db  = require('../models');
 
-/* GET entidad listing. */
-/*router.get('/', function(req, res, next) {
-  //res.send('respond with a resource');
-    db.entidad.findAll({limit: 1,include: db.provincia})
-    .then(resp =>{
-        res.json({
-            error: false,
-            entidad: resp
-        })
+/* GET tasa listing. */
+router.get('/', (req, res)=> {  
+    let sql = 'select * from entidad limit 1';
+    db.execute(sql,(err,result)=>{
+        if(err){
+            res.json(err);
+        }
+        res.json({result})
     })
-    .catch(error => res.json({
-            error: true,
-            data: [],
-            error: error
-        }));
-});
-
-router.post('/',(req,res)=>{
-    db.entidad.create({
-        id_prov             : req.body.id_prov,
-        direccion_entidad   : req.body.direccion_entidad,
-        grupo_entidad       : req.body.grupo_entidad,
-        desc_agencia        : req.body.desc_agencia,
-        fintur              : req.body.fintur
-    })
-    .then(entidad => res.status(201).json({
-            error: false,
-            data: entidad,
-            message: 'Entidad creada exitosamente.'
-    }))
-    .catch(error => res.json({
-        error: true,
-        data: [],
-        error: error
-    }));
-});
-
-router.put('/:id',(req,res)=>{
-    console.log(req.params.id);
     
-    db.entidad.update({
-        id_prov  : req.body.id_prov,
-        direccion_entidad   : req.body.direccion_entidad,
-        grupo_entidad       : req.body.grupo_entidad,
-        desc_agencia        : req.body.desc_agencia,
-        fintur              : req.body.fintur
-    },
-    {
-        where: {
-            id_entidad: req.params.id
+});
+
+router.post('/',(req,res) => {
+    let codigo          = req.body.codigo;
+    let nombre          = req.body.nombre;
+    let provincia_id    = req.body.provincia_id;
+    let direccion       = req.body.direccion;
+    let corporacion     = req.body.corporacion;
+    let compania       = req.body.compania;
+
+    sql = 'insert into entidad(codigo,nombre,provincia_id,direccion,corporacion,compania) values(?,?,?,?,?,?)';
+    params = [codigo,nombre,provincia_id,direccion,corporacion,compania];
+
+    db.execute(sql,params,(err,result)=> {
+        if(err)
+        {
+            res.json(err)
+        }
+        else{
+            res.json('ok');
         }
     })
-    .then(entidad => res.status(201).json({
-        error: false,       
-        message: 'Entidad actualizada exitosamente.'
-    }))
-    .catch(error => res.json({
-        error: true,
-        data: [],
-        error: error
-    }));
 
-});*/
+})
+router.put('/:id',(req,res)=> {
+    let id = req.params.id;
+
+    let codigo          = req.body.codigo;
+    let nombre          = req.body.nombre;
+    let provincia_id    = req.body.provincia_id;
+    let direccion       = req.body.direccion;
+    let corporacion     = req.body.corporacion;
+    let compania       = req.body.compania;
+    sql = 'update entidad set codigo = ?,nombre = ?, provincia_id = ?, direccion = ?, corporacion = ?, compania = ? where id= ?';
+    params = [codigo,nombre,provincia_id,direccion,corporacion,compania, id];
+
+    db.execute(sql,params,(err,result)=> {
+        if(err)
+        {
+            res.json(err)
+        }
+        else{
+            res.json('ok');
+        }
+    })
+})
+
 
 module.exports = router;

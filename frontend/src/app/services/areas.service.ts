@@ -2,10 +2,11 @@ import { Injectable }                       from '@angular/core';
 import { HttpClient, 
   HttpErrorResponse, HttpParams }           from '@angular/common/http';
 import { Observable, throwError }           from 'rxjs';
-import { API_URL }                          from '../../core/config';
-import { AreaList } from '../models/area_list.interface';
 import { catchError } from 'rxjs/operators';
-import { Area } from '../models/area.interface';
+import { AreaList } from '../clasificadores/models/area_list.interface';
+import { API_URL } from '../core/config';
+import { Area } from '../clasificadores/models/area.interface';
+
 
 @Injectable({
   providedIn: 'root'

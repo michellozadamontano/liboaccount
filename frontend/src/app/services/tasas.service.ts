@@ -1,11 +1,10 @@
 import { Injectable }                       from '@angular/core';
 import { HttpClient, HttpErrorResponse }    from '@angular/common/http';
 import { Observable, throwError }           from 'rxjs';
-import { Cuenta }                           from '../models/cuenta.interface';
 import { catchError }                       from 'rxjs/operators';
-import { API_URL }                          from '../../core/config';
-import { Tasas }                            from '../models/tasas.interface';
-import { Tasa_Cuenta } from '../models/tasa_cuenta.interface';
+import { API_URL }                          from '../core/config';
+import { Tasas }                            from '../clasificadores/models/tasas.interface';
+import { Tasa_Cuenta }                      from '../clasificadores/models/tasa_cuenta.interface';
 
 @Injectable({
   providedIn: 'root'

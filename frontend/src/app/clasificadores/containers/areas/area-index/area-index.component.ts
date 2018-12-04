@@ -8,10 +8,14 @@ import { Router }                 from '@angular/router';
 
 // ngrx
 import { Store }                  from '@ngrx/store';
-import { Observable, from }             from 'rxjs';
+import { Observable, from }       from 'rxjs';
 import * as fromStore             from '../../../store';
 import { AreaList }               from 'src/app/clasificadores/models/area_list.interface';
-import { MatTableDataSource, MatPaginator, MatSort } from '@angular/material';
+import { 
+  MatTableDataSource, 
+  MatPaginator, 
+  MatSort 
+}                                 from '@angular/material';
 
 @Component({
   selector: 'app-area-index',
@@ -58,6 +62,10 @@ export class AreaIndexComponent implements OnInit {
       this.store.dispatch(new fromStore.DeleteArea(id));
     }
     
+  }
+  Add_SubArea()
+  {
+    this.router.navigate(['clasificadores/subareas']);
   }
 
 }

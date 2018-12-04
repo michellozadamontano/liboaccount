@@ -1,0 +1,12 @@
+<mat-card>
+    <mat-card-header>
+        <mat-card-title>Datos Generales de la Entidad</mat-card-title>
+        <mat-card-subtitle>Crear Entidad</mat-card-subtitle>
+    </mat-card-header>    
+    <mat-card-content>       
+       <app-entidad-form        
+       [provincia] = "provinces$ | async"
+       (save) = "save($event)"></app-entidad-form>
+    </mat-card-content>    
+</mat-card>
+

@@ -1,10 +1,10 @@
-import {CollectionViewer, DataSource} from "@angular/cdk/collections";
-import { Observable } from 'rxjs';
-import {BehaviorSubject} from "rxjs";
-import {catchError, finalize} from "rxjs/operators";
-import {of} from "rxjs";
-import { CuentaList } from "../models/cuenta_list.interface";
-import { CuentaService } from "./cuenta.service";
+import {CollectionViewer, DataSource}   from "@angular/cdk/collections";
+import { Observable }                   from 'rxjs';
+import {BehaviorSubject}                from "rxjs";
+import {catchError, finalize}           from "rxjs/operators";
+import {of}                             from "rxjs";
+import { CuentaList }                   from "../clasificadores/models/cuenta_list.interface";
+import { CuentaService }                from "./cuenta.service";
 
 export class CuentasDataSource implements DataSource<CuentaList> {
     private cuentaSubject = new BehaviorSubject<CuentaList[]>([]);

@@ -2,11 +2,11 @@ import { Injectable }                       from '@angular/core';
 import { HttpClient, 
   HttpErrorResponse, HttpParams }           from '@angular/common/http';
 import { Observable, throwError }           from 'rxjs';
-import { CuentaList }                       from '../models/cuenta_list.interface';
+import { CuentaList }                       from '../clasificadores/models/cuenta_list.interface';
 import { catchError, map }                  from 'rxjs/operators';
-import { API_URL }                          from '../../core/config';
-import { CuentaPrint }                      from '../models/cuenta_print.interface';
-import { Cuenta }                           from '../models/cuenta.interface';
+import { API_URL }                          from '../core/config';
+import { CuentaPrint }                      from '../clasificadores/models/cuenta_print.interface';
+import { Cuenta }                           from '../clasificadores/models/cuenta.interface';
 
 @Injectable({
   providedIn: 'root'

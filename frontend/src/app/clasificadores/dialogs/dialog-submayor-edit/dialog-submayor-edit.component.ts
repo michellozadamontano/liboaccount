@@ -17,23 +17,29 @@ export class DialogSubmayorEditComponent implements OnInit {
     public formBuilder      : FormBuilder
   ) { }
 
-  ngOnInit() {
-    console.log(this.data);
+  ngOnInit() {   
     
     this.createForm();
   }
   createForm()
   {
-    this.form = this.formBuilder.group({       
-      'descripcion': [this.data.descripcion, Validators.required],      
+    this.form = this.formBuilder.group({  
+      'id'          : [this.data.id],
+      'generico_id' : [this.data.generico_id], 
+      'submayor'    : [this.data.submayor],  
+      'descripcion' : [this.data.descripcion, Validators.required],      
     });
   }
   closeDialog() {		
 		this.dialogRef.close();
   }
-  submi()
+  submit()
   {
-    this.dialogRef.close(this.form);
+    if(this.form.valid)
+    {
+      this.dialogRef.close(this.form.value);
+    }
+    
   }
 
 }

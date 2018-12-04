@@ -20,10 +20,12 @@ router.get('/', function(req, res, next) {
 });
 // subareas por areas
 router.get('/area/:id',(req, res)=> {
+    console.log(req.params.id);
+    
     let area_id = req.params.id;
-    let sql = "select * from subarea where area_id = ? eliminada = ?";
+    let sql = "select * from subarea where area_id = ? and eliminada = ?";
     let params = [area_id,0];
-    db.execute(sql,(err,result)=>{
+    db.execute(sql,params,(err,result)=>{
         if(err)
         {
             res.json(err);
@@ -53,6 +55,8 @@ router.get('/byId/:id',(req, res)=>{
 
 //Add
 router.post('/',(req,res)=>{    
+    console.log(req.body);
+    
     let area_id          = req.body.area_id;
     let nombre           = req.body.nombre;
     let responsable      = req.body.responsable;   
@@ -88,13 +92,13 @@ router.post('/',(req,res)=>{
 router.put('/:id',(req,res)=> {
     let id = req.params.id;
 
-    let area_id          = req.body.area_id;
+   // let area_id          = req.body.area_id;
     let nombre           = req.body.nombre;
     let responsable      = req.body.responsable;  
 
    
-    let sql = 'update subarea set area_id = ?, nombre = ?, responsable = ? where id = ?';
-    let sql_values = [area_id,nombre,responsable, id];
+    let sql = 'update subarea set  nombre = ?, responsable = ? where id = ?';
+    let sql_values = [nombre,responsable, id];
     db.execute(sql,sql_values,(err,result)=> {
         if(err)
         {

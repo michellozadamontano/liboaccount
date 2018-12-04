@@ -10,6 +10,8 @@ import * as fromStore       from '../../store';
 import { Tasas }            from '../../models/tasas.interface';
 import { TasaCuentaComponent } from '../../dialogs/tasa-cuenta/tasa-cuenta.component';
 import { FormTasaComponent } from '../../dialogs/form-tasa/form-tasa.component';
+import { Moneda } from '../../models/moneda.interface';
+import { Tasa_Cuenta } from '../../models/tasa_cuenta.interface';
 
 @Component({
   selector: 'app-tasas',
@@ -21,6 +23,8 @@ export class TasasComponent implements OnInit {
   tasas$          : Observable<Tasas[]>;
   tasa$           : Observable<Tasas[]>;
   message$        : Observable<string>;
+  monedas         : Moneda[];
+  cuentas_tasa    : Tasa_Cuenta[];
 
   public displayedColumns = ['Codigo','Descripcion','Tasa', '% Deprec','Actions'];
   resultsLength = 0;
@@ -43,22 +47,24 @@ export class TasasComponent implements OnInit {
       this.dataSource = new MatTableDataSource(resp);
       this.resultsLength = resp.length;
     })
+    this.store.dispatch(new fromStore.CargaMoneda());
+    this.store.select(fromStore.getMonedas).subscribe(moneda => {
+      this.monedas = moneda;
+    })
   }
 
-  UpdateTasa(id:number) 
+  UpdateTasa(tasa:Tasas) 
   {
-    this.store.dispatch(new fromStore.LoadTasaById(id));
-    let tasa: any;
-    this.tasa$.subscribe(tasa => {
-      console.log(tasa);
-      if(tasa[0] != null){
-        tasa = tasa;
-      }  
+    this.store.dispatch(new fromStore.LoadTasaCuenta({id:tasa.id}));
+    this.store.select(fromStore.getTasaCuentas).subscribe(cuentas => {
+      this.cuentas_tasa = cuentas;
+      console.log(cuentas);      
     })
     const dialogRef = this.dialog.open(FormTasaComponent, {
       width: '50%',
-      data: {id:id}
+      data: {tasa:tasa, mondeas: this.monedas, cuentas: this.cuentas_tasa}
     });
+    
     
     
   }
@@ -85,7 +91,7 @@ export class TasasComponent implements OnInit {
   {
     const dialogRef = this.dialog.open(FormTasaComponent, {
       width: '50%',
-      data: {}
+      data: {mondeas: this.monedas}
     });
   }
 

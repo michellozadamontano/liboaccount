@@ -3,7 +3,6 @@ import { Routes, RouterModule }   from '@angular/router';
 
 import { HomeComponent }          from './containers/home/home.component';
 import { CuentasComponent }       from './containers/cuenta-manager/cuentas/cuentas.component';
-import { EntidadComponent }       from './containers/entidad/entidad.component';
 import { TasasComponent }         from './containers/tasas/tasas.component';
 import { CcostoComponent }        from './containers/ccostos/ccosto/ccosto.component';
 import { CcostoNewComponent }     from './containers/ccostos/ccosto-new/ccosto-new.component';
@@ -18,6 +17,9 @@ import { AreaIndexComponent }     from './containers/areas/area-index/area-index
 import { AreaEditComponent }      from './containers/areas/area-edit/area-edit.component';
 import { AreaNewComponent }       from './containers/areas/area-new/area-new.component';
 import { SubareaIndexComponent }  from './containers/subareas/subarea-index/subarea-index.component';
+import { EntidadNewComponent }    from './containers/entidad-manager/entidad-new/entidad-new.component';
+import { EntidadComponent }       from './containers/entidad-manager/entidad/entidad.component';
+import { EntidadEditComponent }   from './containers/entidad-manager/entidad-edit/entidad-edit.component';
 
 
 
@@ -30,6 +32,8 @@ const routes: Routes = [
       { path: 'cuenta-new',       component: CuentaNewComponent},
       { path: 'cuenta-edit/:id',  component: CuentaEditComponent},
       { path: 'entidad',          component: EntidadComponent},
+      { path: 'entidad_new',      component: EntidadNewComponent},
+      { path: 'entidad_edit/:id', component: EntidadEditComponent},
       { path: 'tasas',            component: TasasComponent},
       { path: 'ccosto',           component: CcostoComponent},
       { path: 'ccosto_new',       component: CcostoNewComponent},

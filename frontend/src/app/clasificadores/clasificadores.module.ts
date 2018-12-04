@@ -22,23 +22,12 @@ import { reducers, effects }        from '../clasificadores/store';
 import { NgrxFormsModule }          from 'ngrx-forms';
 
 
-//services
-import { CuentaService ,
-  TipoCuentaService ,
-  MonedaService, 
-  EntidadService,
-  CcostoService,
-  TasasService, 
-  GenericoService,
-  SubmayorService,
-  AreasService,
-  SubareasService
-}                                   from './services';
+
 
 import { CuentasComponent }         from './containers/cuenta-manager/cuentas/cuentas.component';
 import { HomeComponent }            from './containers/home/home.component';
 import { FormCuentaComponent }      from './dialogs/form-cuenta/form-cuenta.component';
-import { EntidadComponent }         from './containers/entidad/entidad.component';
+import { EntidadComponent }         from './containers/entidad-manager/entidad/entidad.component';
 import { TasasComponent }           from './containers/tasas/tasas.component';
 import { PrintCuentaComponent }     from './dialogs/print-cuenta/print-cuenta.component';
 import { TasaCuentaComponent }      from './dialogs/tasa-cuenta/tasa-cuenta.component';
@@ -69,6 +58,11 @@ import { AreaFormComponent }        from './components/areas/area-form/area-form
 import { AreaListComponent }        from './components/areas/area-list/area-list.component';
 import { SubareaFormComponent }     from './components/subarea/subarea-form/subarea-form.component';
 import { SubareaListComponent }     from './components/subarea/subarea-list/subarea-list.component';
+import { DialogSubareaEditComponent } from './dialogs/dialog-subarea-edit/dialog-subarea-edit.component';
+import { EntidadFormComponent }       from './components/entidad/entidad-form/entidad-form.component';
+import { EntidadListComponent }       from './components/entidad/entidad-list/entidad-list.component';
+import { EntidadNewComponent }        from './containers/entidad-manager/entidad-new/entidad-new.component';
+import { EntidadEditComponent }       from './containers/entidad-manager/entidad-edit/entidad-edit.component';
 
 
 
@@ -111,15 +105,18 @@ import { SubareaListComponent }     from './components/subarea/subarea-list/suba
     AreaFormComponent,
     AreaListComponent,
     SubareaFormComponent,
-    SubareaListComponent
+    SubareaListComponent,
+    DialogSubareaEditComponent,
+    EntidadFormComponent,
+    EntidadListComponent,
+    EntidadNewComponent,
+    EntidadEditComponent
   ],
-  providers: [MonedaService,TipoCuentaService, 
-    CuentaService, EntidadService, CcostoService,
-    TasasService, GenericoService ,SubmayorService,
-    AreasService, SubareasService],
+  providers: [],
   entryComponents:[FormCuentaComponent, 
     PrintCuentaComponent, 
     TasaCuentaComponent, FormTasaComponent,
-    DialogSubmayorEditComponent]
+    DialogSubmayorEditComponent,
+    DialogSubareaEditComponent]
 })
 export class ClasificadoresModule { }

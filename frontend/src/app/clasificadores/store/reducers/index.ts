@@ -9,6 +9,7 @@ import * as fromTasas       from './tasas.reducers';
 import * as fromGenerico    from './generico.reducers';
 import * as fromSubmayor    from './submayor.reducers';
 import * as fromAreas       from './area.reducers';
+import * as fromSubArea     from './subarea.reducers';
 
 
 export interface ClasificadorState {
@@ -22,6 +23,7 @@ export interface ClasificadorState {
     generico    : fromGenerico.State,
     submayor    : fromSubmayor.State,
     areas       : fromAreas.State,
+    subareas    : fromSubArea.State,
 }
 
 export const reducers: ActionReducerMap<ClasificadorState> = {
@@ -35,6 +37,7 @@ export const reducers: ActionReducerMap<ClasificadorState> = {
     generico    : fromGenerico.reducer,
     submayor    : fromSubmayor.reducer,
     areas       : fromAreas.reducer,
+    subareas    : fromSubArea.reducer,
 }
 
 export const getClasificadoresState = createFeatureSelector<ClasificadorState>('clasificadores');
@@ -109,3 +112,9 @@ export const getAreaState         = createSelector(getClasificadoresState,(state
 export const getAreas             = createSelector(getAreaState,fromAreas.getAreas);
 export const getArea              = createSelector(getAreaState,fromAreas.getArea);
 export const getAreaMessage       = createSelector(getAreaState,fromAreas.getAreaMessage);
+
+// Slice of SubAreas
+export const SubAreaState         = createSelector(getClasificadoresState,(state:ClasificadorState) => state.subareas);
+export const getSubAreas          = createSelector(SubAreaState,fromSubArea.getSubAreas);
+export const getSubArea           = createSelector(SubAreaState,fromSubArea.getSubArea);
+export const getSubAreaMessage    = createSelector(SubAreaState,fromSubArea.getSubAreaMessage);
