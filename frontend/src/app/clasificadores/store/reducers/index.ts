@@ -10,6 +10,7 @@ import * as fromGenerico    from './generico.reducers';
 import * as fromSubmayor    from './submayor.reducers';
 import * as fromAreas       from './area.reducers';
 import * as fromSubArea     from './subarea.reducers';
+import * as fromPlnatilla   from './plant_comp.reducers';
 
 
 export interface ClasificadorState {
@@ -24,6 +25,7 @@ export interface ClasificadorState {
     submayor    : fromSubmayor.State,
     areas       : fromAreas.State,
     subareas    : fromSubArea.State,
+    plantillas  : fromPlnatilla.State,
 }
 
 export const reducers: ActionReducerMap<ClasificadorState> = {
@@ -38,6 +40,7 @@ export const reducers: ActionReducerMap<ClasificadorState> = {
     submayor    : fromSubmayor.reducer,
     areas       : fromAreas.reducer,
     subareas    : fromSubArea.reducer,
+    plantillas  : fromPlnatilla.reducer,
 }
 
 export const getClasificadoresState = createFeatureSelector<ClasificadorState>('clasificadores');
@@ -118,3 +121,8 @@ export const SubAreaState         = createSelector(getClasificadoresState,(state
 export const getSubAreas          = createSelector(SubAreaState,fromSubArea.getSubAreas);
 export const getSubArea           = createSelector(SubAreaState,fromSubArea.getSubArea);
 export const getSubAreaMessage    = createSelector(SubAreaState,fromSubArea.getSubAreaMessage);
+
+//Slice of Plantillas
+export const PlantillaSttate      = createSelector(getClasificadoresState,(state:ClasificadorState) => state.plantillas); 
+export const getPlantillas        = createSelector(PlantillaSttate,fromPlnatilla.getPlantillas);
+export const getPlantillaMessage  = createSelector(PlantillaSttate,fromPlnatilla.getPlantillaMessage); 

@@ -19,6 +19,7 @@ var genericoRouter      = require('./routes/generico');
 var submayorRouter      = require('./routes/submayor_aft');
 var areasRouter         = require('./routes/areas');
 var subareaRouter       = require('./routes/subareas');
+var plant_compRouter    = require('./routes/plant_comp');
 
 var app                 = express();
 
@@ -83,6 +84,7 @@ app.use('/generico',genericoRouter);
 app.use('/submayor',submayorRouter);
 app.use('/areas', areasRouter);
 app.use('/subareas', subareaRouter);
+app.use('/plantilla',plant_compRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

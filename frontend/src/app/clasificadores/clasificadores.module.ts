@@ -63,6 +63,7 @@ import { EntidadFormComponent }       from './components/entidad/entidad-form/en
 import { EntidadListComponent }       from './components/entidad/entidad-list/entidad-list.component';
 import { EntidadNewComponent }        from './containers/entidad-manager/entidad-new/entidad-new.component';
 import { EntidadEditComponent }       from './containers/entidad-manager/entidad-edit/entidad-edit.component';
+import { PlantillaListComponent } from './components/entidad/plantilla-list/plantilla-list.component';
 
 
 
@@ -110,7 +111,8 @@ import { EntidadEditComponent }       from './containers/entidad-manager/entidad
     EntidadFormComponent,
     EntidadListComponent,
     EntidadNewComponent,
-    EntidadEditComponent
+    EntidadEditComponent,
+    PlantillaListComponent
   ],
   providers: [],
   entryComponents:[FormCuentaComponent, 

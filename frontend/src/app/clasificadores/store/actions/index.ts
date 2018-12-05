@@ -9,3 +9,4 @@ export * from './generico.action';
 export * from './submayor.action';
 export * from './areas.action';
 export * from './subarea.action';
+export * from './plantilla_comp.action';

@@ -7,6 +7,7 @@ import * as fromStore               from '../../../store';
 import { Provincia }                from '../../../models/provincia.interface';
 import { Entidad }                  from '../../../models/entidad.interface';
 import { Router }                   from '@angular/router';
+import { PlantillaComp } from 'src/app/clasificadores/models/plantilla_comp.interface';
 
 @Component({
   selector: 'app-entidad',
@@ -14,8 +15,9 @@ import { Router }                   from '@angular/router';
   styleUrls: ['./entidad.component.css']
 })
 export class EntidadComponent implements OnInit {
-  provinces$ : Observable<Provincia[]>;
-  entidad$ : Observable<Entidad>;
+  provinces$  : Observable<Provincia[]>;
+  entidad$    : Observable<Entidad>;
+  plantillas$ : Observable<PlantillaComp[]>;
 
   constructor(
     private store: Store<fromStore.ClasificadorState>,
@@ -25,8 +27,10 @@ export class EntidadComponent implements OnInit {
   ngOnInit() {
     this.store.dispatch(new fromStore.LoadProvince());
     this.store.dispatch(new fromStore.LoadEntidad());
+    this.store.dispatch(new fromStore.LoadPlantilla());
     this.provinces$ = this.store.select(fromStore.getProvinces);
-    this.entidad$ = this.store.select(fromStore.getEntidad);    
+    this.entidad$ = this.store.select(fromStore.getEntidad);  
+    this.plantillas$ = this.store.select(fromStore.getPlantillas);  
 
   }
   Add()

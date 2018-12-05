@@ -9,6 +9,7 @@ import { GenericoEffects }      from './generico.effects';
 import { SubmayorEffects}       from './submayor.effects';
 import { AreasEffects }         from './areas.effects';
 import { SubAreasEffects }      from './subareas.effects';
+import { PlantCompEffects}      from './plant_comp.effects';
 
 export const effects: any[] = [
     MonedaEffects, 
@@ -22,6 +23,7 @@ export const effects: any[] = [
     SubmayorEffects,
     AreasEffects,
     SubAreasEffects,
+    PlantCompEffects,
 ]
 
 export * from './moneda.effects';
@@ -35,3 +37,4 @@ export * from './generico.effects';
 export * from './submayor.effects';
 export * from './areas.effects';
 export * from './subareas.effects';
+export * from './plant_comp.effects';
