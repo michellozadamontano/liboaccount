@@ -34,6 +34,7 @@
     "jspdf": "^1.4.1",
     "material-icons": "^0.2.3",
     "ngrx-forms": "^3.1.0",
+    "node-sass": "^4.11.0",
     "rxjs": "~6.3.3",
     "zone.js": "~0.8.26"
   },
