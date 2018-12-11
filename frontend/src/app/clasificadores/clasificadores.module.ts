@@ -23,47 +23,12 @@ import { NgrxFormsModule }          from 'ngrx-forms';
 
 
 
-
-import { CuentasComponent }         from './containers/cuenta-manager/cuentas/cuentas.component';
+import { CuentaTipoIndexComponent } from './containers/cuenta_tipo/cuenta-tipo-index/cuenta-tipo-index.component';
+import { CuentaTipoNewComponent }   from './containers/cuenta_tipo/cuenta-tipo-new/cuenta-tipo-new.component';
+import { CuentaTipoEditComponent }  from './containers/cuenta_tipo/cuenta-tipo-edit/cuenta-tipo-edit.component';
+import { CuentaTipoListComponent }  from './components/cuenta_tipo/cuenta-tipo-list/cuenta-tipo-list.component';
+import { CuentaTipoFormComponent }  from './components/cuenta_tipo/cuenta-tipo-form/cuenta-tipo-form.component';
 import { HomeComponent }            from './containers/home/home.component';
-import { FormCuentaComponent }      from './dialogs/form-cuenta/form-cuenta.component';
-import { EntidadComponent }         from './containers/entidad-manager/entidad/entidad.component';
-import { TasasComponent }           from './containers/tasas/tasas.component';
-import { PrintCuentaComponent }     from './dialogs/print-cuenta/print-cuenta.component';
-import { TasaCuentaComponent }      from './dialogs/tasa-cuenta/tasa-cuenta.component';
-import { FormTasaComponent }        from './dialogs/form-tasa/form-tasa.component';
-import { CcostoComponent }          from './containers/ccostos/ccosto/ccosto.component';
-import { CostoListComponent }       from './components/ccosto/costo-list/costo-list.component';
-import { CcostoNewComponent }       from './containers/ccostos/ccosto-new/ccosto-new.component';
-import { CcostoFormComponent }      from './components/ccosto/ccosto-form/ccosto-form.component';
-import { CcostoEditComponent }      from './containers/ccostos/ccosto-edit/ccosto-edit.component';
-import { GenericoIndexComponent }   from './containers/genericos/generico-index/generico-index.component';
-import { GenericoEditComponent }    from './containers/genericos/generico-edit/generico-edit.component';
-import { GenericoNewComponent }     from './containers/genericos/generico-new/generico-new.component';
-import { GenericoFormComponent }    from './components/genericos/generico-form/generico-form.component';
-import { GenericoListComponent }    from './components/genericos/generico-list/generico-list.component';
-import { CuentaPrintComponent }     from './components/cuentas/cuenta-print/cuenta-print.component';
-import { CuentaFormComponent }      from './components/cuentas/cuenta-form/cuenta-form.component';
-import { CuentaNewComponent }       from './containers/cuenta-manager/cuenta-new/cuenta-new.component';
-import { CuentaEditComponent }      from './containers/cuenta-manager/cuenta-edit/cuenta-edit.component';
-import { SubmayorIndexComponent }   from './containers/submayor/submayor-index/submayor-index.component';
-import { SubmayorListComponent }    from './components/submayor/submayor-list/submayor-list.component';
-import { SubmayorFormComponent }    from './components/submayor/submayor-form/submayor-form.component';
-import { DialogSubmayorEditComponent } from './dialogs/dialog-submayor-edit/dialog-submayor-edit.component';
-import { AreaIndexComponent }       from './containers/areas/area-index/area-index.component';
-import { AreaNewComponent }         from './containers/areas/area-new/area-new.component';
-import { AreaEditComponent }        from './containers/areas/area-edit/area-edit.component';
-import { SubareaIndexComponent }    from './containers/subareas/subarea-index/subarea-index.component';
-import { AreaFormComponent }        from './components/areas/area-form/area-form.component';
-import { AreaListComponent }        from './components/areas/area-list/area-list.component';
-import { SubareaFormComponent }     from './components/subarea/subarea-form/subarea-form.component';
-import { SubareaListComponent }     from './components/subarea/subarea-list/subarea-list.component';
-import { DialogSubareaEditComponent } from './dialogs/dialog-subarea-edit/dialog-subarea-edit.component';
-import { EntidadFormComponent }       from './components/entidad/entidad-form/entidad-form.component';
-import { EntidadListComponent }       from './components/entidad/entidad-list/entidad-list.component';
-import { EntidadNewComponent }        from './containers/entidad-manager/entidad-new/entidad-new.component';
-import { EntidadEditComponent }       from './containers/entidad-manager/entidad-edit/entidad-edit.component';
-import { PlantillaListComponent } from './components/entidad/plantilla-list/plantilla-list.component';
 
 
 
@@ -81,44 +46,15 @@ import { PlantillaListComponent } from './components/entidad/plantilla-list/plan
     StoreModule.forFeature('clasificadores', reducers),
     EffectsModule.forFeature(effects),
   ],
-  declarations: [CuentasComponent, HomeComponent, FormCuentaComponent, 
-    EntidadComponent, TasasComponent, PrintCuentaComponent, 
-    TasaCuentaComponent, FormTasaComponent, CcostoComponent, 
-    CostoListComponent, CcostoNewComponent, CcostoFormComponent,
-    CcostoEditComponent,
-    GenericoIndexComponent,
-    GenericoEditComponent,
-    GenericoNewComponent,
-    GenericoFormComponent,
-    GenericoListComponent,
-    CuentaPrintComponent,
-    CuentaFormComponent,
-    CuentaNewComponent,
-    CuentaEditComponent,
-    SubmayorIndexComponent,
-    SubmayorListComponent,
-    SubmayorFormComponent,
-    DialogSubmayorEditComponent,
-    AreaIndexComponent,
-    AreaNewComponent,
-    AreaEditComponent,
-    SubareaIndexComponent,
-    AreaFormComponent,
-    AreaListComponent,
-    SubareaFormComponent,
-    SubareaListComponent,
-    DialogSubareaEditComponent,
-    EntidadFormComponent,
-    EntidadListComponent,
-    EntidadNewComponent,
-    EntidadEditComponent,
-    PlantillaListComponent
+  declarations: [
+    HomeComponent,
+    CuentaTipoIndexComponent,
+    CuentaTipoNewComponent,
+    CuentaTipoEditComponent,
+    CuentaTipoListComponent,
+    CuentaTipoFormComponent
   ],
   providers: [],
-  entryComponents:[FormCuentaComponent, 
-    PrintCuentaComponent, 
-    TasaCuentaComponent, FormTasaComponent,
-    DialogSubmayorEditComponent,
-    DialogSubareaEditComponent]
+  entryComponents:[]
 })
 export class ClasificadoresModule { }

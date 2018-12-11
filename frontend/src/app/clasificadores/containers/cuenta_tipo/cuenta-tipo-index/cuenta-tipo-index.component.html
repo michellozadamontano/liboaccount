@@ -1,0 +1,19 @@
+<mat-card>
+    <mat-card-header>
+        <mat-card-title>Tipo de Cuentas</mat-card-title>
+        
+    </mat-card-header>    
+    <mat-card-content>
+        <div fxLayout="row" fxLayoutGap="5px">
+            <div fxFlex="30%">
+                <button mat-icon-button (click)="add()" color="primary" matTooltip="Adicionar">
+                    <mat-icon class="mat-18">add_circle</mat-icon>
+                </button>
+            </div>
+        </div>
+       <app-cuenta-tipo-list
+       [cuentaTipoList] ="cuenta_tipo_list$ | async"
+       (edit) = "edit($event)"
+       (delete) = "delete($event)"></app-cuenta-tipo-list>
+    </mat-card-content>    
+</mat-card>

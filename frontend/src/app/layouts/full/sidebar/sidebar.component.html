@@ -1,0 +1,50 @@
+<!-- ============================================================== -->
+<!-- sidebar -->
+<!-- ============================================================== -->
+ <div class="user-profile" style="background: url(assets/images/background/user-info.jpg) no-repeat;">
+    <!-- User profile image -->
+    <div class="profile-img"> <img src="assets/images/users/michelito.jpg" alt="user"> </div>
+    <!-- User profile text-->
+    <!-- ============================================================== -->
+    <!-- Profile - style you can find in header.scss -->
+    <!-- ============================================================== -->    
+    
+</div>
+<mat-accordion class="example-headers-align" multi>
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Clasificadores
+            </mat-panel-title>
+            <mat-panel-description>              
+              <mat-icon>account_circle</mat-icon>
+            </mat-panel-description>
+          </mat-expansion-panel-header>    
+          <mat-nav-list appAccordion>
+        
+                <mat-list-item appAccordionLink *ngFor="let menuitem of menuItems.getMenuitem()" routerLinkActive="selected" group="{{menuitem.state}}">
+                    <a class="" appAccordionToggle [routerLink]="[menuitem.state]" *ngIf="menuitem.type === 'link'">
+                        <mat-icon>{{ menuitem.icon }}</mat-icon> 
+                        <span>{{ menuitem.name }}</span> 
+                        <span fxFlex></span> 
+                        <span class="label label-{{ badge.type }}" *ngFor="let badge of menuitem.badge">{{ badge.value }}</span> 
+                    </a>                    
+                </mat-list-item>
+
+            </mat-nav-list>
+      
+        </mat-expansion-panel>      
+        
+      
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Comprobantes
+            </mat-panel-title>
+            <mat-panel-description>              
+              <mat-icon>text_format</mat-icon>
+            </mat-panel-description>
+          </mat-expansion-panel-header>      
+         
+        </mat-expansion-panel>
+      </mat-accordion>

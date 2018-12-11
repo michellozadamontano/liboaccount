@@ -8,18 +8,8 @@ const mysql             = require('mysql2');
 
 var indexRouter         = require('./routes/index');
 var usersRouter         = require('./routes/users');
-var monedaRouter        = require('./routes/moneda');
-var tipoCuentaRouter    = require('./routes/tipo_cuenta');
-var cuentasRouter       = require('./routes/cuentas');
-var entidadRouter       = require('./routes/entidad_route');
-var provinciaRouter     = require('./routes/provincia');
-var ccostoRouter        = require('./routes/ccosto');
-var tasaRouter          = require('./routes/tasa');
-var genericoRouter      = require('./routes/generico');
-var submayorRouter      = require('./routes/submayor_aft');
-var areasRouter         = require('./routes/areas');
-var subareaRouter       = require('./routes/subareas');
-var plant_compRouter    = require('./routes/plant_comp');
+var cuenta_tipoRouter   = require('./routes/cuenta_tipo');
+
 
 var app                 = express();
 
@@ -33,7 +23,7 @@ const db = mysql.createConnection ({
   host: 'localhost',
   user: 'root',
   password: 'root',
-  database: 'zunaftweb',
+  database: 'liboaccount',
   typeCast: function castField( field, useDefaultTypeCasting ) {
 
     // We only want to cast bit fields that have a single-bit in them. If the field
@@ -73,18 +63,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-app.use('/moneda',monedaRouter);
-app.use('/tipo_cuenta',tipoCuentaRouter);
-app.use('/cuentas',cuentasRouter);
-app.use('/entidad', entidadRouter);
-app.use('/provincia', provinciaRouter);
-app.use('/ccosto', ccostoRouter);
-app.use('/tasa',tasaRouter);
-app.use('/generico',genericoRouter);
-app.use('/submayor',submayorRouter);
-app.use('/areas', areasRouter);
-app.use('/subareas', subareaRouter);
-app.use('/plantilla',plant_compRouter);
+app.use('/cuenta_tipo',cuenta_tipoRouter);
+
+
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
