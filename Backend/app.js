@@ -9,6 +9,7 @@ const mysql             = require('mysql2');
 var indexRouter         = require('./routes/index');
 var usersRouter         = require('./routes/users');
 var cuenta_tipoRouter   = require('./routes/cuenta_tipo');
+var actividades         = require('./routes/actividaes');
 
 
 var app                 = express();
@@ -64,6 +65,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/cuenta_tipo',cuenta_tipoRouter);
+app.use('/activity',actividades);
 
 
 

@@ -29,6 +29,11 @@ import { CuentaTipoEditComponent }  from './containers/cuenta_tipo/cuenta-tipo-e
 import { CuentaTipoListComponent }  from './components/cuenta_tipo/cuenta-tipo-list/cuenta-tipo-list.component';
 import { CuentaTipoFormComponent }  from './components/cuenta_tipo/cuenta-tipo-form/cuenta-tipo-form.component';
 import { HomeComponent }            from './containers/home/home.component';
+import { ActividadIndexComponent }  from './containers/actividades/actividad-index/actividad-index.component';
+import { ActividadNewComponent }    from './containers/actividades/actividad-new/actividad-new.component';
+import { ActividadEditComponent }   from './containers/actividades/actividad-edit/actividad-edit.component';
+import { ActividadListComponent }   from './components/actividades/actividad-list/actividad-list.component';
+import { ActividadFormComponent }   from './components/actividades/actividad-form/actividad-form.component';
 
 
 
@@ -52,7 +57,12 @@ import { HomeComponent }            from './containers/home/home.component';
     CuentaTipoNewComponent,
     CuentaTipoEditComponent,
     CuentaTipoListComponent,
-    CuentaTipoFormComponent
+    CuentaTipoFormComponent,
+    ActividadIndexComponent,
+    ActividadNewComponent,
+    ActividadEditComponent,
+    ActividadListComponent,
+    ActividadFormComponent
   ],
   providers: [],
   entryComponents:[]

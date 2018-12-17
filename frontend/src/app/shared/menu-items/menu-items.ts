@@ -8,7 +8,8 @@ export interface Menu {
 }
 
 const CLASIFICADORESITEMS = [
-  { state: '/clasificadores/cuenta_tipo', name: 'Tipo Cuenta', type: 'link', icon: 'euro_symbol' },  
+  { state: '/clasificadores/cuenta_tipo', name: 'Tipo Cuenta', type: 'link', icon: 'euro_symbol' }, 
+  { state: '/clasificadores/actividad', name: 'Actividades', type: 'link', icon: 'euro_symbol' },  
   
 ];
 
