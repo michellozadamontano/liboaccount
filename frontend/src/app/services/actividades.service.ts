@@ -19,7 +19,7 @@ export class ActividadesService {
   }
   getActividadById(id: number): Observable<Actividades>
   {
-    let url = API_URL + 'activity/byId' + id;
+    let url = API_URL + 'activity/byId/' + id;
     return this.http.get<Actividades>(url).pipe(catchError(this.handleError));
   }
   createActividad(actividad: Actividades):Observable<string>

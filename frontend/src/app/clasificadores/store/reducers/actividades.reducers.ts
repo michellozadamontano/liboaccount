@@ -23,19 +23,54 @@ export function reducer(state = InitialState, action:fromActividad.ActividadActi
             }
         }
         case fromActividad.LOAD_ACTIVIDADES_SUCCESS:
-        {
-            console.log(action.payload);
-            
+        {     
             return {
                 ...state,
                 actividad_list: action.payload
             }
-        }
-        case fromActividad.LOAD_ACTIVIDADES_ERROR:
+        }        case fromActividad.LOAD_ACTIVIDADES_ERROR:
         {
             return {
                 ...state,
                 message: action.payload
+            }
+        }
+        case fromActividad.LOAD_ACTIVIDAD_BY_ID:
+        {
+            return {
+                ...state
+            }
+        }
+        case fromActividad.LOAD_ACTIVIDAD_BY_ID_SUCCESS:
+        {
+            return {
+                ...state,
+                actividad: action.payload[0]
+            }
+        }
+        case fromActividad.CREATE_ACTIVIDAD:
+        {
+            return {
+                ...state
+            }
+        }
+        case fromActividad.CREATE_ACTIVIDAD_SUCCESS:
+        {
+            return {
+                ...state,
+                message: action.payload
+            }
+        }
+        case fromActividad.UPDATE_ACTIVIDAD:
+        {
+            return {
+                ...state
+            }
+        }
+        case fromActividad.DELETE_ACTIVIDAD:
+        {
+            return {
+                ...state
             }
         }
     }

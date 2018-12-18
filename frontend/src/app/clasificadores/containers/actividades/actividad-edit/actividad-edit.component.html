@@ -1,3 +1,9 @@
-<p>
-  actividad-edit works!
-</p>
+<mat-card>
+  <mat-card-header>
+      <mat-card-title>Actualizar Actividad</mat-card-title>      
+  </mat-card-header>    
+  <mat-card-content>
+      <app-actividad-form [actividad] = 'actividad$ | async' (save) ="submit($event)"></app-actividad-form>
+  </mat-card-content>    
+</mat-card>
+

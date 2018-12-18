@@ -1,3 +1,38 @@
-<p>
-  actividad-form works!
-</p>
+<mat-card>
+  <div fxLayout="column">
+      <form [formGroup]="form" (ngSubmit)="submit()">
+          <div fxLayout="column" fxLayoutGap="5px">
+              <div fxFlex="50%">
+                  <mat-form-field class="full-width" >
+                      <input matInput placeholder="Codigo" formControlName="codigo" type = 'number'>
+                  </mat-form-field>
+              </div>
+              <div fxFlex="50%">
+                  <mat-form-field class="full-width" >
+                      <input matInput placeholder="Nombre" formControlName="nombre">
+                  </mat-form-field>
+              </div>
+              <div fxFlex="50%">
+                <mat-form-field class="full-width" >
+                    <input matInput placeholder="Gasto Permitido" formControlName="gasto_permitido" type="number">
+                </mat-form-field>
+            </div>
+          </div>        
+            <div fxLayout="row" fxLayoutGap="5px">
+                <div fxFlex="10%">
+                  <button mat-icon-button type="submit" color="primary" matTooltip="Aceptar">
+                    <mat-icon class="mat-18">done</mat-icon>
+                  </button>
+                </div>
+                <div fxFlex="10%">
+                    <button mat-icon-button (click)="cancel()" color="warn" matTooltip="Cancelar">
+                        <mat-icon class="mat-18">cancel</mat-icon>
+                    </button>
+                </div>
+            </div>
+      </form>
+    </div>
+</mat-card>
+
+
+

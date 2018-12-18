@@ -11,7 +11,7 @@ import { Observable, from }       from 'rxjs';
 import * as fromStore             from '../../../store';
 
 import { Router }                 from '@angular/router';
-import { Actividades } from 'src/app/clasificadores/models/actividades.interface';
+import { Actividades }            from 'src/app/clasificadores/models/actividades.interface';
 
 @Component({
   selector: 'app-actividad-index',
@@ -30,11 +30,23 @@ export class ActividadIndexComponent implements OnInit {
 
   ngOnInit() {
     this.store.dispatch(new fromStore.LoadActividades());
-    this.actividadList$ = this.store.select(fromStore.getActividadList);
-    this.actividadList$.subscribe(resp => {
-      console.log(resp);
-      
-    })
+    this.actividadList$ = this.store.select(fromStore.getActividadList);    
+  }
+  add()
+  {
+    this.router.navigate(['clasificadores/actividad_new']);
+  }
+  edit(id:number)
+  {
+    this.router.navigate(['clasificadores/actividad_edit',id]);
+  }
+  delete(id:number)
+  {
+    const r = confirm('Estas Seguro?');
+    if (r) {
+      this.store.dispatch(new fromStore.DeleteActividad(id));
+    }
+    
   }
 
 }

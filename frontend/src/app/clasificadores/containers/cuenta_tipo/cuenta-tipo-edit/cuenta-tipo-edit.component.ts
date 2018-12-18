@@ -17,7 +17,8 @@ import { CuentaTipo }             from 'src/app/clasificadores/models/cuenta_tip
 @Component({
   selector: 'app-cuenta-tipo-edit',
   templateUrl: './cuenta-tipo-edit.component.html',
-  styleUrls: ['./cuenta-tipo-edit.component.scss']
+  styleUrls: ['./cuenta-tipo-edit.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CuentaTipoEditComponent implements OnInit {
 
