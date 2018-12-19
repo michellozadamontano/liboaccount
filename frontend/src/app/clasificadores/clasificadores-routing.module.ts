@@ -8,6 +8,9 @@ import { CuentaTipoEditComponent }  from './containers/cuenta_tipo/cuenta-tipo-e
 import { ActividadIndexComponent } from './containers/actividades/actividad-index/actividad-index.component';
 import { ActividadNewComponent } from './containers/actividades/actividad-new/actividad-new.component';
 import { ActividadEditComponent } from './containers/actividades/actividad-edit/actividad-edit.component';
+import { TcpIndexComponent } from './containers/tcp/tcp-index/tcp-index.component';
+import { TcpNewComponent } from './containers/tcp/tcp-new/tcp-new.component';
+import { TcpEditComponent } from './containers/tcp/tcp-edit/tcp-edit.component';
 
 
 
@@ -22,6 +25,9 @@ const routes: Routes = [
       { path: 'actividad',              component: ActividadIndexComponent},
       { path: 'actividad_new',          component: ActividadNewComponent},
       { path: 'actividad_edit/:id',     component: ActividadEditComponent},
+      { path: 'tcp',                    component: TcpIndexComponent},
+      { path: 'tcp_new',                component: TcpNewComponent},
+      { path: 'tcp_edit/:id',           component: TcpEditComponent},
     ]
   }
   

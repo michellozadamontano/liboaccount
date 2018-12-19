@@ -34,6 +34,11 @@ import { ActividadNewComponent }    from './containers/actividades/actividad-new
 import { ActividadEditComponent }   from './containers/actividades/actividad-edit/actividad-edit.component';
 import { ActividadListComponent }   from './components/actividades/actividad-list/actividad-list.component';
 import { ActividadFormComponent }   from './components/actividades/actividad-form/actividad-form.component';
+import { TcpIndexComponent }        from './containers/tcp/tcp-index/tcp-index.component';
+import { TcpNewComponent }          from './containers/tcp/tcp-new/tcp-new.component';
+import { TcpEditComponent }         from './containers/tcp/tcp-edit/tcp-edit.component';
+import { TcpFormComponent }         from './components/tcp/tcp-form/tcp-form.component';
+import { TcpShowComponent } from './components/tcp/tcp-show/tcp-show.component';
 
 
 
@@ -62,7 +67,12 @@ import { ActividadFormComponent }   from './components/actividades/actividad-for
     ActividadNewComponent,
     ActividadEditComponent,
     ActividadListComponent,
-    ActividadFormComponent
+    ActividadFormComponent,
+    TcpIndexComponent,
+    TcpNewComponent,
+    TcpEditComponent,
+    TcpFormComponent,
+    TcpShowComponent
   ],
   providers: [],
   entryComponents:[]

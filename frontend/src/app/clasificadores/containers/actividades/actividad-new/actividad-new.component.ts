@@ -40,7 +40,7 @@ export class ActividadNewComponent implements OnInit {
         this.snackBarService.open( "Este codigo ya existe!", undefined, {duration: 2000} );     
         return;     
       }
-      if(resp = 'ok')
+      if(resp == 'ok')
       {
         this.router.navigate(['clasificadores/actividad']);
       }

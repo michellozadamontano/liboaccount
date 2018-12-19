@@ -5,7 +5,7 @@ var router = express.Router();
 /* GET tipo cuentas listing. */
 router.get('/', function(req, res, next) {
   //res.send('respond with a resource');
-  let sql = 'select * from cuenta_tipo'
+  let sql = 'select * from cuenta_tipo order by codigo'
   db.execute(sql,(err,result)=>{
       if(err){
           res.json(err);

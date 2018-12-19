@@ -1,0 +1,18 @@
+<mat-card>    
+    <mat-card-content *ngIf="tcp">
+        <b>Nombre: </b> <span>{{tcp.nombre}}</span><br>
+        <mat-divider></mat-divider><br>
+        <b>Nit: </b> <span>{{tcp.nit}}</span><br>
+        <mat-divider></mat-divider><br>
+        <b>Actividad: </b> <span>{{tcp.actividad}}</span>
+        <br><br>
+        <div fxLayout="row" fxLayoutGap="5px">
+          <div fxFlex="20">
+            <i class="material-icons hover-icon" (click)="update(tcp.id)" matTooltip="Editar">create</i> 
+          </div>
+          <div fxFlex="20">
+            <i class="material-icons hover-icon" (click)="remove(tcp.id)" matTooltip="Eliminar">delete_forever</i>
+          </div>
+        </div>        
+    </mat-card-content>   
+</mat-card>

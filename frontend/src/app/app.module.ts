@@ -36,8 +36,11 @@ import {
 import { SharedModule }                from './shared/shared.module';
 
 //services
-import { CuentaTipoService ,
-  
+import { 
+  CuentaTipoService , 
+  ActividadesService,
+  CuentaMayorService,
+  TcpService,
 }                                     from './services';
 
 import { AppComponent }               from './app.component';
@@ -83,7 +86,9 @@ import { SpinnerComponent }           from './shared/spinner.component';
       provide: LocationStrategy,
       useClass: PathLocationStrategy
     },
-    CuentaTipoService,
+    CuentaTipoService,ActividadesService,
+    CuentaMayorService,
+    TcpService
   ],
   bootstrap: [AppComponent]
 })

@@ -1,0 +1,41 @@
+<mat-card>
+  <div fxLayout="column">
+      <form [formGroup]="form" (ngSubmit)="submit()">
+          <div fxLayout="column" fxLayoutGap="5px">              
+              <div fxFlex="50%">
+                  <mat-form-field class="full-width" >
+                      <input matInput placeholder="Nombre" formControlName="nombre">
+                  </mat-form-field>
+              </div>
+              <div fxFlex="50%">
+                <mat-form-field class="full-width" >
+                    <input matInput placeholder="Nit" formControlName="nit" >
+                </mat-form-field>
+              </div>
+              <div fxFlex="50%">
+                <mat-form-field class="full-width">
+                  <mat-select placeholder="Actividad" formControlName="actividad_id">
+                      <mat-option *ngFor="let item of actividades" [value]="item.id">
+                          {{item.nombre}}
+                      </mat-option>
+                  </mat-select>
+              </mat-form-field>
+              </div>
+          </div>        
+            <div fxLayout="row" fxLayoutGap="5px">
+                <div fxFlex="10%">
+                  <button mat-icon-button type="submit" color="primary" matTooltip="Aceptar">
+                    <mat-icon class="mat-18">done</mat-icon>
+                  </button>
+                </div>
+                <div fxFlex="10%">
+                    <button mat-icon-button (click)="cancel()" color="warn" matTooltip="Cancelar">
+                        <mat-icon class="mat-18">cancel</mat-icon>
+                    </button>
+                </div>
+            </div>
+      </form>
+    </div>
+</mat-card>
+
+
