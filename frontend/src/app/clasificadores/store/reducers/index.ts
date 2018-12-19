@@ -3,19 +3,21 @@ import { ActionReducerMap, createSelector, createFeatureSelector } from '@ngrx/s
 import * as fromCuentaTipo  from './cuenta_tipo.reducers';
 import * as fromActividad   from './actividades.reducers';
 import * as fromTcp         from './tcp.reducers';
-
+import * as fromCentroCosto from './centro_costo.reducer';
 
 
 export interface ClasificadorState {
     cuenta_tipo : fromCuentaTipo.State,
     actividad   : fromActividad.State,
     tcp         : fromTcp.State,
+    centro_costo: fromCentroCosto.State
 }
 
 export const reducers: ActionReducerMap<ClasificadorState> = {
     cuenta_tipo : fromCuentaTipo.reducer,
     actividad   : fromActividad.reducer,
-    tcp         : fromTcp.reducer
+    tcp         : fromTcp.reducer,
+    centro_costo: fromCentroCosto.reducer
 }
 
 export const getClasificadoresState = createFeatureSelector<ClasificadorState>('clasificadores');
@@ -37,3 +39,9 @@ export const TcpState               = createSelector(getClasificadoresState,(sta
 export const getTcpShow             = createSelector(TcpState, fromTcp.getTcpShow);
 export const getTcp                 = createSelector(TcpState, fromTcp.getTcp);
 export const getTcpMessage          = createSelector(TcpState, fromTcp.getTcpMessage);
+
+// slice of Centro Costo
+export const CentroCostoState      = createSelector(getClasificadoresState,(state:ClasificadorState) => state.centro_costo);
+export const getCentroCostoList    = createSelector(CentroCostoState, fromCentroCosto.getCentroCostos);
+export const getCentroCosto        = createSelector(CentroCostoState, fromCentroCosto.getCentroCosto);
+export const getCentroCostoMessage = createSelector(CentroCostoState, fromCentroCosto.getCentroCostosMessage);

@@ -39,6 +39,13 @@ import { TcpNewComponent }          from './containers/tcp/tcp-new/tcp-new.compo
 import { TcpEditComponent }         from './containers/tcp/tcp-edit/tcp-edit.component';
 import { TcpFormComponent }         from './components/tcp/tcp-form/tcp-form.component';
 import { TcpShowComponent } from './components/tcp/tcp-show/tcp-show.component';
+import { CentroCostoIndexComponent } from './containers/centro_costo/centro-costo-index/centro-costo-index.component';
+import { CentroCostoNewComponent } from './containers/centro_costo/centro-costo-new/centro-costo-new.component';
+import { CentroCostoEditComponent } from './containers/centro_costo/centro-costo-edit/centro-costo-edit.component';
+import { CentroCostoFormComponent } from './components/centro_costo/centro-costo-form/centro-costo-form.component';
+import { CentroCostoListComponent } from './components/centro_costo/centro-costo-list/centro-costo-list.component';
+
+
 
 
 
@@ -72,7 +79,12 @@ import { TcpShowComponent } from './components/tcp/tcp-show/tcp-show.component';
     TcpNewComponent,
     TcpEditComponent,
     TcpFormComponent,
-    TcpShowComponent
+    TcpShowComponent,
+    CentroCostoIndexComponent,
+    CentroCostoNewComponent,
+    CentroCostoEditComponent,
+    CentroCostoFormComponent,
+    CentroCostoListComponent
   ],
   providers: [],
   entryComponents:[]

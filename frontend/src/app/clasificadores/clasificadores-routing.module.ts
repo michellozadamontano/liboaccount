@@ -11,6 +11,10 @@ import { ActividadEditComponent } from './containers/actividades/actividad-edit/
 import { TcpIndexComponent } from './containers/tcp/tcp-index/tcp-index.component';
 import { TcpNewComponent } from './containers/tcp/tcp-new/tcp-new.component';
 import { TcpEditComponent } from './containers/tcp/tcp-edit/tcp-edit.component';
+import { CentroCostoIndexComponent } from './containers/centro_costo/centro-costo-index/centro-costo-index.component';
+import { CentroCostoNewComponent } from './containers/centro_costo/centro-costo-new/centro-costo-new.component';
+import { CentroCostoEditComponent } from './containers/centro_costo/centro-costo-edit/centro-costo-edit.component';
+
 
 
 
@@ -28,6 +32,9 @@ const routes: Routes = [
       { path: 'tcp',                    component: TcpIndexComponent},
       { path: 'tcp_new',                component: TcpNewComponent},
       { path: 'tcp_edit/:id',           component: TcpEditComponent},
+      { path: 'centro_costo',           component: CentroCostoIndexComponent},
+      { path: 'centro_costo_new',       component: CentroCostoNewComponent},
+      { path: 'centro_costo_edit/:id',  component: CentroCostoEditComponent},
     ]
   }
   

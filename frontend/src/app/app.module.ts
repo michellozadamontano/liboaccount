@@ -41,6 +41,7 @@ import {
   ActividadesService,
   CuentaMayorService,
   TcpService,
+  CentroCostoService,
 }                                     from './services';
 
 import { AppComponent }               from './app.component';
@@ -88,7 +89,8 @@ import { SpinnerComponent }           from './shared/spinner.component';
     },
     CuentaTipoService,ActividadesService,
     CuentaMayorService,
-    TcpService
+    TcpService,
+    CentroCostoService
   ],
   bootstrap: [AppComponent]
 })

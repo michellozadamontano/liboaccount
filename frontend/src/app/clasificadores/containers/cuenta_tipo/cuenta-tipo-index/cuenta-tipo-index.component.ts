@@ -34,7 +34,7 @@ export class CuentaTipoIndexComponent implements OnInit {
 
   add()
   {
-    this.router.navigate(['clasificadores/cuenta_tipo_new']);
+    this.router.navigate(['clasificadores/centro_costo_new']);
   }
   edit(id:number)
   {

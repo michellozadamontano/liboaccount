@@ -12,6 +12,7 @@ var cuenta_tipoRouter   = require('./routes/cuenta_tipo');
 var actividades         = require('./routes/actividaes');
 var tcpRouter           = require('./routes/tcp');
 var cuentaMayorpRouter  = require('./routes/cuenta_mayor');
+var ccostoRouter        = require('./routes/ccosto');
 
 
 var app                 = express();
@@ -70,6 +71,7 @@ app.use('/cuenta_tipo',cuenta_tipoRouter);
 app.use('/activity',actividades);
 app.use('/tcp',tcpRouter);
 app.use('/cuenta_mayor',cuentaMayorpRouter);
+app.use('/ccosto', ccostoRouter);
 
 
 
