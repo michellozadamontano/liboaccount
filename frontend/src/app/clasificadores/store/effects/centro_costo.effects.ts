@@ -15,9 +15,9 @@ export class CentroCostoEffects {
     ) {}
 
     @Effect()
-    loadCentroCosto$ = this.actions$.ofType(fromCentroCostoAction.LOAD_CENTRO_COSTO,
+    loadCentroCosto$ = this.actions$.pipe(ofType(fromCentroCostoAction.LOAD_CENTRO_COSTO,
         fromCentroCostoAction.CREATE_CENTRO_COSTO_SUCCESS     
-        ).pipe(
+        ),
         switchMap(() => {
             return this.centrocostoService.getCentroCostolist().pipe(
                 map(centro_costos => new fromCentroCostoAction.LoadCentroCostoSuccess(centro_costos)),
@@ -26,8 +26,8 @@ export class CentroCostoEffects {
         })
     )
     @Effect()
-    loadCentroCostoById$ = this.actions$.ofType<fromCentroCostoAction.LoadCentroCostoById>(
-        fromCentroCostoAction.LOAD_CENTRO_COSTO_BY_ID).pipe(
+    loadCentroCostoById$ = this.actions$.pipe(ofType<fromCentroCostoAction.LoadCentroCostoById>(
+        fromCentroCostoAction.LOAD_CENTRO_COSTO_BY_ID),
             map(action => action.payload),
             switchMap((payload) => {
                 return this.centrocostoService.getCentroCostoById(payload).pipe(
@@ -38,8 +38,8 @@ export class CentroCostoEffects {
         )
    
     @Effect()
-    createCentroCosto$ = this.actions$.ofType<fromCentroCostoAction.CreateCentroCosto>(
-        fromCentroCostoAction.CREATE_CENTRO_COSTO).pipe(
+    createCentroCosto$ = this.actions$.pipe(ofType<fromCentroCostoAction.CreateCentroCosto>(
+        fromCentroCostoAction.CREATE_CENTRO_COSTO),
         map(action =>action.payload),
         switchMap((payload)=> {
             return this.centrocostoService.createCentroCosto(payload).pipe(
@@ -49,8 +49,8 @@ export class CentroCostoEffects {
         })
     )   
     @Effect()
-    updateCentroCosto$ = this.actions$.ofType<fromCentroCostoAction.UpdateCentroCosto>(
-        fromCentroCostoAction.UPDATE_CENTRO_COSTO).pipe(
+    updateCentroCosto$ = this.actions$.pipe(ofType<fromCentroCostoAction.UpdateCentroCosto>(
+        fromCentroCostoAction.UPDATE_CENTRO_COSTO),
         map(action =>action.payload),
         switchMap((payload)=> {
             return this.centrocostoService.updateteCentroCosto(payload).pipe(
@@ -60,8 +60,8 @@ export class CentroCostoEffects {
         })
     ) 
     @Effect()
-    deleteCentroCosto$ = this.actions$.ofType<fromCentroCostoAction.DeleteCentroCosto>(
-        fromCentroCostoAction.DELETE_CENTRO_COSTO).pipe(
+    deleteCentroCosto$ = this.actions$.pipe(ofType<fromCentroCostoAction.DeleteCentroCosto>(
+        fromCentroCostoAction.DELETE_CENTRO_COSTO),
         map(action =>action.payload),
         switchMap((payload)=> {
             return this.centrocostoService.deleteCentroCosto(payload).pipe(
