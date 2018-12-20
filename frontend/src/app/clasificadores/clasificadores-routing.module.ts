@@ -15,6 +15,11 @@ import { CuentaTipoIndexComponent } from './containers/plan_cuentas/cuenta-tipo-
 import { CuentaTipoNewComponent }   from './containers/plan_cuentas/cuenta-tipo-new/cuenta-tipo-new.component';
 import { CuentaTipoEditComponent }  from './containers/plan_cuentas/cuenta-tipo-edit/cuenta-tipo-edit.component';
 
+import { CentroCostoIndexComponent } from './containers/centro_costo/centro-costo-index/centro-costo-index.component';
+import { CentroCostoNewComponent } from './containers/centro_costo/centro-costo-new/centro-costo-new.component';
+import { CentroCostoEditComponent } from './containers/centro_costo/centro-costo-edit/centro-costo-edit.component';
+
+
 
 
 const routes: Routes = [
@@ -34,6 +39,9 @@ const routes: Routes = [
       { path: 'cuenta_tipo',            component: CuentaTipoIndexComponent},
       { path: 'cuenta_tipo_new',        component: CuentaTipoNewComponent},
       { path: 'cuenta_tipo_edit/:id',   component: CuentaTipoEditComponent},
+      { path: 'centro_costo',           component: CentroCostoIndexComponent},
+      { path: 'centro_costo_new',       component: CentroCostoNewComponent},
+      { path: 'centro_costo_edit/:id',  component: CentroCostoEditComponent},
     ]
   }
   

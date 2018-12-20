@@ -45,6 +45,13 @@ import { MayorListComponent }       from './components/plan_cuentas/mayor-list/m
 import { CuentaTipoIndexComponent } from './containers/plan_cuentas/cuenta-tipo-index/cuenta-tipo-index.component';
 import { CuentaTipoNewComponent }   from './containers/plan_cuentas/cuenta-tipo-new/cuenta-tipo-new.component';
 import { CuentaTipoEditComponent }  from './containers/plan_cuentas/cuenta-tipo-edit/cuenta-tipo-edit.component';
+import { CentroCostoIndexComponent } from './containers/centro_costo/centro-costo-index/centro-costo-index.component';
+import { CentroCostoNewComponent } from './containers/centro_costo/centro-costo-new/centro-costo-new.component';
+import { CentroCostoEditComponent } from './containers/centro_costo/centro-costo-edit/centro-costo-edit.component';
+import { CentroCostoFormComponent } from './components/centro_costo/centro-costo-form/centro-costo-form.component';
+import { CentroCostoListComponent } from './components/centro_costo/centro-costo-list/centro-costo-list.component';
+
+
 
 
 
@@ -83,7 +90,12 @@ import { CuentaTipoEditComponent }  from './containers/plan_cuentas/cuenta-tipo-
     MayorNewComponent,
     MayorEditComponent,
     MayorFormComponent,
-    MayorListComponent
+    MayorListComponent,
+    CentroCostoIndexComponent,
+    CentroCostoNewComponent,
+    CentroCostoEditComponent,
+    CentroCostoFormComponent,
+    CentroCostoListComponent
   ],
   providers: [],
   entryComponents:[]

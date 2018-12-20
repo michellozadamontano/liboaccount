@@ -13,6 +13,7 @@ var actividades         = require('./routes/actividaes');
 var tcpRouter           = require('./routes/tcp');
 var cuentaGrupoRouter   = require('./routes/cuenta_grupo');
 var cuentaPlanRouter    = require('./routes/cuenta_plan');
+var ccostoRouter        = require('./routes/ccosto');
 
 
 var app                 = express();
@@ -72,6 +73,8 @@ app.use('/activity',actividades);
 app.use('/tcp',tcpRouter);
 app.use('/cuenta_mayor',cuentaGrupoRouter);
 app.use('/cuenta_plan',cuentaPlanRouter);
+app.use('/ccosto', ccostoRouter);
+
 
 
 
