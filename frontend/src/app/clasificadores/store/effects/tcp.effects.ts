@@ -14,9 +14,9 @@ export class TcpEffects {
     ) {}
 
     @Effect()
-    loadTcp$ = this.actions$.ofType(fromTcpAction.LOAD_TCP,
+    loadTcp$ = this.actions$.pipe(ofType(fromTcpAction.LOAD_TCP,
         fromTcpAction.TCP_SUCCESS     
-        ).pipe(
+        ),
         switchMap(() => {
             return this.tcpService.getTcp().pipe(
                 map(tcp => new fromTcpAction.LoadTcpSuccess(tcp)),
@@ -25,8 +25,8 @@ export class TcpEffects {
         })
     )
     @Effect()
-    loadTcpById$ = this.actions$.ofType<fromTcpAction.LoadTcpById>(
-        fromTcpAction.LOAD_TCP_BY_ID).pipe(
+    loadTcpById$ = this.actions$.pipe(ofType<fromTcpAction.LoadTcpById>(
+        fromTcpAction.LOAD_TCP_BY_ID),
             map(action => action.payload),
             switchMap((payload) => {
                 return this.tcpService.getTcpById(payload).pipe(
@@ -37,8 +37,8 @@ export class TcpEffects {
         )
    
     @Effect()
-    createTcp$ = this.actions$.ofType<fromTcpAction.CreateTcp>(
-        fromTcpAction.CREATE_TCP).pipe(
+    createTcp$ = this.actions$.pipe(ofType<fromTcpAction.CreateTcp>(
+        fromTcpAction.CREATE_TCP),
         map(action =>action.payload),
         switchMap((payload)=> {
             return this.tcpService.createTcp(payload).pipe(
@@ -48,8 +48,8 @@ export class TcpEffects {
         })
     )   
     @Effect()
-    updateTcp$ = this.actions$.ofType<fromTcpAction.UpdateTcp>(
-        fromTcpAction.UPDATE_TCP).pipe(
+    updateTcp$ = this.actions$.pipe(ofType<fromTcpAction.UpdateTcp>(
+        fromTcpAction.UPDATE_TCP),
         map(action =>action.payload),
         switchMap((payload)=> {
             return this.tcpService.updateteTcp(payload).pipe(
@@ -59,8 +59,8 @@ export class TcpEffects {
         })
     ) 
     @Effect()
-    deleteTcp$ = this.actions$.ofType<fromTcpAction.DeleteTcp>(
-        fromTcpAction.DELETE_TCP).pipe(
+    deleteTcp$ = this.actions$.pipe(ofType<fromTcpAction.DeleteTcp>(
+        fromTcpAction.DELETE_TCP),
         map(action =>action.payload),
         switchMap((payload)=> {
             return this.tcpService.deleteTcp(payload).pipe(

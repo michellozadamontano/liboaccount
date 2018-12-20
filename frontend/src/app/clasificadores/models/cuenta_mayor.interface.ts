@@ -1,7 +1,5 @@
 export interface CuentaMayor {
-    id      : number;
-    tipo_id : number;
-    codigo  : string;
+    id      : number;       
     nombre  : string;
-    deudora : number;
+    codigo  : string;    
 }

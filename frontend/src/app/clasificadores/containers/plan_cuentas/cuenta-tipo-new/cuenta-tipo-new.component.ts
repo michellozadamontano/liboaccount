@@ -13,6 +13,7 @@ import { MatSnackBar }            from '@angular/material';
 
 import { Router }                 from '@angular/router';
 import { CuentaTipo }             from 'src/app/clasificadores/models/cuenta_tipo.interface';
+import { CuentaMayor }            from 'src/app/clasificadores/models/cuenta_mayor.interface';
 
 @Component({
   selector: 'app-cuenta-tipo-new',
@@ -22,6 +23,8 @@ import { CuentaTipo }             from 'src/app/clasificadores/models/cuenta_tip
 })
 export class CuentaTipoNewComponent implements OnInit {
 
+  cuentaMayorList$ : Observable<CuentaMayor[]>
+
   constructor(
     private store           : Store<fromStore.ClasificadorState>,  
     private router          : Router,
@@ -29,6 +32,8 @@ export class CuentaTipoNewComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.store.dispatch(new fromStore.LoadCuentaMayor());
+    this.cuentaMayorList$ = this.store.select(fromStore.getMayorList);
   }
 
   submit(cuentaTipo: CuentaTipo)

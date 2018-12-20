@@ -14,8 +14,8 @@ export class ActividadEffects {
     ) {}
 
     @Effect()
-    loadActividad$ = this.actions$.ofType(fromActividadAction.LOAD_ACTIVIDADES, 
-        fromActividadAction.CREATE_ACTIVIDAD_SUCCESS).pipe(
+    loadActividad$ = this.actions$.pipe(ofType(fromActividadAction.LOAD_ACTIVIDADES, 
+        fromActividadAction.CREATE_ACTIVIDAD_SUCCESS),
         switchMap(() => 
         {
             return this.actividadService.getActividades().pipe(
@@ -25,8 +25,7 @@ export class ActividadEffects {
         })   
     )
     @Effect()
-    createActividad$ = this.actions$.ofType<fromActividadAction.CreateActividad>(fromActividadAction.CREATE_ACTIVIDAD)
-    .pipe(
+    createActividad$ = this.actions$.pipe(ofType<fromActividadAction.CreateActividad>(fromActividadAction.CREATE_ACTIVIDAD),    
         map(action => action.payload),
         switchMap((payload) => 
         {
@@ -37,8 +36,7 @@ export class ActividadEffects {
         })  
     )
     @Effect()
-    loadActividadById$ = this.actions$.ofType<fromActividadAction.LoadActividadById>(fromActividadAction.LOAD_ACTIVIDAD_BY_ID)
-    .pipe(
+    loadActividadById$ = this.actions$.pipe(ofType<fromActividadAction.LoadActividadById>(fromActividadAction.LOAD_ACTIVIDAD_BY_ID),    
         map(action => action.payload),
         switchMap((payload) => 
         {
@@ -49,8 +47,7 @@ export class ActividadEffects {
         })  
     )
     @Effect()
-    updateActividad$ = this.actions$.ofType<fromActividadAction.UpdateActividad>(fromActividadAction.UPDATE_ACTIVIDAD)
-    .pipe(
+    updateActividad$ = this.actions$.pipe(ofType<fromActividadAction.UpdateActividad>(fromActividadAction.UPDATE_ACTIVIDAD),    
         map(action => action.payload),
         switchMap((payload) => 
         {
@@ -61,8 +58,7 @@ export class ActividadEffects {
         })  
     )
     @Effect()
-    deleteActividad$ = this.actions$.ofType<fromActividadAction.DeleteActividad>(fromActividadAction.DELETE_ACTIVIDAD)
-    .pipe(
+    deleteActividad$ = this.actions$.pipe(ofType<fromActividadAction.DeleteActividad>(fromActividadAction.DELETE_ACTIVIDAD),    
         map(action => action.payload),
         switchMap((payload) => 
         {
@@ -71,8 +67,6 @@ export class ActividadEffects {
                 catchError(error => of(new fromActividadAction.LoadActividadesError(error)))
             )
         })  
-    )
-
-    
+    )    
     
 }

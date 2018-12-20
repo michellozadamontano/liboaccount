@@ -14,6 +14,7 @@ import {
   Validators
 }                                     from '@angular/forms';
 import { Router }                     from '@angular/router';
+import { CuentaMayor }                from 'src/app/clasificadores/models/cuenta_mayor.interface';
 
 @Component({
   selector: 'app-cuenta-tipo-form',
@@ -24,10 +25,13 @@ import { Router }                     from '@angular/router';
 export class CuentaTipoFormComponent implements OnInit, OnChanges {
 
   @Input() cuentaTipo: CuentaTipo = {
-    id    : undefined,
-    codigo: "",
-    nombre: ""
+    id      : undefined,
+    codigo  : "",
+    nombre  : "",
+    grupo_id: undefined,
+    deudora : undefined
   }
+  @Input() cuentaMayorList: CuentaMayor[];
   @Output() save = new EventEmitter<CuentaTipo>();
 
   form: FormGroup;
@@ -52,7 +56,9 @@ export class CuentaTipoFormComponent implements OnInit, OnChanges {
     this.form = this.formBuilder.group({
       'id'              : [this.cuentaTipo.id],
       'codigo'          : [this.cuentaTipo.codigo, Validators.required],
-      'nombre'          : [this.cuentaTipo.nombre, Validators.required],     
+      'nombre'          : [this.cuentaTipo.nombre, Validators.required], 
+      'grupo_id'        : [this.cuentaTipo.grupo_id, Validators.required], 
+      'deudora'         : [this.cuentaTipo.deudora, Validators.required],   
     });
   }
 

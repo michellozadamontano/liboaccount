@@ -23,9 +23,7 @@ import { NgrxFormsModule }          from 'ngrx-forms';
 
 
 
-import { CuentaTipoIndexComponent } from './containers/cuenta_tipo/cuenta-tipo-index/cuenta-tipo-index.component';
-import { CuentaTipoNewComponent }   from './containers/cuenta_tipo/cuenta-tipo-new/cuenta-tipo-new.component';
-import { CuentaTipoEditComponent }  from './containers/cuenta_tipo/cuenta-tipo-edit/cuenta-tipo-edit.component';
+
 import { CuentaTipoListComponent }  from './components/cuenta_tipo/cuenta-tipo-list/cuenta-tipo-list.component';
 import { CuentaTipoFormComponent }  from './components/cuenta_tipo/cuenta-tipo-form/cuenta-tipo-form.component';
 import { HomeComponent }            from './containers/home/home.component';
@@ -38,7 +36,15 @@ import { TcpIndexComponent }        from './containers/tcp/tcp-index/tcp-index.c
 import { TcpNewComponent }          from './containers/tcp/tcp-new/tcp-new.component';
 import { TcpEditComponent }         from './containers/tcp/tcp-edit/tcp-edit.component';
 import { TcpFormComponent }         from './components/tcp/tcp-form/tcp-form.component';
-import { TcpShowComponent } from './components/tcp/tcp-show/tcp-show.component';
+import { TcpShowComponent }         from './components/tcp/tcp-show/tcp-show.component';
+import { CuentaIndexComponent }     from './containers/plan_cuentas/cuenta-index/cuenta-index.component';
+import { MayorNewComponent }        from './containers/plan_cuentas/mayor-new/mayor-new.component';
+import { MayorEditComponent }       from './containers/plan_cuentas/mayor-edit/mayor-edit.component';
+import { MayorFormComponent }       from './components/plan_cuentas/mayor-form/mayor-form.component';
+import { MayorListComponent }       from './components/plan_cuentas/mayor-list/mayor-list.component';
+import { CuentaTipoIndexComponent } from './containers/plan_cuentas/cuenta-tipo-index/cuenta-tipo-index.component';
+import { CuentaTipoNewComponent }   from './containers/plan_cuentas/cuenta-tipo-new/cuenta-tipo-new.component';
+import { CuentaTipoEditComponent }  from './containers/plan_cuentas/cuenta-tipo-edit/cuenta-tipo-edit.component';
 
 
 
@@ -72,7 +78,12 @@ import { TcpShowComponent } from './components/tcp/tcp-show/tcp-show.component';
     TcpNewComponent,
     TcpEditComponent,
     TcpFormComponent,
-    TcpShowComponent
+    TcpShowComponent,
+    CuentaIndexComponent,
+    MayorNewComponent,
+    MayorEditComponent,
+    MayorFormComponent,
+    MayorListComponent
   ],
   providers: [],
   entryComponents:[]

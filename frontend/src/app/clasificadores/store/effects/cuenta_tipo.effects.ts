@@ -14,9 +14,9 @@ export class CuentaTipoEffects {
     ) {}
 
     @Effect()
-    loadCuentaTipo$ = this.actions$.ofType(fromCuentaTipoAction.LOAD_CUENTA_TIPO,
+    loadCuentaTipo$ = this.actions$.pipe(ofType(fromCuentaTipoAction.LOAD_CUENTA_TIPO,
         fromCuentaTipoAction.CREATE_CUENTA_TIPO_SUCCESS     
-        ).pipe(
+        ),
         switchMap(() => {
             return this.cuentatipoService.getCuentaTipoList().pipe(
                 map(cuentasTipo => new fromCuentaTipoAction.LoadCuentaTipoSuccess(cuentasTipo)),
@@ -25,8 +25,8 @@ export class CuentaTipoEffects {
         })
     )
     @Effect()
-    loadCuentaTipoById$ = this.actions$.ofType<fromCuentaTipoAction.LoadCuentaTipoById>(
-        fromCuentaTipoAction.LOAD_CUENTA_TIPO_BY_ID).pipe(
+    loadCuentaTipoById$ = this.actions$.pipe(ofType<fromCuentaTipoAction.LoadCuentaTipoById>(
+        fromCuentaTipoAction.LOAD_CUENTA_TIPO_BY_ID),
             map(action => action.payload),
             switchMap((payload) => {
                 return this.cuentatipoService.getCuentaTipoById(payload).pipe(
@@ -37,8 +37,8 @@ export class CuentaTipoEffects {
         )
    
     @Effect()
-    createCuentaTipo$ = this.actions$.ofType<fromCuentaTipoAction.CreateCuentaTipo>(
-        fromCuentaTipoAction.CREATE_CUENTA_TIPO).pipe(
+    createCuentaTipo$ = this.actions$.pipe(ofType<fromCuentaTipoAction.CreateCuentaTipo>(
+        fromCuentaTipoAction.CREATE_CUENTA_TIPO),
         map(action =>action.payload),
         switchMap((payload)=> {
             return this.cuentatipoService.createCuentaTipo(payload).pipe(
@@ -48,8 +48,8 @@ export class CuentaTipoEffects {
         })
     )   
     @Effect()
-    updateCuentaTipo$ = this.actions$.ofType<fromCuentaTipoAction.UpdateCuentaTipo>(
-        fromCuentaTipoAction.UPDATE_CUENTA_TIPO).pipe(
+    updateCuentaTipo$ = this.actions$.pipe(ofType<fromCuentaTipoAction.UpdateCuentaTipo>(
+        fromCuentaTipoAction.UPDATE_CUENTA_TIPO),
         map(action =>action.payload),
         switchMap((payload)=> {
             return this.cuentatipoService.updateCuentaTipo(payload).pipe(
@@ -59,8 +59,8 @@ export class CuentaTipoEffects {
         })
     ) 
     @Effect()
-    deleteCuentaTipo$ = this.actions$.ofType<fromCuentaTipoAction.DeleteCuentaTipo>(
-        fromCuentaTipoAction.DELETE_CUENTA_TIPO).pipe(
+    deleteCuentaTipo$ = this.actions$.pipe(ofType<fromCuentaTipoAction.DeleteCuentaTipo>(
+        fromCuentaTipoAction.DELETE_CUENTA_TIPO),
         map(action =>action.payload),
         switchMap((payload)=> {
             return this.cuentatipoService.deleteCuentaTipo(payload).pipe(

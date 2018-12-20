@@ -3,7 +3,7 @@ var router = express.Router();
 
 router.get('/', function(req, res) {
 
-  let sql = 'select * from cuenta_mayor order by codigo'
+  let sql = 'select * from cuenta_grupo order by codigo'
   db.execute(sql,(err,result)=>{
       if(err){
           res.json(err);
@@ -13,7 +13,7 @@ router.get('/', function(req, res) {
 });
 router.get('/byId/:id',(req, res)=>{
     let id = req.params.id;
-    sql = 'select * from cuenta_mayor where id = ?';
+    sql = 'select * from cuenta_grupo where id = ?';
     params = [id];
     db.execute(sql,params,(err, result)=>{
         if(err)
@@ -24,13 +24,11 @@ router.get('/byId/:id',(req, res)=>{
     })
 })
 
-router.post('/',(req,res) => {
-    let tipo_id = req.body.tipo_id;
+router.post('/',(req,res) => {    
     let codigo  = req.body.codigo;
-    let nombre  = req.body.nombre;
-    let deudora = req.body.deudora;
+    let nombre  = req.body.nombre;   
 
-    let checkCode = 'select * from cuenta_mayor where codigo = ?';
+    let checkCode = 'select * from cuenta_grupo where codigo = ?';
     let checkParams = [codigo];
     db.execute(checkCode,checkParams, (err,result) => {
         if(err)
@@ -43,8 +41,8 @@ router.post('/',(req,res) => {
         }
         else
         {
-            let sql = 'insert into cuenta_mayor(tipo_id,codigo,nombre,deudora) values(?,?,?,?)';
-            let paramms = [tipo_id,codigo,nombre,deudora];
+            let sql = 'insert into cuenta_grupo(nombre,codigo) values(?,?)';
+            let paramms = [nombre,codigo];
             db.execute(sql,paramms,(err,result) => {
                 if(err)
                 {
@@ -59,14 +57,12 @@ router.post('/',(req,res) => {
 })
 
 router.put('/:id',(req,res)=> {   
-    let id = req.params.id;
-
-    let tipo_id = req.body.tipo_id;
+    let id = req.params.id;   
     let codigo  = req.body.codigo;
     let nombre  = req.body.nombre;
-    let deudora = req.body.deudora;
+    
 
-    let checkCode = 'select * from cuenta_mayor where codigo <> ? and id = ?';
+    let checkCode = 'select * from cuenta_grupo where codigo <> ? and id = ?';
     let checkParams = [codigo, id];
     db.execute(checkCode,checkParams, (err,result) => {
         if(err)
@@ -79,8 +75,8 @@ router.put('/:id',(req,res)=> {
         }
         else
         {
-            let sql = 'update cuenta_mayor set tipo_id = ?, codigo = ?, nombre = ?, deudora = ? where id = ?';
-            let paramms = [tipo_id,codigo,nombre,deudora,id];
+            let sql = 'update cuenta_grupo set  codigo = ?, nombre = ? where id = ?';
+            let paramms = [codigo,nombre,id];
             db.execute(sql,paramms,(err,result) => {
                 if(err)
                 {
@@ -94,7 +90,7 @@ router.put('/:id',(req,res)=> {
 
 router.delete('/:id',(req,res)=>{
     let id = req.params.id;
-    let sql = 'delete from cuenta_mayor where id = ?';
+    let sql = 'delete from cuenta_grupo where id = ?';
     let paramms = [id];
     db.execute(sql,paramms,(err,result)=> {
         if(err){

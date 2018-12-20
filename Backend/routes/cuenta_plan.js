@@ -1,11 +1,11 @@
 var express = require('express');
 var router = express.Router();
 
-
-/* GET tipo cuentas listing. */
-router.get('/', function(req, res, next) {
-  //res.send('respond with a resource');
-  let sql = 'select * from cuenta_tipo order by codigo'
+router.get('/', (req, res)=> {
+  
+  let sql = 'select c.id, c.codigo, c.nombre t.nombre as tipo  from cuenta_plan c' + 
+  ' inner join cuenta_tipo t on t.id = c.tipo_id order by codigo';
+  
   db.execute(sql,(err,result)=>{
       if(err){
           res.json(err);
@@ -15,7 +15,7 @@ router.get('/', function(req, res, next) {
 });
 router.get('/byId/:id',(req, res)=>{
     let id = req.params.id;
-    sql = 'select * from cuenta_tipo where id = ?';
+    sql = 'select * from cuenta_plan where id = ?';
     params = [id];
     db.execute(sql,params,(err, result)=>{
         if(err)
@@ -29,10 +29,10 @@ router.get('/byId/:id',(req, res)=>{
 router.post('/',(req,res) => {
     let codigo      = req.body.codigo;
     let nombre      = req.body.nombre;
-    let grupo_id    = req.body.grupo_id;
-    let deudora     = req.body.deudora;
+    let tipo_id     = req.body.tipo_id;
+    let activa      = req.body.activa;
 
-    let checkCode = 'select * from cuenta_tipo where codigo = ?';
+    let checkCode = 'select * from cuenta_plan where codigo = ?';
     let checkParams = [codigo];
     db.execute(checkCode,checkParams, (err,result) => {
         if(err)
@@ -45,8 +45,8 @@ router.post('/',(req,res) => {
         }
         else
         {
-            let sql = 'insert into cuenta_tipo(codigo,nombre,grupo_id,deudora) values(?,?,?,?)';
-            let paramms = [codigo,nombre,grupo_id,deudora];
+            let sql = 'insert into cuenta_plan(tipo_id,codigo,nombre,deudora) values(?,?,?,?)';
+            let paramms = [tipo_id,codigo,nombre,activa];
             db.execute(sql,paramms,(err,result) => {
                 if(err)
                 {
@@ -62,24 +62,41 @@ router.post('/',(req,res) => {
 
 router.put('/:id',(req,res)=> {   
     let id          = req.params.id;
+    let codigo      = req.body.codigo;
     let nombre      = req.body.nombre;
-    let grupo_id    = req.body.grupo_id;
-    let deudora     = req.body.deudora;
+    let tipo_id     = req.body.tipo_id;    
 
-    let sql = 'update cuenta_tipo set nombre = ?, grupo_id = ?, deudora = ? where id = ?';
-    let params = [nombre,grupo_id,deudora,id];
-    db.execute(sql,params,(err,result) => {
+    let checkCode = 'select * from cuenta_plan where codigo = ? and id <> ?';
+    let checkParams = [codigo, id];
+    db.execute(checkCode,checkParams, (err,result) => {
         if(err)
         {
-            res.json(err)
+            res.json('ha ocurrido un error en la consulta');
         }
-        res.json('ok');
+        if(result.length >0)
+        {
+            res.json('1');
+        }
+        else
+        {
+            let sql = 'update cuenta_plan set nombre = ?, tipo_id = ?, codigo = ? where id = ?';
+            let params = [nombre,tipo_id,codigo,id];
+            db.execute(sql,params,(err,result) => {
+                if(err)
+                {
+                    res.json(err)
+                }
+                res.json('ok');
+            })
+        }
     })
+
+    
 })
 
 router.delete('/:id',(req,res)=>{
     let id = req.params.id;
-    let sql = 'delete from cuenta_tipo where id = ?';
+    let sql = 'delete from cuenta_plan where id = ?';
     let paramms = [id];
     db.execute(sql,paramms,(err,result)=> {
         if(err){

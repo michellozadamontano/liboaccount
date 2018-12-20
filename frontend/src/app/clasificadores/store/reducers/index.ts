@@ -3,6 +3,7 @@ import { ActionReducerMap, createSelector, createFeatureSelector } from '@ngrx/s
 import * as fromCuentaTipo  from './cuenta_tipo.reducers';
 import * as fromActividad   from './actividades.reducers';
 import * as fromTcp         from './tcp.reducers';
+import * as fromMayor       from './cuenta_mayor.reducers';
 
 
 
@@ -10,12 +11,14 @@ export interface ClasificadorState {
     cuenta_tipo : fromCuentaTipo.State,
     actividad   : fromActividad.State,
     tcp         : fromTcp.State,
+    mayor       : fromMayor.State
 }
 
 export const reducers: ActionReducerMap<ClasificadorState> = {
     cuenta_tipo : fromCuentaTipo.reducer,
     actividad   : fromActividad.reducer,
-    tcp         : fromTcp.reducer
+    tcp         : fromTcp.reducer,
+    mayor       : fromMayor.reducer
 }
 
 export const getClasificadoresState = createFeatureSelector<ClasificadorState>('clasificadores');
@@ -37,3 +40,9 @@ export const TcpState               = createSelector(getClasificadoresState,(sta
 export const getTcpShow             = createSelector(TcpState, fromTcp.getTcpShow);
 export const getTcp                 = createSelector(TcpState, fromTcp.getTcp);
 export const getTcpMessage          = createSelector(TcpState, fromTcp.getTcpMessage);
+
+//slice of cuenta mayor
+export const MayorState             = createSelector(getClasificadoresState,(state:ClasificadorState) => state.mayor);
+export const getMayorList           = createSelector(MayorState, fromMayor.getMayorList);
+export const getMayor               = createSelector(MayorState, fromMayor.getMayor);
+export const getMayorMessage        = createSelector(MayorState, fromMayor.getMayorMessage);

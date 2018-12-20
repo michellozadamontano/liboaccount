@@ -11,7 +11,8 @@ var usersRouter         = require('./routes/users');
 var cuenta_tipoRouter   = require('./routes/cuenta_tipo');
 var actividades         = require('./routes/actividaes');
 var tcpRouter           = require('./routes/tcp');
-var cuentaMayorpRouter  = require('./routes/cuenta_mayor');
+var cuentaGrupoRouter   = require('./routes/cuenta_grupo');
+var cuentaPlanRouter    = require('./routes/cuenta_plan');
 
 
 var app                 = express();
@@ -69,8 +70,8 @@ app.use('/users', usersRouter);
 app.use('/cuenta_tipo',cuenta_tipoRouter);
 app.use('/activity',actividades);
 app.use('/tcp',tcpRouter);
-app.use('/cuenta_mayor',cuentaMayorpRouter);
-
+app.use('/cuenta_mayor',cuentaGrupoRouter);
+app.use('/cuenta_plan',cuentaPlanRouter);
 
 
 

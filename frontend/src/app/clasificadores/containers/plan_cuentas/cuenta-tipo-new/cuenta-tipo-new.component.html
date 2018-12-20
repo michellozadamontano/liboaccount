@@ -4,6 +4,8 @@
         <mat-card-subtitle>Crear Tipo Cuenta</mat-card-subtitle>
     </mat-card-header>    
     <mat-card-content>
-        <app-cuenta-tipo-form (save) ="submit($event)"></app-cuenta-tipo-form>
+        <app-cuenta-tipo-form 
+        [cuentaMayorList] = "cuentaMayorList$ | async"
+        (save) ="submit($event)"></app-cuenta-tipo-form>
     </mat-card-content>    
 </mat-card>

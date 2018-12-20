@@ -2,7 +2,7 @@ import {
   Component, 
   OnInit, 
   ChangeDetectionStrategy 
-}                               from '@angular/core';
+}                                 from '@angular/core';
 
 // ngrx
 import { Store }                  from '@ngrx/store';
@@ -10,7 +10,7 @@ import { Observable, from }       from 'rxjs';
 import * as fromStore             from '../../../store';
 
 import { Router }                 from '@angular/router';
-import { CuentaTipo } from 'src/app/clasificadores/models/cuenta_tipo.interface';
+import { CuentaTipo }             from 'src/app/clasificadores/models/cuenta_tipo.interface';
 
 @Component({
   selector: 'app-cuenta-tipo-index',

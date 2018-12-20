@@ -12,6 +12,18 @@
                         <input matInput placeholder="Nombre" formControlName="nombre">
                     </mat-form-field>
                 </div>
+                <div fxFlex="50%">
+                    <mat-form-field class="full-width">
+                        <mat-select placeholder="Grupo" formControlName="grupo_id">
+                            <mat-option *ngFor="let item of cuentaMayorList" [value]="item.id">
+                                {{item.nombre}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div>
+                    <mat-checkbox formControlName="deudora" value="" color="primary">Deudora</mat-checkbox>
+                </div>
             </div>        
               <div fxLayout="row" fxLayoutGap="5px">
                   <div fxFlex="10%">
