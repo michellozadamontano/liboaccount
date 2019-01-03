@@ -4,24 +4,26 @@ import * as fromCuentaTipo  from './cuenta_tipo.reducers';
 import * as fromActividad   from './actividades.reducers';
 import * as fromTcp         from './tcp.reducers';
 import * as fromMayor       from './cuenta_mayor.reducers';
-
 import * as fromCentroCosto from './centro_costo.reducer';
+import * as fromCuentaPlan  from './cuenta_plan.reducers';
 
 
 export interface ClasificadorState {
-    cuenta_tipo : fromCuentaTipo.State,
-    actividad   : fromActividad.State,
-    tcp         : fromTcp.State,
-    mayor       : fromMayor.State
-    centro_costo: fromCentroCosto.State
+    cuenta_tipo     : fromCuentaTipo.State,
+    actividad       : fromActividad.State,
+    tcp             : fromTcp.State,
+    mayor           : fromMayor.State
+    centro_costo    : fromCentroCosto.State,
+    cuenta_plan     : fromCuentaPlan.State,
 }
 
 export const reducers: ActionReducerMap<ClasificadorState> = {
-    cuenta_tipo : fromCuentaTipo.reducer,
-    actividad   : fromActividad.reducer,
-    tcp         : fromTcp.reducer,
-    mayor       : fromMayor.reducer,
-    centro_costo: fromCentroCosto.reducer
+    cuenta_tipo     : fromCuentaTipo.reducer,
+    actividad       : fromActividad.reducer,
+    tcp             : fromTcp.reducer,
+    mayor           : fromMayor.reducer,
+    centro_costo    : fromCentroCosto.reducer,
+    cuenta_plan     : fromCuentaPlan.cuentaPlanReducer,
 }
 
 export const getClasificadoresState = createFeatureSelector<ClasificadorState>('clasificadores');
@@ -49,8 +51,16 @@ export const MayorState             = createSelector(getClasificadoresState,(sta
 export const getMayorList           = createSelector(MayorState, fromMayor.getMayorList);
 export const getMayor               = createSelector(MayorState, fromMayor.getMayor);
 export const getMayorMessage        = createSelector(MayorState, fromMayor.getMayorMessage);
+
 // slice of Centro Costo
 export const CentroCostoState      = createSelector(getClasificadoresState,(state:ClasificadorState) => state.centro_costo);
 export const getCentroCostoList    = createSelector(CentroCostoState, fromCentroCosto.getCentroCostos);
 export const getCentroCosto        = createSelector(CentroCostoState, fromCentroCosto.getCentroCosto);
 export const getCentroCostoMessage = createSelector(CentroCostoState, fromCentroCosto.getCentroCostosMessage);
+
+// slice of Cuenta plan
+export const CuentaPlanState        = createSelector(getClasificadoresState,(state:ClasificadorState) => state.cuenta_plan);
+export const getCuentaList          = createSelector(CuentaPlanState, fromCuentaPlan.getCuentaList);
+export const getCuentaByTipoList    = createSelector(CuentaPlanState, fromCuentaPlan.getCuentaByTipoList);
+export const getCuentaPlan          = createSelector(CuentaPlanState, fromCuentaPlan.getCuentaPlan);
+export const getCuentaPlanMessage   = createSelector(CuentaPlanState, fromCuentaPlan.getCuentaPlanMessage);

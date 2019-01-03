@@ -15,7 +15,12 @@ export const InitialState: State = {
 export function reducer(state = InitialState, action: fromCuentaTipo.CuentaTipoAction):State {
     switch(action.type)
     {
-        case fromCuentaTipo.LOAD_CUENTA_TIPO:
+        case fromCuentaTipo.LOAD_CUENTA_TIPO 
+        || fromCuentaTipo.LOAD_CUENTA_TIPO_BY_ID
+        || fromCuentaTipo.CREATE_CUENTA_TIPO
+        || fromCuentaTipo.UPDATE_CUENTA_TIPO
+        || fromCuentaTipo.DELETE_CUENTA_TIPO
+        || fromCuentaTipo.GET_CUENTA_TIPO_BY_GRUPO:
         {
             return {
                 ...state
@@ -28,12 +33,7 @@ export function reducer(state = InitialState, action: fromCuentaTipo.CuentaTipoA
                 cuenta_tipos: action.payload
             }
         }
-        case fromCuentaTipo.LOAD_CUENTA_TIPO_BY_ID:
-        {
-            return {
-                ...state
-            }
-        }
+        
         case fromCuentaTipo.LOAD_CUENTA_TIPO_BY_ID_SUCCESS:
         {
             return {
@@ -48,31 +48,15 @@ export function reducer(state = InitialState, action: fromCuentaTipo.CuentaTipoA
                 message: action.payload
             }
         }
-        case fromCuentaTipo.CREATE_CUENTA_TIPO:
-        {
-            return {
-                ...state
-            }
-        }
+        
         case fromCuentaTipo.CREATE_CUENTA_TIPO_SUCCESS:
         {
             return {
                 ...state,
                 message: action.payload
             }
-        }
-        case fromCuentaTipo.UPDATE_CUENTA_TIPO:
-        {
-            return {
-                ...state
-            }
-        }
-        case fromCuentaTipo.DELETE_CUENTA_TIPO:
-        {
-            return {
-                ...state
-            }
-        }
+        }    
+        
     }
     
     return state;

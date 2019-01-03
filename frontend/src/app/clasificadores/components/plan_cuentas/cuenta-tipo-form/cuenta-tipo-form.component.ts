@@ -7,13 +7,13 @@ import {
   EventEmitter,
   OnChanges
 }                                     from '@angular/core';
-import { CuentaTipo }                 from 'src/app/clasificadores/models/cuenta_tipo.interface';
 import {
   FormBuilder, 
   FormGroup, 
   Validators
 }                                     from '@angular/forms';
 import { Router }                     from '@angular/router';
+import { CuentaTipo }                 from 'src/app/clasificadores/models/cuenta_tipo.interface';
 import { CuentaMayor }                from 'src/app/clasificadores/models/cuenta_mayor.interface';
 
 @Component({
@@ -47,6 +47,7 @@ export class CuentaTipoFormComponent implements OnInit, OnChanges {
   }
   ngOnChanges()
   {
+     
     if (this.cuentaTipo) {
       this.form.patchValue({...this.cuentaTipo});
     }
@@ -58,12 +59,14 @@ export class CuentaTipoFormComponent implements OnInit, OnChanges {
       'codigo'          : [this.cuentaTipo.codigo, Validators.required],
       'nombre'          : [this.cuentaTipo.nombre, Validators.required], 
       'grupo_id'        : [this.cuentaTipo.grupo_id, Validators.required], 
-      'deudora'         : [this.cuentaTipo.deudora, Validators.required],   
+      'deudora'         : [this.cuentaTipo.deudora],   
     });
   }
 
   submit()
   {
+    console.log();
+    
     if (this.form.valid) {
       this.save.emit(this.form.value);
       this.router.navigate(['clasificadores/cuenta_tipo']);

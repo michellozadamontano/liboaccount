@@ -3,7 +3,7 @@ var router = express.Router();
 
 router.get('/', (req, res)=> {
   
-  let sql = 'select c.id, c.codigo, c.nombre t.nombre as tipo  from cuenta_plan c' + 
+  let sql = 'select c.id, c.codigo, c.nombre, t.nombre as tipo  from cuenta_plan c' + 
   ' inner join cuenta_tipo t on t.id = c.tipo_id order by codigo';
   
   db.execute(sql,(err,result)=>{
@@ -25,6 +25,18 @@ router.get('/byId/:id',(req, res)=>{
         res.json(result)
     })
 })
+router.get('/byTipoId/:id',(req,res)=> {
+    let id = req.params.id;
+    sql = 'select * from cuenta_plan where tipo_id = ?';
+    params = [id];
+    db.execute(sql,params,(err, result)=>{
+        if(err)
+        {
+            res.json(err);
+        }
+        res.json(result)
+    })
+})
 
 router.post('/',(req,res) => {
     let codigo      = req.body.codigo;
@@ -32,8 +44,8 @@ router.post('/',(req,res) => {
     let tipo_id     = req.body.tipo_id;
     let activa      = req.body.activa;
 
-    let checkCode = 'select * from cuenta_plan where codigo = ?';
-    let checkParams = [codigo];
+    let checkCode = 'select * from cuenta_plan where codigo = ? and tipo_id = ?';
+    let checkParams = [codigo, tipo_id];
     db.execute(checkCode,checkParams, (err,result) => {
         if(err)
         {
@@ -45,7 +57,7 @@ router.post('/',(req,res) => {
         }
         else
         {
-            let sql = 'insert into cuenta_plan(tipo_id,codigo,nombre,deudora) values(?,?,?,?)';
+            let sql = 'insert into cuenta_plan(tipo_id,codigo,nombre,activa) values(?,?,?,?)';
             let paramms = [tipo_id,codigo,nombre,activa];
             db.execute(sql,paramms,(err,result) => {
                 if(err)
@@ -64,7 +76,8 @@ router.put('/:id',(req,res)=> {
     let id          = req.params.id;
     let codigo      = req.body.codigo;
     let nombre      = req.body.nombre;
-    let tipo_id     = req.body.tipo_id;    
+    let tipo_id     = req.body.tipo_id; 
+    let activa      = req.body.activa;   
 
     let checkCode = 'select * from cuenta_plan where codigo = ? and id <> ?';
     let checkParams = [codigo, id];
@@ -79,8 +92,8 @@ router.put('/:id',(req,res)=> {
         }
         else
         {
-            let sql = 'update cuenta_plan set nombre = ?, tipo_id = ?, codigo = ? where id = ?';
-            let params = [nombre,tipo_id,codigo,id];
+            let sql = 'update cuenta_plan set nombre = ?, tipo_id = ?, codigo = ?, activa = ? where id = ?';
+            let params = [nombre, tipo_id, codigo, activa, id];
             db.execute(sql,params,(err,result) => {
                 if(err)
                 {

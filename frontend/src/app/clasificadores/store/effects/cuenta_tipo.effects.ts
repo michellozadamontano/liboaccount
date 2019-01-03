@@ -34,7 +34,18 @@ export class CuentaTipoEffects {
                     catchError(error => of(new fromCuentaTipoAction.LoadCuentaTipoError(error)))
                 )
             })
-        )
+    )
+    @Effect()
+    loadCuentaTipoByGrupoId$ = this.actions$.pipe(ofType<fromCuentaTipoAction.GetCuentaTipoByGrupo>(
+        fromCuentaTipoAction.GET_CUENTA_TIPO_BY_GRUPO),
+            map(action => action.payload),
+            switchMap((payload) => {
+                return this.cuentatipoService.getbyGrupoId(payload).pipe(
+                    map(cuenta => new fromCuentaTipoAction.LoadCuentaTipoSuccess(cuenta)),
+                    catchError(error => of(new fromCuentaTipoAction.LoadCuentaTipoError(error)))
+                )
+            })
+    )
    
     @Effect()
     createCuentaTipo$ = this.actions$.pipe(ofType<fromCuentaTipoAction.CreateCuentaTipo>(

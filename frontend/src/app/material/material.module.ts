@@ -31,7 +31,9 @@ import {
   MatTooltipModule, 
   MatFormFieldModule, 
   MatExpansionModule, 
-  MatStepperModule
+  MatStepperModule,
+  MatTreeModule,
+  
 }                                                 from '@angular/material';
 
 import { CustomErrorStateMatcherDirective } from './error-state-matcher';
@@ -73,6 +75,8 @@ import { NgrxMatSelectViewAdapter } from './mat-select-view-adapter';
     MatSortModule,
     MatTableModule,
     MatNativeDateModule,
+    MatTreeModule,
+    
     
   ],
   declarations: [
@@ -112,6 +116,7 @@ import { NgrxMatSelectViewAdapter } from './mat-select-view-adapter';
     MatPaginatorModule,
     MatSortModule,
     MatTableModule,
+    MatTreeModule,
     MatNativeDateModule,
     NgrxMatSelectViewAdapter,
    // CustomErrorStateMatcherDirective,

@@ -1,4 +1,7 @@
-<mat-card>        
+<mat-card>  
+    <mat-form-field class="full-width">
+        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Buscar">
+    </mat-form-field>       
   <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
     <ng-container matColumnDef="Codigo">
       <th mat-header-cell *matHeaderCellDef> Codigo </th>

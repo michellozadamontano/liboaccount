@@ -22,20 +22,32 @@ export function reducer(state = intialState, action: fromMayor.Actions) {
             //add your code
             return { ...state };
         }
-        case fromMayor.LOAD_CUENTA_MAYOR_SUCCESS: {
+        case fromMayor.LOAD_CUENTA_MAYOR_SUCCESS: {     
+            console.log(action.payload);
             return {
                 ...state,
                 mayorList: action.payload
             }
         }
         case fromMayor.LOAD_CUENTA_MAYOR_BY_ID_SUCCESS:{
+            console.log(action.payload);
+            
             return {
                 ...state,
-                mayor: action.payload[0]
+                mayor: action.payload
             }
         }
         case fromMayor.CUENTA_MAYOR_SUCCESS: {
+            console.log(action.payload);
             return {
+                ...state,
+                message: action.payload
+            }
+        }
+        case fromMayor.LOAD_CUENTA_MAYOR_FAIL:
+        {
+            console.log(action.payload);
+            return{
                 ...state,
                 message: action.payload
             }

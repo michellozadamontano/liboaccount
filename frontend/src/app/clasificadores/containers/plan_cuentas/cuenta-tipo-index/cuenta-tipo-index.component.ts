@@ -11,6 +11,7 @@ import * as fromStore             from '../../../store';
 
 import { Router }                 from '@angular/router';
 import { CuentaTipo }             from 'src/app/clasificadores/models/cuenta_tipo.interface';
+import { CuentaTipoService }      from 'src/app/services';
 
 @Component({
   selector: 'app-cuenta-tipo-index',
@@ -24,27 +25,32 @@ export class CuentaTipoIndexComponent implements OnInit {
 
   constructor(
     private store: Store<fromStore.ClasificadorState>,  
-    private router: Router
+    private router: Router,
+    private tipoService: CuentaTipoService
   ) { }
 
   ngOnInit() {
-    this.store.dispatch(new fromStore.LoadCuentaTipo());
-    this.cuenta_tipo_list$ = this.store.select(fromStore.getCuentaTipos);
+   // this.store.dispatch(new fromStore.LoadCuentaTipo());
+   // this.cuenta_tipo_list$ = this.store.select(fromStore.getCuentaTipos);
+   this.cuenta_tipo_list$ = this.tipoService.getCuentaTipoList();
   }
 
   add()
   {
-    this.router.navigate(['clasificadores/centro_costo_new']);
+    this.router.navigate(['clasificadores/cuenta_tipo_new']);
   }
   edit(id:number)
   {
     this.router.navigate(['clasificadores/cuenta_tipo_edit',id]);
   }
   delete(id:number)
-  {
+  {        
     const r = confirm('Estas Seguro?');
     if (r) {
-      this.store.dispatch(new fromStore.DeleteCuentaTipo(id));
+      this.tipoService.deleteCuentaTipo(id).subscribe(resp => {
+        console.log(resp);
+        
+      });
     }
     
   }

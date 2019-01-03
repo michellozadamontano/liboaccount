@@ -2,15 +2,16 @@ import { Action }       from '@ngrx/store';
 import { CuentaTipo }   from '../../models/cuenta_tipo.interface';
 
 
-export const LOAD_CUENTA_TIPO                   = '[CuentaTipo] Load cuenta tipo';
-export const LOAD_CUENTA_TIPO_SUCCESS           = '[CuentaTipo] Load cuenta tipo success';
-export const LOAD_CUENTA_TIPO_ERROR             = '[CuentaTipo] Load cuenta tipo error';
-export const LOAD_CUENTA_TIPO_BY_ID             = '[CuentaTipo] Load cuenta tipo by id';
-export const LOAD_CUENTA_TIPO_BY_ID_SUCCESS     = '[CuentaTipo] Load cuenta tipo by id success';
-export const CREATE_CUENTA_TIPO                 = '[CuentaTipo] Create cuenta tipo';
-export const CREATE_CUENTA_TIPO_SUCCESS         = '[CuentaTipo] Create cuenta tipo success';
-export const UPDATE_CUENTA_TIPO                 = '[CuentaTipo] Update cuenta tipo';
-export const DELETE_CUENTA_TIPO                 = '[CuentaTipo] Delete cuenta tipo';
+export const LOAD_CUENTA_TIPO                   = '[CuentaTipo] LOAD_CUENTA_TIPO';
+export const LOAD_CUENTA_TIPO_SUCCESS           = '[CuentaTipo] LOAD_CUENTA_TIPO_SUCCESS';
+export const LOAD_CUENTA_TIPO_ERROR             = '[CuentaTipo] LOAD_CUENTA_TIPO_ERROR';
+export const LOAD_CUENTA_TIPO_BY_ID             = '[CuentaTipo] LOAD_CUENTA_TIPO_BY_ID';
+export const LOAD_CUENTA_TIPO_BY_ID_SUCCESS     = '[CuentaTipo] LOAD_CUENTA_TIPO_BY_ID_SUCCESS';
+export const CREATE_CUENTA_TIPO                 = '[CuentaTipo] CREATE_CUENTA_TIPO';
+export const CREATE_CUENTA_TIPO_SUCCESS         = '[CuentaTipo] CREATE_CUENTA_TIPO_SUCCESS';
+export const UPDATE_CUENTA_TIPO                 = '[CuentaTipo] UPDATE_CUENTA_TIPO';
+export const DELETE_CUENTA_TIPO                 = '[CuentaTipo] DELETE_CUENTA_TIPO';
+export const GET_CUENTA_TIPO_BY_GRUPO           = '[CuentaTipo] GET_CUENTA_TIPO_BY_GRUPO';
  
 
 
@@ -49,6 +50,10 @@ export class DeleteCuentaTipo implements Action {
     readonly type = DELETE_CUENTA_TIPO;
     constructor(public payload: number){}
 }
+export class GetCuentaTipoByGrupo implements Action {
+    readonly type = GET_CUENTA_TIPO_BY_GRUPO;
+    constructor(public payload: number){}
+}
 
 export type CuentaTipoAction = 
 | LoadCuentaTipo
@@ -60,3 +65,4 @@ export type CuentaTipoAction =
 | CreateCuentaTipoSuccess
 | UpdateCuentaTipo
 | DeleteCuentaTipo
+| GetCuentaTipoByGrupo

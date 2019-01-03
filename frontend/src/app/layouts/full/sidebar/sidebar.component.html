@@ -20,8 +20,7 @@
               <mat-icon>account_circle</mat-icon>
             </mat-panel-description>
           </mat-expansion-panel-header>    
-          <mat-nav-list appAccordion>
-        
+          <mat-nav-list appAccordion>        
                 <mat-list-item appAccordionLink *ngFor="let menuitem of menuItems.getMenuitem()" routerLinkActive="selected" group="{{menuitem.state}}">
                     <a class="" appAccordionToggle [routerLink]="[menuitem.state]" *ngIf="menuitem.type === 'link'">
                         <mat-icon>{{ menuitem.icon }}</mat-icon> 
@@ -30,8 +29,7 @@
                         <span class="label label-{{ badge.type }}" *ngFor="let badge of menuitem.badge">{{ badge.value }}</span> 
                     </a>                    
                 </mat-list-item>
-
-            </mat-nav-list>
+            </mat-nav-list>          
       
         </mat-expansion-panel>      
         
@@ -39,12 +37,22 @@
         <mat-expansion-panel>
           <mat-expansion-panel-header>
             <mat-panel-title>
-              Comprobantes
+              Plan Cuentas
             </mat-panel-title>
             <mat-panel-description>              
-              <mat-icon>text_format</mat-icon>
+              <mat-icon>account_balance_wallet</mat-icon>
             </mat-panel-description>
-          </mat-expansion-panel-header>      
+          </mat-expansion-panel-header>
+          <mat-nav-list appAccordion>        
+              <mat-list-item appAccordionLink *ngFor="let menuitem of menuItems.getCuentas()" routerLinkActive="selected" group="{{menuitem.state}}">
+                  <a class="" appAccordionToggle [routerLink]="[menuitem.state]" *ngIf="menuitem.type === 'link'">
+                      <mat-icon>{{ menuitem.icon }}</mat-icon> 
+                      <span>{{ menuitem.name }}</span> 
+                      <span fxFlex></span> 
+                      <span class="label label-{{ badge.type }}" *ngFor="let badge of menuitem.badge">{{ badge.value }}</span> 
+                  </a>                    
+              </mat-list-item>
+          </mat-nav-list>       
          
         </mat-expansion-panel>
       </mat-accordion>

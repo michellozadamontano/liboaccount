@@ -5,17 +5,19 @@
     </mat-card-header>
     
     <mat-card-content>
-      <div fxLayout="row">
-        <div fxFlex="50%"></div>
-        <div fxFlex="50%">
-          <app-mayor-list
-          [mayorList]="mayorList$ | async"
-          (edit) = "edit($event)"
-          (delete) = "delete($event)"
-          >
-          </app-mayor-list>
-        </div>
+      <div fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="5px">
+          <div>
+              <app-plan-tree
+              [mayorList] = "mayorList$ | async"
+              [tipoList]  = "tipoList$ | async"
+              [planList]  = "planList$ | async"
+              (getTipo)   = "getTipo($event)"
+              (getPlan)   = "getPlan($event)"
+              ></app-plan-tree>
+          </div>          
       </div>
+
+      
         
     </mat-card-content>
     

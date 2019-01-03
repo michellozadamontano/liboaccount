@@ -1,52 +1,141 @@
 import { Injectable }                       from '@angular/core';
-import { HttpClient, HttpErrorResponse }    from '@angular/common/http';
-import { Observable, throwError }           from 'rxjs';
-import { catchError }                       from 'rxjs/operators';
-import { API_URL }                          from '../core/config';
+
+import { map }                              from 'rxjs/operators';
+
+//Apollo
+import { Apollo }                           from 'apollo-angular';
+import gql                                  from 'graphql-tag';
 import { CuentaMayor }                      from '../clasificadores/models/cuenta_mayor.interface';
+
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class CuentaMayorService {
+  // queries
+  getMayor = gql`
+  {
+    cuentaGrupos{
+      nombre
+      id
+      codigo
+    }
+  }`
 
-  constructor(private http: HttpClient) { }
+  getMayorById = gql`
+  query cuentaGrupo($id: Int!)
+  {
+    cuentaGrupo(id:$id){
+      id
+      nombre
+      codigo
+    }
+  }`
 
-  getCuentaMayor():Observable<CuentaMayor[]>
-  {
-    let url = API_URL + 'cuenta_mayor';
-    return this.http.get<CuentaMayor[]>(url).pipe(catchError(this.handleError));
+  checkCode = gql`
+  query checkCode($codigo: String){
+    checkCode(codigo: $codigo){
+      codigo
+    }
+  }`
+
+
+  //mutation
+   grupoCreate = gql`  
+      mutation GrupoCreate($codigo: String!, $nombre: String!) {
+        grupoCreate(codigo:$codigo,nombre: $nombre) {
+          nombre
+        
+      }  
+    }`;
+   grupoUpdate = gql`
+   mutation UpdateGrupo($id: Int!,$codigo: String, $nombre:String){
+    grupoUpdate(id: $id, codigo: $codigo, nombre: $nombre) {
+      nombre
+    }
+   }`
+
+    deleteMayor = gql`
+    mutation grupoRemove($id: Int!){
+      grupoRemove(id:$id){
+        nombre
+      }
+    }`;
+
+
+  constructor(    
+    private apollo: Apollo   
+    ) { }
+
+  getCuentaMayor()
+  {    
+   return this.apollo.watchQuery<CuentaMayor[]>({
+      query: this.getMayor
+    })
+      .valueChanges
+      .pipe(
+        map(result => result.data["cuentaGrupos"])
+      );
+     
   }
-  getCuentaMayorById(id:number):Observable<CuentaMayor>
-  {
-    let url = API_URL + 'cuenta_mayor/byId/' + id;
-    return this.http.get<CuentaMayor>(url).pipe(catchError(this.handleError));
+  getCuentaMayorById(id:number)
+  {       
+    
+      let val = +id;
+      return this.apollo.watchQuery<CuentaMayor>({
+        query: this.getMayorById,
+        variables:{id:val}
+      })
+      .valueChanges
+        .pipe(
+          map(result => result.data["cuentaGrupo"])
+        );
   }
-  createCuentaMayor(mayor: CuentaMayor):Observable<string>
-  {
-    let url = API_URL + 'cuenta_mayor';
-    return this.http.post<string>(url,mayor).pipe(catchError(this.handleError));
+  checkCodeMayor(codigo: string){
+    return this.apollo.watchQuery<string>({
+      query: this.checkCode,
+      variables:{codigo: codigo}
+    }).valueChanges
+    .pipe(
+      map(result => result.data["checkCode"])
+    );
   }
-  updateCuentaMayor(mayor: CuentaMayor):Observable<string>
-  {
-    let url = API_URL + 'cuenta_mayor/' + mayor.id;
-    return this.http.put<string>(url,mayor).pipe(catchError(this.handleError));
+  createCuentaMayor(nombre:string, codigo:string)
+  {   
+    return this.apollo.mutate(
+      {
+        mutation: this.grupoCreate, 
+        variables: {nombre: nombre,codigo:codigo.toString()},
+        refetchQueries:[{
+          query: this.getMayor
+        }]
+      });
+     
   }
-  deleteCuentaMayor(id:number):Observable<string>
+  updateCuentaMayor(mayor: CuentaMayor)
   {
-    let url = API_URL + 'cuenta_mayor/' + id;
-    return this.http.delete<string>(url).pipe(catchError(this.handleError));
+    return this.apollo.mutate({
+      mutation: this.grupoUpdate,
+      variables:{id: +mayor.id, codigo: mayor.codigo, nombre: mayor.nombre},
+      refetchQueries:[{
+        query: this.getMayor
+      }]
+    })
+  }
+  deleteCuentaMayor(id:number)
+  {
+    /*let url = API_URL + 'cuenta_mayor/' + id;
+    return this.http.delete<string>(url).pipe(catchError(this.handleError));*/
+    return this.apollo.mutate(
+      {
+        mutation:this.deleteMayor,
+        variables:{id:+id},        
+        refetchQueries:[{
+          query: this.getMayor
+        }]
+      });
   }
 
-  private handleError(error: HttpErrorResponse) {
-    if (error.error instanceof ErrorEvent) {      
-      console.error('An error occurred:', error.error.message);
-    } else {     
-      console.error(
-        `Backend returned code ${error.status}, ` +
-        `body was: ${error.error}`);
-    }   
-    return throwError(
-      'Something bad happened; please try again later.');
-  };
+ 
 }

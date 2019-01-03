@@ -36,10 +36,18 @@ export class CuentaTipoListComponent implements OnInit, OnChanges {
   ngOnInit() {
   }
   ngOnChanges(){
-    this.dataSource = new MatTableDataSource(this.cuentaTipoList);
-    this.resultsLength = this.cuentaTipoList.length;
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
+    if(this.cuentaTipoList != null)
+    {
+      this.dataSource = new MatTableDataSource(this.cuentaTipoList);
+      this.resultsLength = this.cuentaTipoList.length;
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
+    }
+    
+  }
+
+  applyFilter(filterValue: string) {
+    this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
   update(id:number)

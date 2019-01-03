@@ -1,0 +1,19 @@
+<mat-card>
+    <mat-card-header>
+        <mat-card-title>Cuentas</mat-card-title>
+        <mat-card-subtitle>cuentas plan</mat-card-subtitle>
+    </mat-card-header>
+    
+    <mat-card-content>
+       <button mat-icon-button (click)="add()" color="primary">
+           <mat-icon class="mat-18" matTooltip="Adicionar">add_circle</mat-icon>
+       </button>
+        <app-plan-list
+        [planList]  = "planList$ | async"       
+        (edit)      = "update($event)"
+        (delete)    = "delete($event)"
+        >
+        </app-plan-list>
+    </mat-card-content>
+   
+</mat-card>
