@@ -14,6 +14,7 @@ import { MatSnackBar }            from '@angular/material';
 import { Router }                 from '@angular/router';
 import { CuentaTipo }             from 'src/app/clasificadores/models/cuenta_tipo.interface';
 import { CuentaMayor }            from 'src/app/clasificadores/models/cuenta_mayor.interface';
+import { CuentaTipoService, CuentaMayorService }      from 'src/app/services';
 
 @Component({
   selector: 'app-cuenta-tipo-new',
@@ -28,30 +29,22 @@ export class CuentaTipoNewComponent implements OnInit {
   constructor(
     private store           : Store<fromStore.ClasificadorState>,  
     private router          : Router,
-    private snackBarService : MatSnackBar
+    private snackBarService : MatSnackBar,
+    private tipoService     : CuentaTipoService,
+    private mayorService    : CuentaMayorService
   ) { }
 
   ngOnInit() {
-    this.store.dispatch(new fromStore.LoadCuentaMayor());
-    this.cuentaMayorList$ = this.store.select(fromStore.getMayorList);
+    this.cuentaMayorList$ = this.mayorService.getCuentaMayor();
   }
 
   submit(cuentaTipo: CuentaTipo)
   {
-    this.store.dispatch(new fromStore.CreateCuentaTipo(cuentaTipo));
-    this.store.select(fromStore.getCuentaTipoMessage).subscribe(resp => {
-      if(resp == '1')
-      {
-        this.snackBarService.dismiss();
-        this.snackBarService.open( "Este codigo ya existe!", undefined, {duration: 2000} );     
-        return;     
-      }
-      if(resp = 'ok')
-      {
-        this.router.navigate(['clasificadores/cuenta_tipo']);
-      }
-    })
-    
+      
+    this.tipoService.createCuentaTipo(cuentaTipo).subscribe(resp =>{
+      console.log(resp);
+      this.router.navigate(['clasificadores/cuenta_tipo']);
+    })    
   }
 
 }

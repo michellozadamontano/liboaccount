@@ -9,7 +9,7 @@ import * as fromService     from '../../../services';
 //import all requried services or any dependencies
 
 @Injectable()
-export class NameEffects {
+export class CuentaPlanEffects {
     constructor(
         private action$: Actions,
         private myService: fromService.CuentaPlanService
@@ -30,6 +30,16 @@ export class NameEffects {
         switchMap((payload) => {
             return this.myService.getCuentaPlanById(payload).pipe(
                 map(data => new fromPlanAction.LoadCuentaPlanByIdSuccess(data)),
+                catchError(error => of(new fromPlanAction.LoadCuentaPlanFail(error)))                
+            );
+        })
+    );
+    @Effect()
+    loadCuentaPlanByTipoId$ = this.action$.pipe(ofType<fromPlanAction.GetCuentaByTipo>(fromPlanAction.GET_CUENTA_PLAN_BY_TIPO),
+        map(action => action.payload),
+        switchMap((payload) => {
+            return this.myService.getbyTipoId(payload).pipe(
+                map(data => new fromPlanAction.GetCuentaByTipoSuccess(data)),
                 catchError(error => of(new fromPlanAction.LoadCuentaPlanFail(error)))                
             );
         })

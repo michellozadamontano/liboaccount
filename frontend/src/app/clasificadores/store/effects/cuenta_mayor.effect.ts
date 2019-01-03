@@ -20,7 +20,7 @@ export class MayorEffects {
         fromMayorAction.CUENTA_MAYOR_SUCCESS),
         switchMap(() => {
             return this.mayorService.getCuentaMayor().pipe(
-                map(data => new fromMayorAction.LoadCuentaMayorSuccess(data)),
+                map(data => new fromMayorAction.LoadCuentaMayorSuccess(data['cuentaGrupos'])),
                 catchError(error => of(new fromMayorAction.LoadCuentaMayorFail(error)))                
             );
         })
@@ -31,7 +31,7 @@ export class MayorEffects {
         map(action => action.payload),
         switchMap((payload) => {
             return this.mayorService.getCuentaMayorById(payload).pipe(
-                map(data => new fromMayorAction.LoadCuentaMayorByIdSuccess(data)),
+                map(data => new fromMayorAction.LoadCuentaMayorByIdSuccess(data['cuentaGrupo'])),
                 catchError(error => of(new fromMayorAction.LoadCuentaMayorFail(error)))                
             );
         })
@@ -42,7 +42,7 @@ export class MayorEffects {
     
         map(action => action.payload),
         switchMap((payload) => {
-            return this.mayorService.createCuentaMayor(payload).pipe(
+            return this.mayorService.createCuentaMayor(payload.nombre,payload.codigo).pipe(
                 map(data => new fromMayorAction.CuentaMayorSuccess(data)),
                 catchError(error => of(new fromMayorAction.LoadCuentaMayorFail(error)))                
             );

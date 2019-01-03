@@ -6,6 +6,7 @@
     <mat-card-content>
         <app-cuenta-tipo-form
         [cuentaTipo] = "cuentaTipo$ | async"
+        [cuentaMayorList] = "cuentaMayorList$ | async"
          (save) ="submit($event)"></app-cuenta-tipo-form>
     </mat-card-content>    
 </mat-card>

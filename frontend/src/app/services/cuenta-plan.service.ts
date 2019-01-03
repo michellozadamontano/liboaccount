@@ -23,6 +23,10 @@ export class CuentaPlanService {
     let url = API_URL + 'cuenta_plan/byId/' + id;
     return this.http.get<CuentaPlan>(url).pipe(catchError(this.handleError));
   }
+  getbyTipoId(id: number):Observable<CuentaPlan[]>{
+    let url = API_URL + 'cuenta_plan/byTipoId/' + id;
+    return this.http.get<CuentaPlan[]>(url).pipe(catchError(this.handleError));
+  }
   createCuentaPlan(cuenta: CuentaPlan):Observable<string>
   {
     let url = API_URL + 'cuenta_plan';

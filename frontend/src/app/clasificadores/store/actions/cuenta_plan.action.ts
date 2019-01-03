@@ -11,6 +11,8 @@ export const CUENTA_PLAN_SUCCESS                = "[CUENTAPLAN] CUENTA_PLAN_SUCC
 export const CREATE_CUENTA_PLAN                 = "[CUENTAPLAN] CREATE CUENTA PLAN"
 export const UPDATE_CUENTA_PLAN                 = "[CUENTAPLAN] UPDATE CUENTA PLAN"
 export const DELETE_CUENTA_PLAN                 = "[CUENTAPLAN] DELETE CUENTA PLAN"
+export const GET_CUENTA_PLAN_BY_TIPO            = "[CUENTAPLAN] GET_CUENTA_PLAN_BY_TIPO"
+export const GET_CUENTA_PLAN_BY_TIPO_SUCCESS    = "[CUENTAPLAN] GET_CUENTA_PLAN_BY_TIPO_SUCCESS"
 
 export class LoadCuentaPlan implements Action {
     readonly type = LOAD_CUENTA_PLAN;
@@ -57,9 +59,14 @@ export class DeleteCuentaPlan implements Action {
     constructor(public payload: number) { }
 }
 
-
-
-
+export class GetCuentaByTipo implements Action {
+    readonly type = GET_CUENTA_PLAN_BY_TIPO;
+    constructor(public payload: number){}
+}
+export class GetCuentaByTipoSuccess implements Action {
+    readonly type = GET_CUENTA_PLAN_BY_TIPO_SUCCESS;
+    constructor(public payload: CuentaPlan[]){}
+}
 
 
 export type CuentaPlanActions = 
@@ -72,3 +79,5 @@ export type CuentaPlanActions =
 | CreateCuentaPlan
 | UpdateCuentaPlan
 | DeleteCuentaPlan
+| GetCuentaByTipo
+| GetCuentaByTipoSuccess

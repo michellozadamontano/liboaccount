@@ -11,7 +11,7 @@ import {
 
 import { MatTableDataSource, MatDialog } 		from '@angular/material';
 import { MatPaginator, MatSort }            from '@angular/material';
-import { CuentaMayor } from 'src/app/clasificadores/models/cuenta_mayor.interface';
+import { CuentaMayor }                      from 'src/app/clasificadores/models/cuenta_mayor.interface';
 
 @Component({
   selector: 'app-mayor-list',
@@ -26,7 +26,7 @@ export class MayorListComponent implements OnInit, OnChanges {
   @Output() edit    =  new EventEmitter<number>();
   @Output() delete  =  new EventEmitter<number>();
 
-  public displayedColumns = ['Codigo','Nombre','Deudora','Actions'];
+  public displayedColumns = ['Codigo','Nombre','Actions'];
   resultsLength = 0;
   public dataSource 		            = new MatTableDataSource<any>();
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -35,13 +35,28 @@ export class MayorListComponent implements OnInit, OnChanges {
   constructor() { }
 
   ngOnInit() {
+    console.log(this.mayorList);
+    
   }
   ngOnChanges() {
-
-    this.dataSource = new MatTableDataSource(this.mayorList);
-    this.resultsLength = this.mayorList.length;
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
+    console.log(this.mayorList);
+    if(this.mayorList != null)
+    {
+      this.dataSource = new MatTableDataSource(this.mayorList);
+      this.resultsLength = this.mayorList.length;
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
+    }
+    
+  }
+  applyFilter(filterValue: string) {
+     this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+  update(id:number){
+    this.edit.emit(id);
+  }
+  remove(id:number){
+    this.delete.emit(id);
   }
 
 }

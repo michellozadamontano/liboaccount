@@ -1,0 +1,12 @@
+<mat-card>
+    <mat-card-header>
+        <mat-card-title>Crear Grupo</mat-card-title>
+        <mat-card-subtitle>Cuenta de mayor</mat-card-subtitle>
+    </mat-card-header>    
+    <mat-card-content>
+        <app-plan-form
+        [plan] = "plan$ | async"
+        [cuentaTipoList] = "cuentaTipoList$ | async"
+        (save) = "submit($event)"></app-plan-form>
+    </mat-card-content>    
+</mat-card>

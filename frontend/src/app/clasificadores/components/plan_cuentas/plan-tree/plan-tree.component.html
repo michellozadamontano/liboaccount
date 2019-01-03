@@ -1,0 +1,91 @@
+<mat-card>
+    <mat-card-header>
+        <mat-card-title>Plan de cuentas</mat-card-title>
+        <mat-card-subtitle>Clasificador</mat-card-subtitle>
+    </mat-card-header>   
+    <mat-card-content>
+        <div fxLayout="column">
+          <div>
+            <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">         
+                <ng-container matColumnDef="Codigo">
+                  <th mat-header-cell *matHeaderCellDef> Codigo </th>
+                  <td mat-cell *matCellDef="let element"> {{element.codigo}} </td>
+                </ng-container>  
+                <ng-container matColumnDef="Nombre">
+                  <th mat-header-cell *matHeaderCellDef> Nombre </th>
+                  <td mat-cell *matCellDef="let element"> {{element.nombre}} </td>
+                </ng-container>
+                       
+                <ng-container matColumnDef="Actions">
+                  <th mat-header-cell *matHeaderCellDef></th>
+                  <td mat-cell *matCellDef="let element">                 
+                    <i class="material-icons hover-icon" (click)="editMayor(element.id)" matTooltip="Editar">create</i> 
+                    <i class="material-icons hover-icon" (click)="removeMayor(element.id)" matTooltip="Eliminar">delete_forever</i>
+                  </td>
+                </ng-container>
+                <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="tipoEvent(row.id)"
+                >
+                </tr>
+              </table>
+              <mat-paginator [length]="resultsLength" [pageSize]="5" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>          
+          </div>
+          <div>
+          <br>
+            <table mat-table [dataSource]="tipoDatasource" class="mat-elevation-z8">              
+                <ng-container matColumnDef="Codigo">
+                  <th mat-header-cell *matHeaderCellDef> Codigo </th>
+                  <td mat-cell *matCellDef="let element"> {{element.codigo}} </td>
+                </ng-container>
+                <ng-container matColumnDef="Nombre">
+                    <th mat-header-cell *matHeaderCellDef> Nombre </th>
+                    <td mat-cell *matCellDef="let element"> {{element.nombre}} </td>
+                </ng-container>
+                <ng-container matColumnDef="Deudora">
+                  <th mat-header-cell *matHeaderCellDef> Deudora </th>
+                  <td mat-cell *matCellDef="let element"> {{element.deudora}} </td>
+                </ng-container>                  
+                       
+                <ng-container matColumnDef="Actions">
+                  <th mat-header-cell *matHeaderCellDef></th>
+                  <td mat-cell *matCellDef="let element">                 
+                    <i class="material-icons hover-icon" (click)="editTipo(element.id)" matTooltip="Editar">create</i> 
+                    <i class="material-icons hover-icon" (click)="removeTipo(element.id)" matTooltip="Eliminar">delete_forever</i>
+                  </td>
+                </ng-container>
+                <tr mat-header-row *matHeaderRowDef="displayTipoColumns; sticky: true"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayTipoColumns;" (click)="planEvent(row.id)"
+                >
+                </tr>
+              </table>
+              <mat-paginator [length]="lengthTipo" [pageSize]="5" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator> 
+          </div>
+          <br>
+          <div>
+              <table mat-table [dataSource]="planDatasource" class="mat-elevation-z8">         
+                  <ng-container matColumnDef="Codigo">
+                    <th mat-header-cell *matHeaderCellDef> Codigo </th>
+                    <td mat-cell *matCellDef="let element"> {{element.codigo}} </td>
+                  </ng-container>  
+                  <ng-container matColumnDef="Nombre">
+                    <th mat-header-cell *matHeaderCellDef> Nombre </th>
+                    <td mat-cell *matCellDef="let element"> {{element.nombre}} </td>
+                  </ng-container>
+                         
+                  <ng-container matColumnDef="Actions">
+                    <th mat-header-cell *matHeaderCellDef></th>
+                    <td mat-cell *matCellDef="let element">                 
+                      <i class="material-icons hover-icon" (click)="editPlan(element.id)" matTooltip="Editar">create</i> 
+                      <i class="material-icons hover-icon" (click)="removePlan(element.id)" matTooltip="Eliminar">delete_forever</i>
+                    </td>
+                  </ng-container>
+                  <tr mat-header-row *matHeaderRowDef="displayPlanColumns; sticky: true"></tr>
+                  <tr mat-row *matRowDef="let row; columns: displayPlanColumns;" 
+                  >
+                  </tr>
+                </table>
+                <mat-paginator [length]="lengthPlan" [pageSize]="5" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+          </div>
+        </div>
+    </mat-card-content>    
+</mat-card>

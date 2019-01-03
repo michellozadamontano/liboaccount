@@ -8,6 +8,10 @@ import {
   HttpClientModule, 
   HTTP_INTERCEPTORS }                 from '@angular/common/http';
 
+  
+// Apollo
+import { GraphqlModule }              from './graphql.module';
+
 // material module 
 import { MaterialModule }             from './material/material.module';
 
@@ -65,6 +69,8 @@ import { SpinnerComponent }           from './shared/spinner.component';
     MaterialModule,
     BrowserAnimationsModule,
     HttpClientModule,
+    // Apollo
+    GraphqlModule,
     AppRoutingModule,
     FlexLayoutModule,
     SharedModule,
@@ -86,7 +92,7 @@ import { SpinnerComponent }           from './shared/spinner.component';
     {
       provide: LocationStrategy,
       useClass: PathLocationStrategy
-    },
+    },    
     CuentaTipoService,ActividadesService,
     CuentaMayorService,
     TcpService,

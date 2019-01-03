@@ -1,0 +1,17 @@
+<mat-card>
+    <mat-card-header>
+        <mat-card-title>Grupos Cuentas</mat-card-title>        
+    </mat-card-header>
+   
+    <mat-card-content>
+            <button mat-icon-button (click)="add()" color="primary">
+                <mat-icon class="mat-18" matTooltip="Adicionar">add_circle</mat-icon>
+            </button>
+        <app-mayor-list
+        [mayorList] = "mayorList$ | async"
+        (edit)      = "update($event)"
+        (delete)    = "delete($event)"
+        ></app-mayor-list>
+    </mat-card-content>
+   
+</mat-card>

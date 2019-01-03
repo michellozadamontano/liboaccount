@@ -25,6 +25,18 @@ router.get('/byId/:id',(req, res)=>{
         res.json(result)
     })
 })
+router.get('/byGrupoId/:id',(req,res)=> {
+    let id = req.params.id;
+    sql = 'select * from cuenta_tipo where grupo_id = ?';
+    params = [id];
+    db.execute(sql,params,(err, result)=>{
+        if(err)
+        {
+            res.json(err);
+        }
+        res.json(result)
+    })
+})
 
 router.post('/',(req,res) => {
     let codigo      = req.body.codigo;
@@ -66,15 +78,31 @@ router.put('/:id',(req,res)=> {
     let grupo_id    = req.body.grupo_id;
     let deudora     = req.body.deudora;
 
-    let sql = 'update cuenta_tipo set nombre = ?, grupo_id = ?, deudora = ? where id = ?';
-    let params = [nombre,grupo_id,deudora,id];
-    db.execute(sql,params,(err,result) => {
+    let checkCode = 'select * from cuenta_tipo where codigo = ? and id <> ?';
+    let checkParams = [codigo];
+    db.execute(checkCode,checkParams, (err,result) => {
         if(err)
         {
-            res.json(err)
+            res.json('ha ocurrido un error en la consulta');
         }
-        res.json('ok');
+        if(result.length > 0)
+        {
+            res.json('1');
+        }
+        else
+        {
+            let sql = 'update cuenta_tipo set nombre = ?, grupo_id = ?, deudora = ? where id = ?';
+            let params = [nombre,grupo_id,deudora,id];
+            db.execute(sql,params,(err,result) => {
+                if(err)
+                {
+                    res.json(err)
+                }
+                res.json('ok');
+            })
+        }
     })
+    
 })
 
 router.delete('/:id',(req,res)=>{

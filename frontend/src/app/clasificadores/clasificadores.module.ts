@@ -24,8 +24,8 @@ import { NgrxFormsModule }          from 'ngrx-forms';
 
 
 
-import { CuentaTipoListComponent }  from './components/cuenta_tipo/cuenta-tipo-list/cuenta-tipo-list.component';
-import { CuentaTipoFormComponent }  from './components/cuenta_tipo/cuenta-tipo-form/cuenta-tipo-form.component';
+import { CuentaTipoListComponent }  from './components/plan_cuentas/cuenta-tipo-list/cuenta-tipo-list.component';
+import { CuentaTipoFormComponent }  from './components/plan_cuentas/cuenta-tipo-form/cuenta-tipo-form.component';
 import { HomeComponent }            from './containers/home/home.component';
 import { ActividadIndexComponent }  from './containers/actividades/actividad-index/actividad-index.component';
 import { ActividadNewComponent }    from './containers/actividades/actividad-new/actividad-new.component';
@@ -46,10 +46,17 @@ import { CuentaTipoIndexComponent } from './containers/plan_cuentas/cuenta-tipo-
 import { CuentaTipoNewComponent }   from './containers/plan_cuentas/cuenta-tipo-new/cuenta-tipo-new.component';
 import { CuentaTipoEditComponent }  from './containers/plan_cuentas/cuenta-tipo-edit/cuenta-tipo-edit.component';
 import { CentroCostoIndexComponent } from './containers/centro_costo/centro-costo-index/centro-costo-index.component';
-import { CentroCostoNewComponent } from './containers/centro_costo/centro-costo-new/centro-costo-new.component';
+import { CentroCostoNewComponent }  from './containers/centro_costo/centro-costo-new/centro-costo-new.component';
 import { CentroCostoEditComponent } from './containers/centro_costo/centro-costo-edit/centro-costo-edit.component';
 import { CentroCostoFormComponent } from './components/centro_costo/centro-costo-form/centro-costo-form.component';
 import { CentroCostoListComponent } from './components/centro_costo/centro-costo-list/centro-costo-list.component';
+import { PlanTreeComponent }        from './components/plan_cuentas/plan-tree/plan-tree.component';
+import { MayorIndexComponent }      from './containers/plan_cuentas/mayor-index/mayor-index.component';
+import { PlanIndexComponent }       from './containers/plan_cuentas/plan-index/plan-index.component';
+import { PlanEditComponent }        from './containers/plan_cuentas/plan-edit/plan-edit.component';
+import { PlanNewComponent }         from './containers/plan_cuentas/plan-new/plan-new.component';
+import { PlanListComponent }        from './components/plan_cuentas/plan-list/plan-list.component';
+import { PlanFormComponent }        from './components/plan_cuentas/plan-form/plan-form.component';
 
 
 
@@ -95,7 +102,14 @@ import { CentroCostoListComponent } from './components/centro_costo/centro-costo
     CentroCostoNewComponent,
     CentroCostoEditComponent,
     CentroCostoFormComponent,
-    CentroCostoListComponent
+    CentroCostoListComponent,
+    PlanTreeComponent,
+    MayorIndexComponent,
+    PlanIndexComponent,
+    PlanEditComponent,
+    PlanNewComponent,
+    PlanListComponent,
+    PlanFormComponent
   ],
   providers: [],
   entryComponents:[]

@@ -13,6 +13,8 @@ import { MatSnackBar }            from '@angular/material';
 
 import { Router, ActivatedRoute }                 from '@angular/router';
 import { CuentaTipo }             from 'src/app/clasificadores/models/cuenta_tipo.interface';
+import { CuentaMayor } from 'src/app/clasificadores/models/cuenta_mayor.interface';
+import { CuentaTipoService, CuentaMayorService } from 'src/app/services';
 
 @Component({
   selector: 'app-cuenta-tipo-edit',
@@ -22,33 +24,52 @@ import { CuentaTipo }             from 'src/app/clasificadores/models/cuenta_tip
 })
 export class CuentaTipoEditComponent implements OnInit {
 
-  cuentaTipo$ : Observable<CuentaTipo>;
+  cuentaTipo$       : Observable<CuentaTipo>;
+  cuentaMayorList$  : Observable<CuentaMayor[]>
 
   constructor(
     private store           : Store<fromStore.ClasificadorState>,  
     private router          : Router,
     private ar              : ActivatedRoute,
-    private snackBarService : MatSnackBar
+    private snackBarService : MatSnackBar,
+    private tipoService     : CuentaTipoService,
+    private mayorService    : CuentaMayorService
   ) { }
 
   ngOnInit() {
-    let id = +this.ar.snapshot.params['id'];
-    this.store.dispatch(new fromStore.LoadCuentaTipoById(id));
-    this.cuentaTipo$ =  this.store.select(fromStore.getCuentaTipo);
+    let id = +this.ar.snapshot.params['id'];  
+    this.cuentaTipo$ =this.tipoService.getCuentaTipoById(id);   
+    this.cuentaMayorList$ = this.mayorService.getCuentaMayor();
   }
   submit(cuentaTipo: CuentaTipo)
   {
-    this.store.dispatch(new fromStore.UpdateCuentaTipo(cuentaTipo));
+    this.tipoService.updateCuentaTipo(cuentaTipo).subscribe(resp =>{
+      console.log(resp);
+      
+      this.router.navigate(['clasificadores/cuenta_tipo']);
+        this.snackBarService.dismiss();
+        this.snackBarService.open( "Registro actualizado!", undefined, {duration: 2000} );     
+        return;   
+    })
+
+   /* this.store.dispatch(new fromStore.UpdateCuentaTipo(cuentaTipo));
     this.store.select(fromStore.getCuentaTipoMessage).subscribe(resp => {
       
-      if(resp = 'ok')
+      if(resp == '1')
+      {
+        this.snackBarService.dismiss();
+        this.snackBarService.open( "Este codigo ya existe!", undefined, {duration: 2000} );     
+        return;     
+      }
+      
+      if(resp == 'ok')
       {
         this.router.navigate(['clasificadores/cuenta_tipo']);
         this.snackBarService.dismiss();
         this.snackBarService.open( "Registro actualizado!", undefined, {duration: 2000} );     
         return;   
       }
-    })
+    })*/
     
   }
 
