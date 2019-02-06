@@ -4,10 +4,7 @@ import {
   ChangeDetectionStrategy 
 }                                 from '@angular/core';
 
-// ngrx
-import { Store }                  from '@ngrx/store';
 import { Observable, from }       from 'rxjs';
-import * as fromStore             from '../../../store';
 
 import { Router }                 from '@angular/router';
 import { CuentaMayor }            from 'src/app/clasificadores/models/cuenta_mayor.interface';
@@ -23,8 +20,7 @@ export class MayorIndexComponent implements OnInit {
 
   mayorList$: Observable<CuentaMayor[]>;
 
-  constructor(
-    private store: Store<fromStore.ClasificadorState>,  
+  constructor(     
     private router: Router,
     private mayorService: CuentaMayorService
   ) { }
@@ -44,8 +40,9 @@ export class MayorIndexComponent implements OnInit {
   {
     const r = confirm('Estas Seguro?');
     if (r) {
-      this.mayorService.deleteCuentaMayor(id);
-     // this.store.dispatch(new fromStore.DeleteCuentaMayor(id));
+      this.mayorService.deleteCuentaMayor(id).subscribe(resp =>{       
+        
+      }); 
     }
     
   }

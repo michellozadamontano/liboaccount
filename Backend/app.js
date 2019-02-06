@@ -5,9 +5,11 @@ import cookieParser from 'cookie-parser';
 import logger from 'morgan';
 import cors from 'cors';
 
-
-import grapqlHTTP from 'express-graphql';
-import schema from './schema/schema';
+//Apollo server
+import {ApolloServer} from 'apollo-server-express';
+import grapqlHTTP     from 'express-graphql';
+import schema         from './schema';
+import resolvers      from './resolvers';
 
 import indexRouter from './routes/index';
 import usersRouter from './routes/users';
@@ -45,11 +47,18 @@ app.use('/cuenta_mayor',cuentaGrupoRouter);
 app.use('/cuenta_plan',cuentaPlanRouter);
 app.use('/ccosto', ccostoRouter);
 app.use('/moneda', monedaRouter);
-app.use('/graphql',grapqlHTTP({
+/*app.use('/graphql',grapqlHTTP({
    schema,
    graphiql:true
-}));
+}));*/
+const server = new ApolloServer({
+  introspection: true,
+  playground: true,
+  typeDefs: schema,
+  resolvers,
+});
 
+server.applyMiddleware({ app, path: '/graphql' });
 
 
 // catch 404 and forward to error handler

@@ -1,26 +1,58 @@
 import { Injectable }                       from '@angular/core';
 import { HttpClient, HttpErrorResponse }    from '@angular/common/http';
 import { Observable, throwError }           from 'rxjs';
-import { catchError }                       from 'rxjs/operators';
+import { catchError, map }                       from 'rxjs/operators';
 import { API_URL }                          from '../core/config';
 import { Actividades }                      from '../clasificadores/models/actividades.interface';
+//Apollo
+import { Apollo }                           from 'apollo-angular';
+import gql                                  from 'graphql-tag';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ActividadesService {
-
-  constructor(private http: HttpClient) { }
-
-  getActividades():Observable<Actividades[]>
+  // queries
+  Actividades = gql`
   {
-    let url = API_URL + 'activity';
-    return this.http.get<Actividades[]>(url).pipe(catchError(this.handleError));
+    actividades{
+      id
+      codigo
+      nombre
+      gasto_permitido
+    }
   }
-  getActividadById(id: number): Observable<Actividades>
+  `
+  ActividadById = gql`
+  query actividad($id:Int){
+    actividad(id:$id){
+      id
+      codigo
+      nombre
+      gasto_permitido
+    }
+  }`
+
+  constructor(
+    private http: HttpClient,
+    private apollo: Apollo) { }
+
+  getActividades()
+  {    
+    return this.apollo.watchQuery<Actividades[]>({
+      query: this.Actividades
+    }).valueChanges.pipe(
+      map(result =>result.data["actividades"])
+    )
+  }
+  getActividadById(id: number)
   {
-    let url = API_URL + 'activity/byId/' + id;
-    return this.http.get<Actividades>(url).pipe(catchError(this.handleError));
+    return this.apollo.watchQuery<Actividades>({
+      query: this.ActividadById,
+      variables:{id}
+    }).valueChanges.pipe(
+      map(result =>result.data["actividad"])
+    )
   }
   createActividad(actividad: Actividades):Observable<string>
   {

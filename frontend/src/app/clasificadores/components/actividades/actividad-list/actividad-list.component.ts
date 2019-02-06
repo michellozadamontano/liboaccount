@@ -34,12 +34,17 @@ export class ActividadListComponent implements OnInit, OnChanges {
   constructor() { }
 
   ngOnInit() {
+    
+    
   }
   ngOnChanges(){
-    this.dataSource           = new MatTableDataSource(this.actividadList);
-    this.resultsLength        = this.actividadList.length;
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort      = this.sort;
+    if(this.actividadList != null){
+      this.dataSource           = new MatTableDataSource(this.actividadList);
+      this.resultsLength        = this.actividadList.length;
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort      = this.sort;
+    }
+    
   }
   update(id:number)
   {

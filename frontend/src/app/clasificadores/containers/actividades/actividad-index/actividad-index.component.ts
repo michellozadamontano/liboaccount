@@ -12,6 +12,7 @@ import * as fromStore             from '../../../store';
 
 import { Router }                 from '@angular/router';
 import { Actividades }            from 'src/app/clasificadores/models/actividades.interface';
+import { ActividadesService }     from 'src/app/services';
 
 @Component({
   selector: 'app-actividad-index',
@@ -24,20 +25,22 @@ export class ActividadIndexComponent implements OnInit {
   actividadList$ : Observable<Actividades[]>;
 
   constructor(
-    private store: Store<fromStore.ClasificadorState>,  
+    private store: Store<fromStore.ClasificadorState>,
+    private actividadService: ActividadesService,
     private router: Router
   ) { }
 
   ngOnInit() {
-    this.store.dispatch(new fromStore.LoadActividades());
-    this.actividadList$ = this.store.select(fromStore.getActividadList);    
+   // this.store.dispatch(new fromStore.LoadActividades());
+   // this.actividadList$ = this.store.select(fromStore.getActividadList);  
+   this.actividadList$ = this.actividadService.getActividades();  
   }
   add()
   {
     this.router.navigate(['clasificadores/actividad_new']);
   }
-  edit(id:number)
-  {
+  edit(id:number){
+        
     this.router.navigate(['clasificadores/actividad_edit',id]);
   }
   delete(id:number)

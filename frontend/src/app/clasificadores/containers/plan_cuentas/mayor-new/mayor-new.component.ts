@@ -59,7 +59,7 @@ export class MayorNewComponent implements OnInit {
   {
     this.code$ =  this.mayorService.checkCodeMayor(codigo);
     this.code$.subscribe(resp => {
-      if(resp!= null)
+      if(resp)
       {
         this.snackBarService.dismiss();
         this.snackBarService.open( "Este codigo ya existe!", undefined, {duration: 2000} );     
