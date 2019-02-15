@@ -43,6 +43,8 @@ export class ActividadFormComponent implements OnInit, OnChanges {
   ngOnInit() {
   }
   ngOnChanges(){
+    console.log(this.actividad);
+    
     if (this.actividad) {
       this.form.patchValue({...this.actividad});
     }

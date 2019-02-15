@@ -35,7 +35,7 @@ export class CuentaMayorService {
 
   checkCode = gql`
   query checkCode($codigo: String){
-    checkCode(codigo: $codigo){
+    checkCodigoGrupo(codigo: $codigo){
       codigo
     }
   }`
@@ -44,23 +44,21 @@ export class CuentaMayorService {
   //mutation
    grupoCreate = gql`  
       mutation GrupoCreate($codigo: String!, $nombre: String!) {
-        grupoCreate(codigo:$codigo,nombre: $nombre) {
+        createGrupo(codigo:$codigo,nombre: $nombre) {
           nombre
         
       }  
     }`;
    grupoUpdate = gql`
    mutation UpdateGrupo($id: Int!,$codigo: String, $nombre:String){
-    grupoUpdate(id: $id, codigo: $codigo, nombre: $nombre) {
+    updateGrupo(id: $id, codigo: $codigo, nombre: $nombre) {
       nombre
     }
    }`
 
     deleteMayor = gql`
     mutation grupoRemove($id: Int!){
-      grupoRemove(id:$id){
-        nombre
-      }
+      removeGrupo(id:$id)
     }`;
 
 
@@ -93,7 +91,7 @@ export class CuentaMayorService {
         );
   }
   checkCodeMayor(codigo: string){
-    return this.apollo.watchQuery<string>({
+    return this.apollo.watchQuery<boolean>({
       query: this.checkCode,
       variables:{codigo: codigo}
     }).valueChanges
@@ -124,9 +122,8 @@ export class CuentaMayorService {
     })
   }
   deleteCuentaMayor(id:number)
-  {
-    /*let url = API_URL + 'cuenta_mayor/' + id;
-    return this.http.delete<string>(url).pipe(catchError(this.handleError));*/
+  {   
+       
     return this.apollo.mutate(
       {
         mutation:this.deleteMayor,

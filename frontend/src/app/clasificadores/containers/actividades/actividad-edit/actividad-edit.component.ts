@@ -13,6 +13,7 @@ import { MatSnackBar }            from '@angular/material';
 
 import { Router, ActivatedRoute } from '@angular/router';
 import { Actividades }            from 'src/app/clasificadores/models/actividades.interface';
+import { ActividadesService }     from 'src/app/services';
 
 @Component({
   selector: 'app-actividad-edit',
@@ -25,7 +26,8 @@ export class ActividadEditComponent implements OnInit {
   actividad$ : Observable<Actividades>;
 
   constructor(
-    private store           : Store<fromStore.ClasificadorState>,  
+    private store           : Store<fromStore.ClasificadorState>,
+    private actividadService: ActividadesService,  
     private router          : Router,
     private ar              : ActivatedRoute,
     private snackBarService : MatSnackBar
@@ -33,8 +35,8 @@ export class ActividadEditComponent implements OnInit {
 
   ngOnInit() {
     let id = +this.ar.snapshot.params['id'];
-    this.store.dispatch(new fromStore.LoadActividadById(id));
-    this.actividad$ = this.store.select(fromStore.getActividad);
+    console.log(id);
+    this.actividad$ = this.actividadService.getActividadById(id);
   }
   submit(actividad: Actividades)
   {
